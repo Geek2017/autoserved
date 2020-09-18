@@ -1,0 +1,14 @@
+export const CREATE_CAR = "car-profiles/CREATE_CAR";
+export const CREATE_CAR_SCHEDULES = "car-profiles/CREATE_CAR_SCHEDULES";
+export const DELETE_CAR_PROFILE = "car-profiles/DELETE_CAR_PROFILE";
+export const EDIT_CAR_PROFILE = "car-profiles/EDIT_CAR_PROFILE";
+export const GET_CAR_DETAILS = "car-profiles/GET_CAR_DETAILS";
+export const GET_CAR_SCHEDULE = "car-profiles/GET_CAR_SCHEDULE";
+export const GET_CAR_SCHEDULES = "car-profiles/GET_CAR_SCHEDULES";
+export const GET_REPAIR_HISTORY = "car-profiles/GET_REPAIR_HISTORY";
+export const GET_CARS = "car-profiles/GET_CARS";
+export const GET_ENGINE_TYPES = "car-profiles/GET_ENGINE_TYPES";
+export const GET_TRANSMISSION_TYPES = "car-profiles/GET_TRANSMISSION_TYPES";
+export const GET_VEHICLE_TYPES = "car-profiles/GET_VEHICLE_TYPES";
+export const REQUEST_PMS = "car-profiles/REQUEST_PMS";
+export const REQUEST_PMS_OTHER = "car-profiles/REQUEST_PMS_OTHER";

@@ -1,0 +1,65 @@
+%absoluteFill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+%fixedFill {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+%bgVerticalPrimaryGradient {
+	background-image: linear-gradient(
+		to top,
+		$primary-color ,
+		$primary-color-darker
+	);
+}
+
+%bgPrimaryGradient {
+	background-image: linear-gradient(
+		90deg,
+		$primary-color ,
+		$primary-color-darker
+	);
+}
+
+%bgBannerGradient {
+	background-image: linear-gradient(
+		135deg,
+		#1836b3 10%,
+		$primary-color 35%,
+		$highlight-color 100%,
+	);
+}
+
+%accentPrimaryGradient {
+	@extend %bgPrimaryGradient;
+	height: .15em;
+	border-radius: 1em;
+}
+
+%emptyStringMessage {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 1rem;
+	font-style: italic;
+	font-family: $font-family;
+	color: $gray-200;
+}
+
+%inheritTextSettings {
+	font-size: inherit;
+	font-weight: inherit;
+	font-style: inherit;
+	color: inherit;
+}

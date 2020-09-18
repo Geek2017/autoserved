@@ -1,0 +1,11 @@
+.autoserved-dashboard-page--customer-registration ,
+.autoserved-dashboard-page--shop-registration ,
+.autoserved-dashboard-page--forgot-password ,
+.autoserved-dashboard-page--fleet-registration {
+    .autoserved-dashboard__main-content__children {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

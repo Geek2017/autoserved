@@ -1,0 +1,14 @@
+.autoserved-dashboard-page--cars {
+    @media (max-width: 415px) {
+        .page-header {
+            // .page-header__actions
+            &__actions {
+                margin-top: 1rem !important;
+            }
+        }
+        .carlist-container {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+}

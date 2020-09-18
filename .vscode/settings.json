@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "off",
+    "editor.wordWrapColumn": 80,
+    "prettier.singleQuote": true,
+    "files.exclude": {
+        "**/.gitattributes": true,
+        "**/.styleci*": true,
+        "**/composer": true,
+        "**/composer.lock": true,
+        "**/package-lock*": true,
+        "**/vendor": true,
+        "**/view": true,
+        "**/.editorconfig": true,
+        "**/sample.env": true
+    }
+}

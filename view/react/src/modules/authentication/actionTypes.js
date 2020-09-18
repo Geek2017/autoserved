@@ -1,0 +1,11 @@
+export const GET_APP_DATA = 'authentication/GET_APP_DATA';
+export const CHECK_LOGIN_STATUS = 'authentication/CHECK_LOGIN_STATUS';
+export const FORGOT_PASSWORD = 'authentication/FORGOT_PASSWORD';
+export const RESET_PASSWORD = 'authentication/RESET_PASSWORD';
+export const LOGIN = 'authentication/LOGIN';
+export const LOGOUT = 'authentication/LOGOUT';
+export const REGISTER_CUSTOMER = 'authentication/REGISTER_CUSTOMER';
+export const REGISTER_FLEET = 'authentication/REGISTER_FLEET';
+export const REGISTER_FLEET_MEMBER = 'authentication/REGISTER_FLEET_MEMBER';
+export const REGISTER_SHOP = 'authentication/REGISTER_SHOP';
+export const VALIDATE_FLEET = 'authentication/VALIDATE_FLEET';

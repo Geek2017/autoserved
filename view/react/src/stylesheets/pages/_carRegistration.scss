@@ -1,0 +1,38 @@
+.p_carRegistration {
+    padding: 0;
+
+    // .p_carRegistration__card
+    &__card {
+
+    }
+
+    // .p_carRegistration__card-additional
+    &__card-additional {
+        .row__main-title {
+            padding-top: 0 !important;
+        }
+    }
+
+    .main-content-container {
+        padding: 0;
+    }
+
+    .wizard {
+        height: calc( 100vh - 120px);
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        // .wizard__body
+        &__body {
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        // .wizard__container
+        &__container {
+            margin: 0 auto;
+            max-width: 1024px;
+        }
+    }
+}

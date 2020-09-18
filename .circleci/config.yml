@@ -1,0 +1,77 @@
+version: 2.1
+jobs:
+  build-frontend-staging:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      # - run:
+      #     name: Composer Install
+      #     command: |
+      #       composer install
+      # - run:
+      #     name: NPM Install
+      #     command: |
+      #       cd view/react
+      #       npm install
+      # - run:
+      #     name: Build Application Package
+      #     command: |
+      #       npm run dev
+  # build-frontend-production:
+  # compress-application:
+  # backup:
+  # deploy-staging:
+  # deploy-production:
+  # deploy-staging:
+  # machine:
+  # enabled: true
+  # steps:
+  # - run:
+  # name: SSH
+  # command: ssh $DROPLET_USER@$DROPLET_IP "./deployment.sh"
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - build-frontend-staging:
+          filters:
+            branches:
+              only:
+                - development
+                - hotfix/*
+      # - build-frontend-production:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      # - compress-application:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - development
+      #           - hotfix/*
+      # - backup:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #     requires:
+      #       - compress-application
+      # - deploy-staging:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - development
+      #           - hotfix/*
+      #     requires:
+      #       - compress-application
+      # - deploy-production:
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #     requires:
+      #       - backup

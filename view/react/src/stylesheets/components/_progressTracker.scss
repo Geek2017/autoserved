@@ -1,0 +1,65 @@
+.progress-tracker {
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        padding: 0 1rem;
+        background-color: #fff;
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .label {
+            margin-left: auto;
+            text-align: right;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+    }
+
+    &__bars {
+        position: relative;
+        width: 100%;
+        background-color: #e8e8e8;
+
+        .progress {
+            border-radius: 0;
+            box-shadow: none;
+            background-color: transparent !important;
+            overflow: visible;
+            // .progress-bar
+            &-bar {
+                height: 100%;
+                border-top-right-radius: .5em;
+                border-bottom-right-radius: .5em;
+            }
+        }
+
+
+        &__current {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            margin-top: 0;
+            .progress-bar {
+                box-shadow: 0 0 .5em 0 rgba($primary-color, .25);
+            }
+        }
+
+        &__done {
+            position: relative;
+            z-index: 1;
+            opacity: 0.5;
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+}

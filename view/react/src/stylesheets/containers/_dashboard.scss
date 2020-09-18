@@ -1,0 +1,53 @@
+.autoserved-dashboard {
+	// .autoserved-dashboard__main-content
+	&__main-content {
+		padding: 0;
+
+		// .autoserved-dashboard__main-content__children
+		&__children {
+			width: 100%;
+			min-height: calc( 100vh - 120px );
+		}
+	}
+}
+
+@media (max-width: 415px) {
+	.autoserved-dashboard__main-content__children {
+		.main-content-container {
+			padding: 0 1rem !important;
+		}
+	}
+}
+
+
+///////////////////////////////////////////////
+//           dashsboard container           //
+/////////////////////////////////////////////*/
+.autoserved-dashboard {
+	// .autoserved-dashboard--no-logo
+	&--no-logo {
+
+	}
+	// .autoserved-dashboard--no-navbar
+	&--no-navbar {
+		.autoserved-dashboard__main-content__children {
+			min-height: calc( 100vh - 60px );
+		}
+	}
+	// .autoserved-dashboard--no-footer
+	&--no-footer {
+		.autoserved-dashboard__main-content__children {
+			min-height: calc( 100vh - 60px );
+		}
+	}
+
+	&.autoserved-dashboard--no-navbar {
+	&.autoserved-dashboard--no-footer {
+		.autoserved-dashboard__main-content__children {
+			min-height: 100vh;
+		}
+	}
+	}
+}
+///////  End of dashsboard container  ////////
+

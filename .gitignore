@@ -1,0 +1,25 @@
+# Node files
+/node_modules
+
+# Local files
+/public/hot
+/public/storage
+/public/js/images
+/storage/*.key
+/view/react/package-lock.json
+
+# Composer files
+/vendor
+
+# Environment variables
+.env
+.env.*
+
+# Generated files
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.DS_Store
+.rnd
