@@ -12,8 +12,7 @@
 /vendor
 
 # Environment variables
-.env
-.env.*
+
 
 # Generated files
 .phpunit.result.cache
