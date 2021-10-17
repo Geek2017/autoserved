@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AutoServed | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- ================== BEGIN core-css ================== -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="assets/css/app.min.css" rel="stylesheet" />
+    <!-- ================== END core-css ================== -->
+
+    <script src="./assets/js/angular.js"></script>
+    <script src="./assets/js/angular-route.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyBp5aAPOOntVPeVipRCPNRBRZdBFncfW98",
+            authDomain: "autoserved-beta.firebaseapp.com",
+            databaseURL: "https://autoserved-beta-default-rtdb.firebaseio.com/",
+            projectId: "autoserved-beta",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+    <!-- ================== END core-js ================== -->
+
+    <!-- ================== BEGIN core-css ================== -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="assets/css/app.min.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+
+    <style>
+        .imgbk {
+            background-image: url('./assets/img/background.png');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+
+</head>
+
+<body ng-app="newApp" class="imgbk">
+    <!-- <div id="header" class="app-header">
+
+
+
+        <div class="menu-item" style="padding-left: 95%;">
+            <div class="menu-text " style="text-align: right!important;"><button type="button" id="showit" class="btn btn-outline-success">Sign In</button></div>
+        </div>
+
+    </div> -->
+    <!-- BEGIN #app -->
+    <div id="app" class="app app-full-height app-without-header  bg-white-transparent-7" ng-controller="loginCtrl" style="float: right;width: 26%!important;">
+        <!-- BEGIN login -->
+        <div class="login">
+            <!-- BEGIN login-content -->
+            <div class="login-content">
+
+                <img class=" text-center" src="assets/img/logo.png" alt="" height="40" />
+                <div id="inquery">
+                    <div class="text-muted text-center mb-4">
+                        <span>Ask us anything its Free.</span>
+                    </div>
+                    <a href="" id="showit" class="btn btn-lg btn-outline-primary w-100 fw-500 mb-3">LOG ME IN!</a>
+                    <div class="text-center text-muted">
+                        Shop's user <a id="showit" class="btn text-white btn-sm bg-gradient-cyan-blue">Sign Up</a>
+                    </div>
+                </div>
+
+                <div id="otp">
+                    <div id="loading"></div>
+                    <div id="loaded" class="hidden">
+                        <div id="main">
+                            <div id="user-signed-in" class="hidden">
+                                <div id="user-info">
+                                    <div id="phone"></div>
+                                </div>
+                            </div>
+                            <div id="user-signed-out" class="hidden">
+                                <div id="firebaseui-spa">
+                                    <div id="firebaseui-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END login-content -->
+        </div>
+        <!-- END login -->
+
+        <!-- BEGIN btn-scroll-top -->
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+        <!-- END btn-scroll-top -->
+    </div>
+    <!-- END #app -->
+
+</body>
+<!-- ================== BEGIN core-js ================== -->
+<script src="./login.js"></script>
+<!-- ================== END core-js ================== -->
+
+</html>

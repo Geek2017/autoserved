@@ -1,0 +1,300 @@
+<!-- BEGIN #sidebar -->
+		<div id="sidebar" class="app-sidebar">
+			<!-- BEGIN scrollbar -->
+			<div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+				<!-- BEGIN menu -->
+				<div class="menu">
+					<div class="menu-header">Navigation</div>
+					<div class="menu-item@@if (context.homeClass) { @@homeClass}">
+						<a href="index.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-laptop"></i></span>
+							<span class="menu-text">Dashboard</span>
+						</a>
+					</div>
+					<div class="menu-item@@if (context.analyticsClass) { @@analyticsClass}">
+						<a href="analytics.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-chart-pie"></i></span>
+							<span class="menu-text">Analytics</span>
+						</a>
+					</div>
+					<div class="menu-item has-sub@@if (context.emailClass) { @@emailClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon">
+								<i class="fa fa-envelope"></i>
+								<span class="menu-icon-label">6</span>
+							</span>
+							<span class="menu-text">Email</span>
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.inboxClass) { @@inboxClass}">
+								<a href="email_inbox.html" class="menu-link">
+									<span class="menu-text">Inbox</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.composeClass) { @@composeClass}">
+								<a href="email_compose.html" class="menu-link">
+									<span class="menu-text">Compose</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.detailClass) { @@detailClass}">
+								<a href="email_detail.html" class="menu-link">
+									<span class="menu-text">Detail</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-divider"></div>
+					<div class="menu-header">Components</div>
+					<div class="menu-item@@if (context.widgetsClass) { @@widgetsClass}">
+						<a href="widgets.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-qrcode"></i></span>
+							<span class="menu-text">Widgets</span>
+						</a>
+					</div>
+					<div class="menu-item has-sub@@if (context.uiKitsClass) { @@uiKitsClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-heart"></i></span>
+							<span class="menu-text">UI Kits</span> 
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.bootstrapClass) { @@bootstrapClass}">
+								<a href="ui_bootstrap.html" class="menu-link">
+									<span class="menu-text">Bootstrap</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.buttonsClass) { @@buttonsClass}">
+								<a href="ui_buttons.html" class="menu-link">
+									<span class="menu-text">Buttons</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.cardClass) { @@cardClass}">
+								<a href="ui_card.html" class="menu-link">
+									<span class="menu-text">Card</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.iconsClass) { @@iconsClass}">
+								<a href="ui_icons.html" class="menu-link">
+									<span class="menu-text">Icons</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.modalNotificationClass) { @@modalNotificationClass}">
+								<a href="ui_modal_notification.html" class="menu-link">
+									<span class="menu-text">Modal & Notification</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.typographyClass) { @@typographyClass}">
+								<a href="ui_typography.html" class="menu-link">
+									<span class="menu-text">Typography</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.tabsAccordionsClass) { @@tabsAccordionsClass}">
+								<a href="ui_tabs_accordions.html" class="menu-link">
+									<span class="menu-text">Tabs & Accordions</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item has-sub@@if (context.formsClass) { @@formsClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-file-alt"></i></span>
+							<span class="menu-text">Forms</span> 
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.formElementsClass) { @@formElementsClass}">
+								<a href="form_elements.html" class="menu-link">
+									<span class="menu-text">Form Elements</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.formPluginsClass) { @@formPluginsClass}">
+								<a href="form_plugins.html" class="menu-link">
+									<span class="menu-text">Form Plugins</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.wizardsClass) { @@wizardsClass}">
+								<a href="form_wizards.html" class="menu-link">
+									<span class="menu-text">Wizards</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item has-sub@@if (context.tablesClass) { @@tablesClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-table"></i></span>
+							<span class="menu-text">Tables</span>
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.tableElementsClass) { @@tableElementsClass}">
+								<a href="table_elements.html" class="menu-link">
+									<span class="menu-text">Table Elements</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.tablePluginsClass) { @@tablePluginsClass}">
+								<a href="table_plugins.html" class="menu-link">
+									<span class="menu-text">Table Plugins</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item has-sub@@if (context.chartsClass) { @@chartsClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-chart-bar"></i></span>
+							<span class="menu-text">Charts</span>
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.chartJsClass) { @@chartJsClass}">
+								<a href="chart_js.html" class="menu-link">
+									<span class="menu-text">Chart.js</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.ApexchartsClass) { @@ApexchartsClass}">
+								<a href="chart_apex.html" class="menu-link">
+									<span class="menu-text">Apexcharts.js</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item@@if (context.mapClass) { @@mapClass}">
+						<a href="map.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-map-marker-alt"></i></span>
+							<span class="menu-text">Map</span>
+						</a>
+					</div>
+					<div class="menu-item has-sub@@if (context.layoutClass) { @@layoutClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-code-branch"></i></span>
+							<span class="menu-text">Layout</span>
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.starterPageClass) { @@starterPageClass}">
+								<a href="layout_starter.html" class="menu-link">
+									<span class="menu-text">Starter Page</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.fixedFooterClass) { @@fixedFooterClass}">
+								<a href="layout_fixed_footer.html" class="menu-link">
+									<span class="menu-text">Fixed Footer</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.fullHeightClass) { @@fullHeightClass}">
+								<a href="layout_full_height.html" class="menu-link">
+									<span class="menu-text">Full Height</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.fullWidthClass) { @@fullWidthClass}">
+								<a href="layout_full_width.html" class="menu-link">
+									<span class="menu-text">Full Width</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.boxedLayoutClass) { @@boxedLayoutClass}">
+								<a href="layout_boxed_layout.html" class="menu-link">
+									<span class="menu-text">Boxed Layout</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.minifiedSidebarClass) { @@minifiedSidebarClass}">
+								<a href="layout_minified_sidebar.html" class="menu-link">
+									<span class="menu-text">Minified Sidebar</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item has-sub@@if (context.pagesClass) { @@pagesClass}">
+						<a href="#" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-globe"></i></span>
+							<span class="menu-text">Pages</span>
+							<span class="menu-caret"><b class="caret"></b></span>
+						</a>
+						<div class="menu-submenu">
+							<div class="menu-item@@if (context.scrumBoardClass) { @@scrumBoardClass}">
+								<a href="page_scrum_board.html" class="menu-link">
+									<span class="menu-text">Scrum Board</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.productsClass) { @@productsClass}">
+								<a href="page_products.html" class="menu-link">
+									<span class="menu-text">Products</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.ordersClass) { @@ordersClass}">
+								<a href="page_orders.html" class="menu-link">
+									<span class="menu-text">Orders</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.galleryClass) { @@galleryClass}">
+								<a href="page_gallery.html" class="menu-link">
+									<span class="menu-text">Gallery</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.searchResultsClass) { @@searchResultsClass}">
+								<a href="page_search_results.html" class="menu-link">
+									<span class="menu-text">Search Results</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.comingSoonClass) { @@comingSoonClass}">
+								<a href="page_coming_soon.html" class="menu-link">
+									<span class="menu-text">Coming Soon Page</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.errorPageClass) { @@errorPageClass}">
+								<a href="page_404_error.html" class="menu-link">
+									<span class="menu-text">404 Error Page</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.loginClass) { @@loginClass}">
+								<a href="page_login.html" class="menu-link">
+									<span class="menu-text">Login</span>
+								</a>
+							</div>
+							<div class="menu-item@@if (context.registerClass) { @@registerClass}">
+								<a href="page_register.html" class="menu-link">
+									<span class="menu-text">Register</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-divider"></div>
+					<div class="menu-header">Users</div>
+					<div class="menu-item@@if (context.profileClass) { @@profileClass}">
+						<a href="profile.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-user-circle"></i></span>
+							<span class="menu-text">Profile</span>
+						</a>
+					</div>
+					<div class="menu-item@@if (context.calendarClass) { @@calendarClass}">
+						<a href="calendar.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-calendar"></i></span>
+							<span class="menu-text">Calendar</span>
+						</a>
+					</div>
+					<div class="menu-item@@if (context.settingsClass) { @@settingsClass}">
+						<a href="settings.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-cog"></i></span>
+							<span class="menu-text">Settings</span>
+						</a>
+					</div>
+					<div class="menu-item@@if (context.helperClass) { @@helperClass}">
+						<a href="helper.html" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-question-circle"></i></span>
+							<span class="menu-text">Helper</span>
+						</a>
+					</div>
+					<div class="p-3 px-4 mt-auto hide-on-minified">
+						<a href="../../documentation/index.html" class="btn d-block btn-secondary fw-600 rounded-pill">
+							<i class="fa fa-code-branch me-1 ms-n1 opacity-5"></i> Documentation
+						</a>
+					</div>
+				</div>
+				<!-- END menu -->
+			</div>
+			<!-- END scrollbar -->
+			
+			<!-- BEGIN mobile-sidebar-backdrop -->
+			<button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
+			<!-- END mobile-sidebar-backdrop -->
+		</div>
+		<!-- END #sidebar -->

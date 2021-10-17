@@ -1,0 +1,329 @@
+@import "mq";
+
+/* This source code is exported from pxCode, you can get more document from https://www.pxcode.io */
+
+.auto-group {
+    display: flex;
+    background-color: #fff;
+}
+
+.auto-group.layout {
+    position: relative;
+    overflow: visible;
+    min-height: 896px;
+    flex-grow: 1;
+    margin: 0px;
+}
+
+.auto-small-paragraph-body-box.layout {
+    position: absolute;
+    height: 56px;
+    bottom: 158px;
+    left: 19px;
+    right: 6px;
+}
+
+.auto-small-paragraph-body {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 10px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-highlights-box.layout {
+    position: absolute;
+    height: 42px;
+    bottom: 167px;
+    width: 235px;
+    right: -10px;
+}
+
+.auto-highlights {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 15px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-icon {
+    background: var(--src) center center / contain no-repeat;
+}
+
+.auto-icon.layout {
+    position: absolute;
+    top: 68px;
+    height: 74px;
+    left: 19px;
+    width: 75px;
+}
+
+.auto-line {
+    background: var(--src) center center / contain no-repeat;
+    border-style: solid;
+    border-color: #000;
+}
+
+.auto-line.layout {
+    position: absolute;
+    height: 1.5px;
+    bottom: 222.21px;
+    left: 19px;
+    right: 13px;
+}
+
+.auto-small-paragraph-body1-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auto-small-paragraph-body1-box.layout {
+    position: absolute;
+    top: 93px;
+    height: 24px;
+    width: 140px;
+    right: 17px;
+}
+
+.auto-small-paragraph-body1 {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 8.3333333333px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    text-align: right;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-icon.layout1 {
+    position: absolute;
+    height: 74px;
+    bottom: 58px;
+    width: 75px;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+}
+
+.auto-job-quotation {
+    display: flex;
+    justify-content: center;
+    font: 700 11.6666666667px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    text-align: center;
+    letter-spacing: 0px;
+}
+
+.auto-job-quotation.layout {
+    position: absolute;
+    top: 119px;
+    height: 16px;
+    width: 111px;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+}
+
+.auto-logo {
+    font: 700 20px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+}
+
+.auto-logo.layout {
+    position: absolute;
+    top: 19px;
+    height: 28px;
+    width: 68px;
+    right: 47px;
+}
+
+.auto-small-paragraph-body2-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auto-small-paragraph-body2-box.layout {
+    position: absolute;
+    top: 47px;
+    height: 42px;
+    width: 233px;
+    right: 16px;
+}
+
+.auto-small-paragraph-body2 {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 10px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    text-align: right;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-line.layout1 {
+    position: absolute;
+    top: 289.29px;
+    height: 1.5px;
+    left: 15px;
+    right: 17px;
+}
+
+.auto-service-requested {
+    font: 700 10px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+}
+
+.auto-service-requested.layout {
+    position: absolute;
+    top: 305px;
+    height: 14px;
+    left: 16px;
+    width: 121px;
+}
+
+.auto-small-paragraph-body3-box.layout {
+    position: absolute;
+    top: 323px;
+    height: 336px;
+    left: 16px;
+    right: 9px;
+}
+
+.auto-text-body-box {
+    display: flex;
+    justify-content: center;
+}
+
+.auto-text-body-box.layout {
+    position: absolute;
+    height: 16px;
+    bottom: 33px;
+    left: 73.5px;
+    right: 75.5px;
+}
+
+.auto-text-body {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font: 700 11.6666666667px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    text-align: center;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-line.layout2 {
+    position: absolute;
+    height: 1.5px;
+    bottom: 146.21px;
+    left: 19px;
+    right: 13px;
+}
+
+.auto-small-paragraph-body4-box.layout {
+    position: absolute;
+    top: 21px;
+    height: 43px;
+    left: 16px;
+    width: 98px;
+}
+
+.auto-small-paragraph-body4 {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 7.5px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-small-paragraph-body4-span0 {
+    font: 0.8333333333em "Roboto", Helvetica, Arial, serif;
+    color: #000 ff;
+    letter-spacing: 0px;
+}
+
+.auto-small-paragraph-body4-span1 {
+    font: 700 2.2222222222em "Roboto", Helvetica, Arial, serif;
+    color: #000 ff;
+    letter-spacing: 0px;
+}
+
+.auto-line.layout3 {
+    position: absolute;
+    top: 149.21px;
+    height: 1.5px;
+    left: 16px;
+    right: 16px;
+}
+
+.auto-small-paragraph-body5-box.layout {
+    position: absolute;
+    top: 21px;
+    height: 43px;
+    left: 16px;
+    width: 98px;
+}
+
+.auto-small-paragraph-body5 {
+    overflow: visible;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0px;
+    font: 7.5px "Roboto", Helvetica, Arial, serif;
+    color: #000;
+    letter-spacing: 0px;
+    white-space: pre-wrap;
+}
+
+.auto-small-paragraph-body5-span0 {
+    font: 0.8333333333em "Roboto", Helvetica, Arial, serif;
+    color: #000 ff;
+    letter-spacing: 0px;
+}
+
+.auto-small-paragraph-body5-span1 {
+    font: 700 2.2222222222em "Roboto", Helvetica, Arial, serif;
+    color: #000 ff;
+    letter-spacing: 0px;
+}
+
+.auto-small-paragraph-body6-box.layout {
+    position: absolute;
+    top: 159px;
+    height: 56px;
+    left: 16px;
+    right: 9px;
+}
+
+.auto-line.layout4 {
+    position: absolute;
+    top: 222.29px;
+    height: 1.5px;
+    left: 15px;
+    right: 17px;
+}
+
+.auto-small-paragraph-body7-box.layout {
+    position: absolute;
+    top: 229px;
+    height: 56px;
+    left: 18px;
+    right: 7px;
+}

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+
+<head>
+    <meta charset="utf-8">
+    <title> AutoServed | SMS </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./assets/css/animate.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-skins.min.css">
+
+    <!-- smartadmin RTL Support -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-rtl.min.css">
+
+    <!-- We recommend you use "your_style.css" to override smartadmin
+		     specific styles this will also ensure you retrain your customization with each smartadmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/your_style.css"> -->
+
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/demo.min.css">
+
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="./assets/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./assets/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <!-- #APP SCREEN / ICONS -->
+    <!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href="./assets/img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/img/splash/touch-icon-ipad-retina.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="./assets/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+        p {
+            margin-bottom: 1px!important;
+            font-size: 10px!important;
+        }
+        
+        table tr {
+            overflow: hidden;
+            height: 10px!important;
+            white-space: nowrap;
+        }
+        
+        table,
+        tr,
+        th,
+        td {
+            border-top: none!important;
+            border-left: none!important;
+            border-right: none!important;
+            border-bottom: none!important;
+            background-color: transparent!important;
+        }
+        
+        thead {
+            background-color: transparent!important;
+        }
+        
+        body {
+            background: transparent!important;
+        }
+        
+        .fc-border-separate thead tr,
+        .table thead tr {
+            background-color: none!important;
+            background-image: none!important;
+            background-image: none!important;
+        }
+        
+        hr.new5 {
+            border: 1px solid black;
+            margin-bottom: 4px!important;
+            margin-top: 4px!important;
+        }
+        
+        .main {
+            margin-left: 2%!important;
+            margin-right: 2%!important;
+        }
+        
+        .table {
+            margin-bottom: 0px!important
+        }
+    </style>
+</head>
+
+<body class="animated fadeInDown" ng-app="myApp">
+
+
+
+    <div class="main" role="main" ng-controller="qoutes">
+        <table class="table">
+            <thead>
+                <tr style="height:1px!important">
+                    <th class="text-left " style="width: 50%!important;padding-left: 5px!important;">
+
+                        <p>Plate Number</p>
+                        <p>
+                            <h4>ABC-123</h4>
+                        </p>
+
+                        <img src="./assets/img/qr.png" width="100" style="margin-left: -8px!important;">
+                        <p>
+                            <h4>&nbsp;</h4>
+                        </p>
+                        <p>
+                            <h4>&nbsp;</h4>
+                        </p>
+                    </th>
+
+                    <th class="text-right" style="width: 50%!important;padding-right: 5px!important;">
+                        <img src="./assets/img/vpx.png" width="100" style="margin-right: -8px!important;">
+                        <p>
+                            JOHN’S CAR CARE CENTER
+                        </p>
+                        <p>
+                            No. 1 Street Name St., Town, Country 1234
+                        </p>
+                        <p>
+                            Phone No. +63-12-345-6789
+                        </p>
+                        <p>
+                            SEPTEMBER 17, 2021
+                        </p>
+                        <p>
+                            QUOTATION NO. 0001-ABC123
+                        </p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="text-center" colspan="3">JOB QUOTATION</th>
+
+                </tr>
+            </thead>
+
+        </table>
+        <hr class="new5">
+        <p>
+            <p> Customer Name: Mr. Donald Trump </p>
+            <p> Address: 987 New Jersey St. Tampa Florida </p>
+            <p> Phone : {{mobile}} </p>
+            <p> Email: {{email}} </p>
+        </p>
+
+
+        <hr class="new5">
+        <table class="table">
+            <thead>
+                <tr style="height:1px!important">
+                    <th class="text-left " style="width: 50%!important;">
+                        <p> Vehicle Make: Lincoln</p>
+                        <p>Model: Navigator</p>
+                        <p>Transmission: Automatic</p>
+                        <p>VIN : 1FMRU1234567890</p>
+                    </th>
+                    <th class="text-right" style="width: 50%!important;">
+                        <p> Vehicle Year: 2016</p>
+                        <p> Engine: Gas</p>
+                        <p> Mileage: 34,560 KM</p>
+                        <p>&nbsp;</p>
+                    </th>
+                </tr>
+
+            </thead>
+
+        </table>
+        <hr class="new5">
+        <h3>SERVICE REQUESTED</h3>
+        <h6>A) Inpection & Diagnosis</h6>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-left ">Jobs</th>
+                    <th class="text-center ">Description</th>
+                    <th class="text-right ">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="qts in qoutes.quotes.aa">
+                    <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                    <td style="text-align: center;">{{qts['Description']}}</td>
+                    <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="text-align: right;">
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal0}}</span>
+                      </td></strong>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <h6>B) Preventive Maintenace</h6>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-left ">Jobs</th>
+                    <th class="text-center ">Description</th>
+                    <th class="text-right ">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="qts in qoutes.quotes.bb">
+                    <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                    <td style="text-align: center;">{{qts['Description']}}</td>
+                    <td style="text-align: right;">{{qts['Cost'] | currency:"₱ ":2}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="text-align: right;">
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal1}}</span>
+                        </td></strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <h6>C) Change Oil</h6>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-left">Jobs</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-right">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="qts in qoutes.quotes.cc">
+                    <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                    <td style="text-align: center;">{{qts['Description']}}</td>
+                    <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="text-align: right;">
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        </td></strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <hr class="new5">
+
+        <table class="table">
+
+            <thead>
+
+                <tr style="height:1px!important">
+
+                    <th class="text-left " style="width: 50%!important;">
+                        <p>TOTAL LABOR:5,500.00</p>
+                        <p>TOTAL PARTS: 20,500.00</p>
+                        <p>TOTAL MATERIAL: 1,200.00</p>
+                        <p>TOTAL 12% VAT: 3,264.00</p>
+
+                    </th>
+                    <th class="text-right" style="width: 50%!important;">
+                        <p> <strong style="font-size: 15px;">GRAND TOTAL: {{grandtotal}}</strong> </p>
+                        <p> <strong style="font-size: 15px;"> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p>
+                        <p> Mileage: 34,560 KM</p>
+
+                    </th>
+                </tr>
+
+            </thead>
+
+        </table>
+        <hr class="new5">
+
+        <div>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th class="text-center" colspan="2">
+                            <span> <img  src="./assets/img/qr.png" alt=""></span>
+                            <p>Present this QrCode @ the Shop</p>
+                        </th>
+
+                    </tr>
+
+                    <tr style="height:1px!important">
+
+                        <th class="text-left " style="width: 50%!important;">
+                            <button class="btn btn-danger btn-lg btn-block" ng-click="defered()">NO</button>
+                        </th>
+                        <th class="text-right" style="width: 50%!important;">
+                            <button class="btn btn-success btn-lg btn-block" ng-click="accept()">YES</button>
+                        </th>
+                    </tr>
+
+                </thead>
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <!--================================================== -->
+
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script src="./assets/js/plugin/pace/pace.min.js"></script>
+
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="./assets/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        }
+    </script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="./assets/js/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
+		<script src="./assets/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+    <!-- BOOTSTRAP JS -->
+    <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JQUERY VALIDATE -->
+    <script src="./assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="./assets/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!--[if IE 8]>
+			
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+			
+		<![endif]-->
+
+    <!-- MAIN APP JS FILE -->
+    <script src="./assets/animation/jquery.fittext.js"></script>
+    <script src="./assets/animation/jquery.lettering.js"></script>
+    <script src="./assets/animation/jquery.textillate.js"></script>
+
+    <script src="./assets/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="./assets/js/plugin/fuelux/wizard/wizard.min.js"></script>
+
+    <script src="./qoutes.js"></script>
+    <script src="./login.js"></script>
+
+
+
+
+</body>
+
+</html>

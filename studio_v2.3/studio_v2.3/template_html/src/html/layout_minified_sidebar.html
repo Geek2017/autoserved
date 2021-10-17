@@ -1,0 +1,43 @@
+@@include('./partial/head.html', {
+	"title": "Minified Sidebar", 
+	"css": [
+]})
+	<!-- BEGIN #app -->
+	<div id="app" class="app app-sidebar-minified">
+		@@include('./partial/header.html')
+		
+		@@include('./partial/sidebar.html', {"layoutClass": "active", "minifiedSidebarClass": "active"})
+		
+		<!-- BEGIN #content -->
+		<div id="content" class="app-content">
+			<ul class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">LAYOUT</a></li>
+				<li class="breadcrumb-item active">MINIFIED SIDEBAR</li>
+			</ul>
+			
+			<h1 class="page-header">
+				Minified Sidebar <small>page header description goes here...</small>
+			</h1>
+			
+			<hr class="mb-4" />
+			
+			<p>
+				Add the <code>.app-sidebar-minified</code> css class to <code>.app</code> container for minified sidebar page setting.
+			</p>
+			
+			<div class="hljs-container rounded">
+				<pre><code class="xml">&lt;div id="app" class="app app-sidebar-minified"&gt;
+  ...
+&lt;/div&gt;</code></pre>
+			</div>
+		</div>
+		<!-- END #content -->
+		
+		@@include('./partial/scroll-top-btn.html')
+	</div>
+	<!-- END #app -->
+	
+@@include('./partial/script.html', {"script": [
+	"assets/plugins/highlight.js/highlight.min.js",
+	"assets/js/demo/highlightjs.demo.js"
+]})

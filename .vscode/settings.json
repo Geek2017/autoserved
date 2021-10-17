@@ -10,7 +10,7 @@
         "**/composer.lock": true,
         "**/package-lock*": true,
         "**/vendor": true,
-        "**/view": true,
+        "**/view": false,
         "**/.editorconfig": true,
         "**/sample.env": true
     }

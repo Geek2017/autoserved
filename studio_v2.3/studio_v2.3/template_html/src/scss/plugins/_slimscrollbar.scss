@@ -1,0 +1,30 @@
+.slimScrollBar {
+	background: none !important;
+	width: rem(8px) !important;
+	
+	@if $enable-rtl {
+		left: 0 !important;
+	} @else {
+		right: 0 !important;
+	}
+	
+	&:before {
+		content: '';
+		position: absolute;
+		top: rem(2px);
+		bottom: rem(2px);
+		background: $gray-800;
+		
+		@include border-radius(10px);
+		@if $enable-rtl {
+			right: 0;
+			left: rem(2px);
+		} @else {
+			left: 0;
+			right: rem(2px);
+		}
+	}
+}
+.app-sidebar .slimScrollBar:before {
+	display: none;
+}

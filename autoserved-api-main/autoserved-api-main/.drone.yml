@@ -1,0 +1,31 @@
+kind: pipeline
+type: kubernetes
+name: autoserve-api
+steps:
+  - name: ecr-publish
+    image: plugins/ecr
+    settings:
+      create_repository: true
+      access_key:
+        from_secret: AWS_ACCESS_KEY_ID
+      secret_key:
+        from_secret: AWS_SECRET_ACCESS_KEY
+      repo: autoserved-api
+      registry: 839343020172.dkr.ecr.ap-southeast-1.amazonaws.com
+      region: ap-southeast-1
+      tags: [latest, 0.0.4]
+      privileged: true
+  - name: discord-notification
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: STATUS_WEBHOOK
+    when:
+      status: [success, failure]
+  - name: deploy-prod
+    image: tuttinator/kubectl
+    commands:
+      - kubectl apply -f eks/deployment.yaml
+    when:
+      branch:
+        - main
