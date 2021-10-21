@@ -11,10 +11,17 @@
 
 
     <!-- ================== BEGIN core-css ================== -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet" />
-    <link href="assets/css/app.min.css" rel="stylesheet" />
-    <link href="assets/css/daterangepicker.css" rel="stylesheet" />
+    <link href="./assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="./assets/css/app.min.css" rel="stylesheet" />
+    <link href="./assets/css/daterangepicker.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
+
+    <link href="./assets/css/common.main.css" rel="stylesheet" />
+    <link href="./assets/css/daygrid.main.css" rel="stylesheet" />
+    <link href="./assets/css/timegrid.min.css" rel="stylesheet" />
+    <link href="./assets/css/list.main.min.css" rel="stylesheet" />
+    <link href="./assets/css/bt.min.css" rel="stylesheet" />
+
     <script src="./assets/js/angular.js"></script>
     <script src="./assets/js/angular-route.js"></script>
     <script src="./assets/js/jquery.min.js"></script>
@@ -124,25 +131,26 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a href="widgets.html" class="menu-link">
-                            <span class="menu-icon"><i class="fa fa-tags"></i></span>
-                            <span class="menu-text">Estimate Request's</span>
+                        <a href="#/appointment" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <span class="menu-text">Appointment</span>
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a href="widgets.html" class="menu-link">
+                        <a href="#/estimate" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-tags"></i></span>
+                            <span class="menu-text">Estimate Request</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#/joborder" class="menu-link">
                             <span class="menu-icon"><i class="fa fa-list-ul"></i></span>
                             <span class="menu-text">Job Orders</span>
                         </a>
                     </div>
+
                     <div class="menu-item">
-                        <a href="widgets.html" class="menu-link">
-                            <span class="menu-icon"><i class="fas fa-calendar-alt"></i></span>
-                            <span class="menu-text">Schedules</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="widgets.html" class="menu-link">
+                        <a href="#/billing" class="menu-link">
                             <span class="menu-icon"><i class="fa fa-dollar-sign"></i></span>
                             <span class="menu-text">Billings</span>
                         </a>
@@ -185,8 +193,6 @@
 
     <!-- ================== BEGIN core-js ================== -->
 
-
-
     <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 
     <script>
@@ -202,9 +208,8 @@
     <script src="./assets/js/vendor.min.js"></script>
     <script src="./assets/js/app.min.js"></script>
 
-
-
     <script src="./assets/js/apexcharts.min.js"></script>
+    <script src="./assets/js/dirPagination.js"></script>
 
     <!-- ================== END core-js ================== -->
 
@@ -213,17 +218,33 @@
     <script src="./assets/js/Chart.min.js"></script>
     <script src="./assets/js/moment.min.js"></script>
     <script src="./assets/js/daterangepicker.js"></script>
-
+    <script src="./assets/js/jquery.tabletojson.min.js"></script>
     <!-- ================== END Analytics-Page ================== -->
 
-</body>
 
+
+</body>
+<!-- ================== BEGIN Calendar-Page ================== -->
+<script src="./assets/js/moment.js"></script>
+<script src="./assets/js/core.main.global.min.js"></script>
+<script src="./assets/js/daygrid.main.global.min.js"></script>
+<script src="./assets/js/timegrid.main.global.min.js"></script>
+<script src="./assets/js/interaction.main.global.min.js"></script>
+<script src="./assets/js/list.main.global.min.js"></script>
+<script src="./assets/js/bt.main.global.min.js"></script>
+<script src="./assets/js/calendar.demo.js"></script>
+<!-- ================== END Calendar-Page ================== -->
 
 <script src="./app.js"></script>
 <script src="./indexCtrl.js"></script>
 <script src="./controller/dashboardCtrl.js"></script>
 <script src="./controller/analyticsCrtl.js"></script>
 <script src="./controller/inquiriesCtrl.js"></script>
+<script src="./controller/estimateCrtl.js"></script>
+<script src="./controller/jobordersCrtl.js"></script>
+<script src="./controller/billingCtrl.js"></script>
+<script src="./controller/appointmentCtrl.js"></script>
+
 
 
 </html>

@@ -61,6 +61,10 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
         console.log(JSON.stringify(joborder.quotes.aa));
 
+        var today = new Date();
+        today = parseInt(today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() + "\nTime : " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+
         var uid = joborder.key;
         var updates = {};
         var jorder = {
@@ -69,7 +73,8 @@ app.controller('qoutes', function($scope, $http, $timeout) {
             mobileno: joborder.mobileno,
             quotes: { aa: JSON.stringify(joborder.quotes.aa), bb: JSON.stringify(joborder.quotes.bb), cc: JSON.stringify(joborder.quotes.cc) },
             state: 4,
-            total: joborder.total
+            total: joborder.total,
+            approvedate: today
         }
 
         updates['/joborders/' + uid] = jorder;
@@ -77,7 +82,8 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
         if (updates) {
             setTimeout(function() {
-                window.location.replace("/login.html");
+                alert('Thank you for accepting the Qoutation')
+                window.location.replace("./");
             }, 1000)
 
         }

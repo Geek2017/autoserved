@@ -84,17 +84,12 @@ app.controller('iform', function($scope, $http) {
             "ekey": iid,
             "email": $scope.email,
             "mobileno": $scope.mobileno,
-            "a_pm": '$scope.apm',
-            "b_co": ' $scope.bco',
-            "c_id": '$scope.cid',
             "cartype": $scope.CarType,
-            "d_wa": '$scope.dwa',
-            "e_ts": '$scope.ets',
             "engine": $scope.CarEngineType,
             "iqr_from": $scope.mobileno,
             "make": $scope.CarBrand,
             "mileage": $scope.Mileage,
-            "model": $scope.CarBrand,
+            "model": $scope.CarModel,
             "purchasedate": $scope.CarPurchaseDate,
             "transmission": $scope.CarTransmission,
             "year": $scope.CarYearModel,
@@ -104,7 +99,8 @@ app.controller('iform', function($scope, $http) {
             "tsr": $scope.tsr,
             "gsr": $scope.gsr,
             "idr": $scope.idr,
-            "pnmr": $scope.pnmr
+            "pnmr": $scope.pnmr,
+            "requestdate": today
         };
 
         var users = {

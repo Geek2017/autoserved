@@ -1,0 +1,101 @@
+<div class="card">
+
+    <div class="tab-content p-4">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="form-group mb-3 w-200px">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="form-group mb-3" style="float: right!important;">
+                    <select class="form-select" ng-model="pageSize">
+                        <option value="5">5</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show active">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Controls</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
+                            <td class="text-center"><strong>{{$index+1}}</strong></td>
+                            <td>{{joborder.key}}</td>
+                            <td>{{joborder.approvedate | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{joborder.mobileno}}</td>
+                            <td>{{joborder.email}}</td>
+                            <td>{{joborder.total}}</td>
+                            <td>{{joborder.state}}</td>
+                            <td class="w-200px">
+                                <div class="btn-group btn-group-sm w-250px">
+                                    <button type="button" class="btn btn-primary w-80px" ng-click="aianalyze(joborder)"><i class="fab fa-android"> A.i Analysis</i></button>
+                                    <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
+                                </div>
+                            </td>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="d-md-flex align-items-center">
+                <div class="me-md-auto text-md-left text-center mb-2 mb-md-0">
+
+                </div>
+
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="analyze" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 600px!important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Analysis</h5>
+                <button type="button" class="btn-close" ng-click="closed();"></button>
+            </div>
+            <div class="row loading">
+                <img src="./assets/img/loading1.gif">
+            </div>
+            <div class="row return" id="show">
+                <div class="col-xl-12">
+
+                    <div id="apexRadialBarChart"></div>
+
+                </div>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>A.i Repair Suggestion:</h4>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="suggestion0">...</span></li>
+                            <li class="list-group-item"><span class="suggestion1">...</span></li>
+                            <li class="list-group-item"><span class="suggestion2">...</span></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

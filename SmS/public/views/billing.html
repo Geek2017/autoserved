@@ -1,0 +1,65 @@
+<div class="d-flex align-items-center mb-3">
+
+
+    <div class="ms-auto">
+        <!-- <a href="#" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw me-1"></i>Add New Inquiry</a> -->
+    </div>
+</div>
+
+
+</div>
+
+<div class="card">
+
+    <div class="tab-content p-4">
+        <div class="tab-pane fade show active" id="allTab">
+            <!-- BEGIN input-group -->
+            <div class="input-group mb-4">
+                <div class="flex-fill position-relative">
+
+                    <input type="text" class="form-control ps-35px" placeholder="Filter orders" />
+                    <div class="input-group-text position-absolute top-0 bottom-0 bg-none border-0 pe-0" style="z-index: 1020;">
+                        <i class="fa fa-search opacity-5"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- END input-group -->
+
+            <!-- BEGIN table -->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Controls</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
+                            <td class="text-center"><strong>{{$index+1}}</strong></td>
+                            <td>{{joborder.key}}</td>
+                            <td>{{joborder.approvedate | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{joborder.mobileno}}</td>
+                            <td>{{joborder.email}}</td>
+                            <td>{{joborder.total}}</td>
+                            <td>{{joborder.state}}</td>
+                            <td class="w-200px">
+                                <div class="btn-group btn-group-sm w-250px">
+                                    <button type="button" class="btn btn-success w-80px" ng-click="paynow(joborder)"><i class="fas fa-money-bill-alt"> Mark Paid</i></button>
+                                    <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
+                                </div>
+                            </td>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>

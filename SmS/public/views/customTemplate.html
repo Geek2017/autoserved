@@ -1,0 +1,34 @@
+<style>
+
+</style>
+
+<ul class="pagination mb-0 justify-content-center" ng-if="1 < pages.length">
+    <li class="page-item" ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 } ">
+        <a href="" ng-click="setCurrent(1)" class="page-link">&laquo;</a>
+    </li>
+    <li class="page-item" ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+        <a href="" ng-click="setCurrent(pagination.current - 1)" class="ng-binding page-link">Back</a>
+    </li>
+    <li class="page-item" ng-repeat="pageNumber in pages track by $index" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+        <a href="" ng-click="setCurrent(pageNumber)" class="page-link">{{ pageNumber }} </a>
+    </li>
+
+    <li class="page-item" ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+        <a href="" ng-click="setCurrent(pagination.current + 1)" class="ng-binding page-link">Next</a>
+    </li>
+
+    <li class="page-item" ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+        <a href="" ng-click="setCurrent(pagination.last)" class="page-link">&raquo;</a>
+    </li>
+</ul>
+
+<!-- <ul class="pagination mb-0 justify-content-center">
+
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link" href="#">6</a></li>
+
+</ul> -->

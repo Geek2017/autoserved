@@ -1,6 +1,6 @@
 // Application Modules and Routing
 angular
-    .module('newApp', ['ngRoute'])
+    .module('newApp', ['ngRoute', 'angularUtils.directives.dirPagination'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -13,5 +13,19 @@ angular
             .when('/inquiries', {
                 templateUrl: 'views/inquiries.html',
                 controller: 'inquiriesCtrl'
-            });
+            }).when('/estimate', {
+                templateUrl: 'views/estimate.html',
+                controller: 'estimateCrtl'
+            }).when('/joborder', {
+                templateUrl: 'views/joborder.html',
+                controller: 'jobordersCrtl'
+            }).when('/billing', {
+                templateUrl: 'views/billing.html',
+                controller: 'billingCtrl'
+            }).when('/appointment', {
+                templateUrl: 'views/appointment.html',
+                controller: 'appointmentCtrl'
+            })
+    }).config(function(paginationTemplateProvider) {
+        paginationTemplateProvider.setPath('./views/customTemplate.html');
     });

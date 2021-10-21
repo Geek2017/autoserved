@@ -1,267 +1,349 @@
 <div class="d-flex align-items-center mb-3">
-    <div>
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">PAGES</a></li>
-            <li class="breadcrumb-item active">ORDERS</li>
-        </ul>
-        <h1 class="page-header mb-0">Orders</h1>
-    </div>
 
     <div class="ms-auto">
-        <a href="#" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw me-1"></i> Create Orders</a>
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#modalLg"><i class="fa fa-plus-circle fa-fw me-1"></i>Add New Inquiry</button>
     </div>
-</div>
 
-<div class="mb-md-4 mb-3 d-md-flex">
-    <div class="mt-md-0 mt-2"><a href="#" class="text-dark text-decoration-none"><i class="fa fa-download fa-fw me-1 text-muted"></i> Export</a></div>
-    <div class="ms-md-4 mt-md-0 mt-2 dropdown-toggle">
-        <a href="#" data-bs-toggle="dropdown" class="text-dark text-decoration-none">More Actions</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+    <div class="modal fade" id="modalLg" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-xl " style="max-width: 1400px!important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inquiry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="./inqueryforms.html" class="iframe" scrolling="yes" frameborder="0" style=" width:100%; height:650px;"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
 <div class="card">
-    <ul class="nav nav-tabs nav-tabs-v2 px-4">
-        <li class="nav-item me-3"><a href="#allTab" class="nav-link active px-2" data-bs-toggle="tab">All</a></li>
-        <li class="nav-item me-3"><a href="#publishedTab" class="nav-link px-2" data-bs-toggle="tab">Unfulfilled</a></li>
-        <li class="nav-item me-3"><a href="#expiredTab" class="nav-link px-2" data-bs-toggle="tab">Unpaid</a></li>
-        <li class="nav-item me-3"><a href="#deletedTab" class="nav-link px-2" data-bs-toggle="tab">Open</a></li>
-        <li class="nav-item me-3"><a href="#deletedTab" class="nav-link px-2" data-bs-toggle="tab">Closed</a></li>
-        <li class="nav-item me-3"><a href="#deletedTab" class="nav-link px-2" data-bs-toggle="tab">Local delivery</a></li>
-    </ul>
+
     <div class="tab-content p-4">
-        <div class="tab-pane fade show active" id="allTab">
-            <!-- BEGIN input-group -->
-            <div class="input-group mb-4">
-                <div class="flex-fill position-relative">
-                    <div class="input-group">
-                        <input type="text" class="form-control ps-35px" placeholder="Filter orders" />
-                        <div class="input-group-text position-absolute top-0 bottom-0 bg-none border-0 pe-0" style="z-index: 1020;">
-                            <i class="fa fa-search opacity-5"></i>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-default dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="d-none d-md-inline">Payment Status</span><span class="d-inline d-md-none"><i class="fa fa-credit-card"></i></span> &nbsp;</button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-                <button class="btn btn-default dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="d-none d-md-inline">Fulfillment status</span><span class="d-inline d-md-none"><i class="fa fa-check"></i></span></button>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="form-group mb-3 w-200px">
+                    <input type="text" class="form-control" placeholder="Search">
                 </div>
             </div>
-            <!-- END input-group -->
 
-            <!-- BEGIN table -->
+            <div class="col-xl-6">
+                <div class="form-group mb-3" style="float: right!important;">
+                    <select class="form-select" ng-model="pageSize">
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show active">
             <div class="table-responsive">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="border-top-0 pt-0 pb-2"></th>
-                            <th class="border-top-0 pt-0 pb-2">Order</th>
-                            <th class="border-top-0 pt-0 pb-2">Date</th>
-                            <th class="border-top-0 pt-0 pb-2">Customer</th>
-                            <th class="border-top-0 pt-0 pb-2">Total</th>
-                            <th class="border-top-0 pt-0 pb-2">Payment status</th>
-                            <th class="border-top-0 pt-0 pb-2">Fulfillment status</th>
-                            <th class="border-top-0 pt-0 pb-2">Items</th>
-                            <th class="border-top-0 pt-0 pb-2">Delivery method</th>
+                            <th>#</th>
+                            <th scope="col">Inquiry Date</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Make/Brand</th>
+                            <th scope="col">Models</th>
+                            <th scope="col">Controls</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product1">
-                                    <label class="form-check-label" for="product1"></label>
+                        <tr dir-paginate="inq in inqs | filter:q | itemsPerPage: pageSize | orderBy: '+requestdate'" current-page="currentPage">
+                            <td class="text-center"><strong>{{$index+1}}</strong></td>
+                            <td>{{inq.requestdate | date:'MM/dd/yyyy @ hh: mm:ss'}}
+
+                            </td>
+                            <td>{{inq.iqr_from}}</td>
+                            <td>{{inq.email}}</td>
+                            <td>{{inq.make}}</td>
+                            <td>{{inq.model}}</td>
+                            <td class="w-200px">
+                                <div class="btn-group btn-group-sm ">
+                                    <button type="button" class="btn btn-success w-80px" data-bs-toggle="modal" data-bs-target="#estimate" ng-click="estimate(inq);"><i class="fas fa-calculator"> Estimate</i></button>
+                                    <button type="button" class="btn btn-primary w-80px"><i class="fas fa-info-circle"> Details</i></button>
+                                    <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
                                 </div>
                             </td>
-                            <td class="align-middle"><a href="#">#1950</a></td>
-                            <td class="align-middle">Thu 26 Nov, 12:23pm</td>
-                            <td class="align-middle">Amanda Lee</td>
-                            <td>$398.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Fulfilled</span></td>
-                            <td class="align-middle">3 items</td>
-                            <td class="align-middle">Free shipping</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product2">
-                                    <label class="form-check-label" for="product2"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1949</a></td>
-                            <td class="align-middle">Thu 26 Nov, 11:54am</td>
-                            <td class="align-middle">Leonard Oii</td>
-                            <td>$496.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Fulfilled</span></td>
-                            <td class="align-middle">1 item</td>
-                            <td class="align-middle">Local pickup</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product3">
-                                    <label class="form-check-label" for="product3"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1948</a></td>
-                            <td class="align-middle">Thu 25 Nov, 11:54pm</td>
-                            <td class="align-middle">John Doe</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-orange-transparent-2 text-orange px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Pending</span></td>
-                            <td class="align-middle"><span class="badge bg-yellow-transparent-5 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Unfulfilled</span></td>
-                            <td class="align-middle">2 items</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product4">
-                                    <label class="form-check-label" for="product4"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1947</a></td>
-                            <td class="align-middle">Thu 25 Nov, 11:53pm</td>
-                            <td class="align-middle">Terry Ng</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-orange-transparent-2 text-orange px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Pending</span></td>
-                            <td class="align-middle"><span class="badge bg-yellow-transparent-5 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Unfulfilled</span></td>
-                            <td class="align-middle">2 items</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product5">
-                                    <label class="form-check-label" for="product5"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1946</a></td>
-                            <td class="align-middle">Thu 25 Nov, 11:52pm</td>
-                            <td class="align-middle">Terry Ng</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-orange-transparent-2 text-orange px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Pending</span></td>
-                            <td class="align-middle"><span class="badge bg-yellow-transparent-5 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px"></i> Unfulfilled</span></td>
-                            <td class="align-middle">2 items</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product6">
-                                    <label class="form-check-label" for="product6"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1945</a></td>
-                            <td class="align-middle">Thu 24 Nov, 2:43pm</td>
-                            <td class="align-middle">Lelouch Wong</td>
-                            <td>$900.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-primary-transparent-2 text-primary px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-primary-transparent-8 fs-9px fa-fw me-5px"></i> Ready for pickup</span></td>
-                            <td class="align-middle">2 items</td>
-                            <td class="align-middle">Local pickup</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product7">
-                                    <label class="form-check-label" for="product7"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1944</a></td>
-                            <td class="align-middle">Thu 23 Nov, 2:43pm</td>
-                            <td class="align-middle">Cynthia Ting</td>
-                            <td>$625.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-primary-transparent-2 text-primary px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-primary-transparent-8 fs-9px fa-fw me-5px"></i> Ready for delivery</span></td>
-                            <td class="align-middle">1 item</td>
-                            <td class="align-middle">Local pickup</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product8">
-                                    <label class="form-check-label" for="product8"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1943</a></td>
-                            <td class="align-middle">Thu 23 Nov, 11:59am</td>
-                            <td class="align-middle">Richard Leong</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Partially refunded</span></td>
-                            <td class="align-middle"><span class="badge bg-danger-transparent-3 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle fs-9px fa-fw me-5px text-danger-transparent-8"></i> Partially fulfilled</span></td>
-                            <td class="align-middle">2 items</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product9">
-                                    <label class="form-check-label" for="product9"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1942</a></td>
-                            <td class="align-middle">Thu 22 Nov, 8:12am</td>
-                            <td class="align-middle">Clement Tang</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Fulfilled</span></td>
-                            <td class="align-middle">1 item</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
-                        <tr>
-                            <td class="w-10px align-middle">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="product10">
-                                    <label class="form-check-label" for="product10"></label>
-                                </div>
-                            </td>
-                            <td class="align-middle"><a href="#">#1941</a></td>
-                            <td class="align-middle">Thu 22 Nov, 7:42am</td>
-                            <td class="align-middle">Richard Leong</td>
-                            <td>$195.00</td>
-                            <td class="py-1 align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Paid</span></td>
-                            <td class="align-middle"><span class="badge bg-gray-100 text-black-transparent-5 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-gray-500 fs-9px fa-fw me-5px"></i> Fulfilled</span></td>
-                            <td class="align-middle">1 item</td>
-                            <td class="align-middle">Express</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
-            <!-- END table -->
+
 
             <div class="d-md-flex align-items-center">
                 <div class="me-md-auto text-md-left text-center mb-2 mb-md-0">
-                    Showing 1 to 10 of 57 entries
+
                 </div>
-                <ul class="pagination mb-0 justify-content-center">
-                    <li class="page-item disabled"><a class="page-link">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
+
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estimate" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Estimate</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form ng-submit="submit()">
+                    <div class="card-body">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false">
+                                       A) Preventive Maintenance
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="remtr()"><i class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="addtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="aind" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="aindadd">
+                                                <tr class="row_to_clone">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" placeholder="Particulars">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" placeholder="Description">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control aintxt" type="number" placeholder="Cost" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="ainsum"> <strong>
+                                                        <span id="ainsum" class="stotal">₱ 0.00</span></strong>
+                                                    </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false">
+                                        B) Change Oil
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="bpmremtr()"><i class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="bpmaddtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="bpm" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bpmdadd">
+                                                <tr class="row_to_clone">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" placeholder="Particulars">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" placeholder="Description">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control pmtxt" type="number" placeholder="Cost" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="pmsum"> <strong>
+                                                        <span id="pmsum" class="stotal">₱ 0.00</span></strong>
+                                                    </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false">
+                                        C) Wheel Alignment
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="ccoremtr()"><i class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="ccoaddtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="cco" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="ccoadd">
+                                                <tr class="row_to_clone">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" placeholder="Particulars">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" placeholder="Description">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control ccotxt" type="number" placeholder="Cost" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="ccosum"> <strong>
+                                                        <span id="ccosum" class="stotal">₱ 0.00</span></strong>
+                                                    </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-8 " colspan="2">
+                                            <h4 style="float:right"><strong>Total</strong>
+                                            </h4>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <label class="grandt"> <strong>
+                                            <span id="grandt">₱ 0.00</span></strong>
+                                        </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-8 " colspan="2">
+                                            <h6 style="float:right"><strong>Vat (12%)</strong>
+                                            </h6>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <label class="gvat"> <strong>
+                                            <span id="gvat">₱ 0.00</span></strong>
+                                        </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-8 " colspan="2">
+                                            <h6 style="float:right"><strong>Grand Total</strong>
+                                            </h6>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <h6> <label class="grandtnvat"> <strong>
+                                            <span id="tgvat">₱ 0.00</span></strong>
+                                        </label></h6>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <footer class="modal-footer">
+                        <button type="submit" class="btn btn-success" ng-click="sendestimate();">SAVE & SEND</button>
+                        <button type="submit" class="btn btn-primary" ng-click="savedestimate();">SAVE ONLY</button>
+                    </footer>
+                </form>
             </div>
         </div>
     </div>
