@@ -57,13 +57,35 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
     });
 
-    $scope.accept = function() {
+    $scope.booking = function() {
+        $('#modalSm').modal('toggle');
+    }
 
+    $(".accept").click(function() {
         console.log(JSON.stringify(joborder.quotes.aa));
 
         var today = new Date();
         today = parseInt(today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() + "\nTime : " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
+        var val0, val1, val2;
+
+        if (joborder.quotes.aa) {
+            val0 = joborder.quotes.aa;
+        } else {
+            val0 = 'none';
+        }
+
+        if (joborder.quotes.bb) {
+            val1 = joborder.quotes.bb;
+        } else {
+            val1 = 'none';
+        }
+
+        if (joborder.quotes.cc) {
+            val2 = joborder.quotes.cc;
+        } else {
+            val2 = 'none';
+        }
 
         var uid = joborder.key;
         var updates = {};
@@ -71,23 +93,36 @@ app.controller('qoutes', function($scope, $http, $timeout) {
             email: joborder.email,
             key: joborder.key,
             mobileno: joborder.mobileno,
-            quotes: { aa: JSON.stringify(joborder.quotes.aa), bb: JSON.stringify(joborder.quotes.bb), cc: JSON.stringify(joborder.quotes.cc) },
+            quotes: { aa: JSON.stringify(val0), bb: JSON.stringify(val1), cc: JSON.stringify(val2) },
             state: 4,
             total: joborder.total,
-            approvedate: today
+            fullname: $scope.cofn,
+            address: $scope.coadd,
+            plateno: $scope.copn,
+            date1: $scope.cofd0,
+            time1: $scope.coft0,
+            date2: $scope.cofd1,
+            time2: $scope.coft1,
+            date3: $scope.cofd2,
+            time3: $scope.coft2,
+            approvedate: today,
+            state: 0
         }
 
-        updates['/joborders/' + uid] = jorder;
+        console.log(jorder)
+
+        updates['/appointment/' + uid] = jorder;
         firebase.database().ref().update(updates);
 
         if (updates) {
             setTimeout(function() {
-                alert('Thank you for accepting the Qoutation')
+                alert('Your appointment had been set, you will receive a notifcation ones your schedule is confirmed')
                 window.location.replace("./");
             }, 1000)
 
         }
-    }
+    });
+
 
     $scope.defered = function() {
         var ref = firebase.database().ref("/estimate/" + joborder.ekey);

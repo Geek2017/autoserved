@@ -359,9 +359,10 @@
                         </th>
                         <th>
 
-                            <button type="button" class="btn btn-success btn-lg w-100" ng-click="accept()">YES</button>
+                            <button type="button" class="btn btn-success btn-lg w-100" ng-click="booking()">YES</button>
                         </th>
                     </tr>
+
 
                 </thead>
 
@@ -371,11 +372,95 @@
         </div>
     </div>
 
-    <script src="./qoutes.js"></script>
+
+    <div class="modal fade" id="modalSm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <p>
+                                    <h2>Set Appointment</h2>
+                                </p>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong>Full Name</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="cofn" required/>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong>Complete Address</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" rows="4" spellcheck="false" ng-model="coadd" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong>Car Plate #</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="copn" required/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6">
+                                <p>
+                                    <h3> Kindly select 3 of your prefered date & time schedule!</h3>
+                                </p>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong> Schedule 1</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" ng-model="cofd0" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div><br>
+                                    <div class="input-group">
+                                        <input type="time" class="form-control" ng-model="coft0" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong>Schedule 2</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" ng-model="cofd1" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div><br>
+                                    <div class="input-group">
+                                        <input type="time" class="form-control" ng-model="coft1" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label"><strong>Schedule 3</strong><span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" ng-model="cofd2" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div><br>
+                                    <div class="input-group">
+                                        <input type="time" class="form-control" ng-model="coft2" required/>
+                                        <label class="input-group-text" for="datepicker-component">OK</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <button type="button" class="btn btn-primary btn-lg w-100 accept">Book Now!</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
 </body>
+<script src="./qoutes.js"></script>
+<script src="./assets/js/vendor.min.js"></script>
+<script src="./assets/js/app.min.js"></script>
 
 </html>
