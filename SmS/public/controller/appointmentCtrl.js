@@ -26,6 +26,8 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 var dater;
 
+                let ccdata;
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     eventClick: function(info) {
                         var eventObj = info.event;
@@ -38,6 +40,10 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                             $('#viewscad').modal('toggle');
 
                             firebase.database().ref('/inquiries/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
+
+                                firebase.database().ref('/estimate/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
+                                    ccdata = snapshot.val();
+                                });
 
                                 $timeout(function() {
                                     $scope.$apply(function() {
@@ -84,8 +90,6 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 $scope.approvedate = function() {
 
-
-
                     let ndater = dater.replace(/\//g, '-');;
 
                     var ref = firebase.database().ref("calendar");
@@ -104,8 +108,31 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                     let cdate = item.start
                                     console.log(cdate)
 
-                                    if (cdate === ndater) {
+                                    if (cdate == ndater) {
                                         console.log('Approvedate', item.start, ndater, item.key);
+
+
+
+                                        var joborders = {};
+                                        joborders['/joborders/' + ccdata.ekey] = ccdata;
+                                        firebase.database().ref().update(joborders);
+
+
+                                        if (joborders) {
+                                            console.log(joborders)
+                                        }
+
+                                        var db = firebase.database();
+                                        db.ref('/calendar/')
+                                            .orderByChild("start")
+                                            .equalTo(ndater)
+                                            .once('value')
+                                            .then(function(snapshot) {
+                                                snapshot.forEach(function(childSnapshot) {
+                                                    childSnapshot.ref.child('color').set('#1abd36');
+                                                });
+                                            });
+
                                     } else {
 
                                         console.log('Not-Approvedate', item.start, ndater, item.key);
