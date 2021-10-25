@@ -204,7 +204,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                             if (param === i) {
                                                 setTimeout(function() {
                                                     $('#changescad').modal('hide');
-                                                    location.replace('#/')
+                                                    location.replace('#/analytics')
                                                     location.replace('#/appointment')
                                                 }, 100);
                                             }

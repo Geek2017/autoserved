@@ -165,10 +165,81 @@ app.controller('changescad', function($scope, $http, $timeout) {
         alert(1)
     }
 
+    var spdates = [];
+
+    $('.fd0').change(function() {
+        spdates.push($('.fd0').val());
+        console.log(spdates, spdates.length)
+        if (spdates.length == 3) {
+            $(".btn-success").prop('disabled', false);
+        }
+    });
+
+    $('.fd1').change(function() {
+        spdates.push($('.fd1').val());
+        console.log(spdates, )
+        if (spdates.length == 3) {
+            $(".btn-success").prop('disabled', false);
+        }
+    });
+
+    $('.fd2').change(function() {
+        spdates.push($('.fd2').val());
+        console.log(spdates[0])
+        if (spdates.length == 3) {
+            $(".btn-success").prop('disabled', false);
+        }
+    });
+
     $scope.reschedule = function() {
         $('#changesdate').modal('toggle');
         $('#changescad').modal('toggle');
+        $(".btn-success").prop('disabled', true);
     }
+
+    $scope.proposedate = function() {
+        var ref = firebase.database().ref("/calendar/");
+        ref.orderByChild("url").equalTo(key).on("value", function(snapshot) {
+            $timeout(function() {
+                $scope.$apply(function() {
+                    var valc = [];
+                    var i = 0;
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        valc.push(item)
+                        console.log(item.key)
+                        var db = firebase.database();
+                        db.ref('/calendar/' + item.key)
+                            .orderByChild("start")
+                            // .equalTo(item.key)
+                            .once('value')
+                            .then(function(snapshot) {
+
+                                console.log(snapshot.val(), i);
+
+                                childSnapshot.ref.child('start').set(spdates[i])
+
+                                var param = valc.length - 1;
+
+                                console.log(param - 1, i);
+
+                                if (param === i) {
+                                    setTimeout(function() {
+                                        alert('Proposed date Sent!')
+                                        location.replace('login.html')
+                                    }, 100);
+                                }
+                                i++;
+                            });
+
+                    });
+
+                });
+            });
+        });
+    }
+
 
     $scope.goback = function() {
         $('#changescad').modal('toggle');
