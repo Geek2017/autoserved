@@ -26,6 +26,8 @@ app.controller('changescad', function($scope, $http, $timeout) {
 
     var joborder;
 
+    let ccdata;
+
     firebase.database().ref('/calendar/').orderByChild('url').equalTo(key).on("value", function(snapshot) {
 
         $timeout(function() {
@@ -38,6 +40,11 @@ app.controller('changescad', function($scope, $http, $timeout) {
                 });
                 console.log(returnArr);
                 $scope.dates = returnArr;
+
+                firebase.database().ref('/estimate/' + key).orderByChild('ekey').on("value", function(snapshot) {
+                    ccdata = snapshot.val();
+                    console.log(ccdata);
+                });
             });
 
         })
@@ -240,21 +247,80 @@ app.controller('changescad', function($scope, $http, $timeout) {
         });
     }
 
+    let pickdate;
+
+    $scope.approve = function() {
+
+        // console.log(pickdate);
+
+        let ndater = pickdate;
+
+        var ref = firebase.database().ref("calendar");
+        ref.orderByChild("url").equalTo(key).on("value", function(snapshot) {
+
+            // console.log(ndater)
+
+            $timeout(function() {
+                $scope.$apply(function() {
+
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+
+                        let cdate = item.start
+                        console.log(cdate)
+
+                        if (cdate == ndater) {
+                            console.log('Approvedate', item.start, ndater, item.key);
+                            var joborders = {};
+                            joborders['/joborders/' + ccdata.ekey] = ccdata;
+                            firebase.database().ref().update(joborders);
+
+
+                            if (joborders) {
+                                console.log(joborders)
+                            }
+
+                            var db = firebase.database();
+                            db.ref('/calendar/')
+                                .orderByChild("start")
+                                .equalTo(ndater)
+                                .once('value')
+                                .then(function(snapshot) {
+                                    snapshot.forEach(function(childSnapshot) {
+                                        childSnapshot.ref.child('color').set('#1abd36');
+                                    });
+                                });
+
+                        } else {
+
+                            console.log('Not-Approvedate', item.start, ndater, item.key);
+                            var ref = firebase.database().ref("/calendar/" + item.key);
+                            ref.remove()
+                                .then(function() {
+                                    console.log("Remove succeeded.")
+
+                                })
+                                .catch(function(error) {
+                                    console.log(error.message)
+                                });
+                        }
+                    });
+                    // console.log(returnArr);
+                });
+            });
+        });
+    }
+
+    $scope.pickdate = function(dt) {
+        // console.log(dt);
+        pickdate = dt;
+    }
 
     $scope.goback = function() {
         $('#changescad').modal('toggle');
         $('#changesdate').modal('toggle');
     }
 
-    $scope.defered = function() {
-        var ref = firebase.database().ref("/estimate/" + joborder.ekey);
-        ref.remove()
-            .then(function() {
-                window.location.replace("/login.html");
-            })
-            .catch(function(error) {
-                console.log(error.message)
-            });
-    }
 
 });

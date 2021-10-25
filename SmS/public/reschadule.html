@@ -61,7 +61,10 @@
             <div class="modal-content border-primary">
                 <div class="card-body">
                     <p>
-                        <h3>Shop Proposed Dates</h3>
+                        <h2>Shop Proposed Dates </h2>
+                        <p>
+                            <h5> Kindly Select only one schadule only! </h5>
+                        </p>
                     </p>
                     <div class="col-xl-8">
                         <div class="list-group" ng-repeat='dt in dates'>
@@ -72,9 +75,11 @@
                                 </div>
                                 <div>
                                     <span class="badge bg-transparent border border-primary text-primary fs-12px fw-500 rounded-sm">
-                                        {{dt.start}}
+                                       <strong>{{dt.start}}  <input class="form-check-input" type="radio" name="{{dt.url}}" ng-click="pickdate(dt.start)"/></strong> 
+                                       
                                     </span>
                                 </div>
+
                             </a>
                         </div>
                     </div>
@@ -121,7 +126,7 @@
                 <div class="col-xl-12">
                     <div class="modal-footer">
                         <button type="button" class="btn  btn-lg btn-info w-100" ng-click="goback();"> Go back</button>
-                        <button type="button" class="btn  btn-lg btn-success w-100" ng-click="proposedate();"> Send Proposed Date</button>
+                        <button type="button" class="btn  btn-lg btn-success w-100 " ng-click="proposedate();"> Send Proposed Date</button>
                     </div>
                 </div>
             </div>
