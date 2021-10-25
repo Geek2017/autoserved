@@ -7,46 +7,67 @@
     <!-- BEGIN calendar-sidebar -->
     <div class="calendar-sidebar">
         <div class="desktop-sticky-top flex-fill">
-            <div class="calendar-sidebar-title">Draggable Events:</div>
+            <div class="calendar-sidebar-title">Legend:</div>
             <div class="fc-event-list" id="external-events">
                 <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#ff2d55"><i class="fa fa-circle fs-8px me-2 text-pink"></i> Meeting</div>
+                    <div class="fc-event-link" data-color="#FF9500"><i class="fa fa-circle fs-8px me-2 text-warning"></i> For Approval</div>
                 </div>
                 <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#ff3b30"><i class="fa fa-circle fs-8px me-2 text-danger"></i> Group Discussion</div>
+                    <div class="fc-event-link" data-color="#e6180d"><i class="fa fa-circle fs-8px me-2 text-danger"></i> Expired</div>
                 </div>
                 <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#FF9500"><i class="fa fa-circle fs-8px me-2 text-warning"></i> Brainstorming</div>
+                    <div class="fc-event-link" data-color="#1f6bff"><i class="fa fa-circle fs-8px me-2 text-yellow"></i> On-Hold</div>
                 </div>
                 <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#FFCC00"><i class="fa fa-circle fs-8px me-2 text-yellow"></i> Presentation</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#1ABD36"><i class="fa fa-circle fs-8px me-2 text-success"></i> Holiday</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#0cd096"><i class="fa fa-circle fs-8px me-2 text-teal"></i> Sick Leave</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#30beff"><i class="fa fa-circle fs-8px me-2 text-info"></i> Overtime</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#1f6bff"><i class="fa fa-circle fs-8px me-2 text-blue"></i> Work from Home</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#640DF3"><i class="fa fa-circle fs-8px me-2 text-indigo"></i> Business Travel</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#5b2e91"><i class="fa fa-circle fs-8px me-2 text-purple"></i> Breakfast</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#869ac0"><i class="fa fa-circle fs-8px me-2 text-muted"></i> Lunch</div>
-                </div>
-                <div class="fc-event-item">
-                    <div class="fc-event-link" data-color="#869ac0"><i class="fa fa-circle fs-8px me-2 text-muted"></i> Dinner</div>
+                    <div class="fc-event-link" data-color="#028824"><i class="fa fa-circle fs-8px me-2 text-success"></i> Approved</div>
                 </div>
             </div>
         </div>
     </div>
     <!-- ENG calendar-sidebar -->
-</div>
+
+
+    <div class="modal fade" id="viewscad" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="max-width: 600px!important;">
+            <div class="modal-content border-primary">
+                <div class="modal-header">
+                    <h5 class="modal-title">Schedule</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <h4 class="list-group-item text-danger"><strong>Appointment Date: </strong> {{apdate | date:'MM/dd/yyyy'}}</h4>
+                        </div>
+                        <div class="col-xl-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="suggestion0"><strong>Name: </span></strong>{{coname}}</span>
+                                </li>
+                                <li class="list-group-item"><span class="suggestion2"><strong>Car Brand:</strong> {{cbrand}}</span></li>
+                                <li class="list-group-item"><span class="suggestion2"><strong> Car Transmission: </strong>{{ctransmission}}</span></li>
+                                <li class="list-group-item"><span class="suggestion2"><strong>Car Model:</strong> {{cmodel}}</span></li>
+                                <li class="list-group-item"><span class="suggestion1"><strong>Date Purchased:</strong> {{cpdate | date:'MM/dd/yyyy'}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="suggestion0"><strong>Email: {{coemail}}</strong></span></li>
+                                <li class="list-group-item"><span class="suggestion1"><strong>Car Engine:</strong> {{cengine}}</span></li>
+                                <li class="list-group-item"><span class="suggestion1"><strong>Car Body Type: </strong>{{cbodytype}}</span></li>
+                                <li class="list-group-item"><span class="suggestion1"><strong>Km Reading: </strong>{{creading}}</span></li>
+                                <li class="list-group-item"><span class="suggestion1"><strong>Year Model:</strong> {{cymodel}}</span></li>
+                            </ul>
+
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default">Re-Schadule</button>
+                                <button type="button" class="btn btn-primary">Approve Date</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

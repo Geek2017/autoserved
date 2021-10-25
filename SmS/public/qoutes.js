@@ -61,7 +61,12 @@ app.controller('qoutes', function($scope, $http, $timeout) {
         $('#modalSm').modal('toggle');
     }
 
+
+
+
     $(".accept").click(function() {
+
+
         console.log(JSON.stringify(joborder.quotes.aa));
 
         var today = new Date();
@@ -87,6 +92,8 @@ app.controller('qoutes', function($scope, $http, $timeout) {
             val2 = 'none';
         }
 
+
+
         var uid = joborder.key;
         var updates = {};
         var jorder = {
@@ -99,12 +106,9 @@ app.controller('qoutes', function($scope, $http, $timeout) {
             fullname: $scope.cofn,
             address: $scope.coadd,
             plateno: $scope.copn,
-            date1: $scope.cofd0,
-            time1: $scope.coft0,
-            date2: $scope.cofd1,
-            time2: $scope.coft1,
-            date3: $scope.cofd2,
-            time3: $scope.coft2,
+            date0: $scope.cofd0,
+            date1: $scope.cofd1,
+            date2: $scope.cofd2,
             approvedate: today,
             state: 0
         }
@@ -115,10 +119,55 @@ app.controller('qoutes', function($scope, $http, $timeout) {
         firebase.database().ref().update(updates);
 
         if (updates) {
+            console.log(updates)
+
+            var calschad0 = {
+                url: uid,
+                title: $scope.cofn,
+                start: $scope.cofd0.toISOString().substr(0, 10),
+                color: COLOR_ORANGE,
+            }
+
+            var calschad1 = {
+                url: uid,
+                title: $scope.cofn,
+                start: $scope.cofd1.toISOString().substr(0, 10),
+                color: COLOR_ORANGE,
+            }
+
+            var calschad2 = {
+                    url: uid,
+                    title: $scope.cofn,
+                    start: $scope.cofd2.toISOString().substr(0, 10),
+                    color: COLOR_ORANGE,
+                }
+                // alert(0)
+            var cid0 = firebase.database().ref().child('/calendar/').push().key;
+            updates['/calendar/' + cid0] = calschad0;
+            firebase.database().ref().update(updates);
+
             setTimeout(function() {
-                alert('Your appointment had been set, you will receive a notifcation ones your schedule is confirmed')
-                window.location.replace("./");
+                var cid1 = firebase.database().ref().child('/calendar/').push().key;
+                // alert(1)
+                updates['/calendar/' + cid1] = calschad1;
+                firebase.database().ref().update(updates);
+            }, 500)
+
+            setTimeout(function() {
+                var cid2 = firebase.database().ref().child('/calendar/').push().key;
+                // alert(2)
+                updates['/calendar/' + cid2] = calschad2;
+                firebase.database().ref().update(updates);
             }, 1000)
+
+
+
+
+            console.log(updates)
+                // setTimeout(function() {
+                //     alert('Your appointment had been set, you will receive a notifcation ones your schedule is confirmed')
+                //     window.location.replace("./");
+                // }, 1000)
 
         }
     });

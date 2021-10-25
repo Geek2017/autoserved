@@ -13,14 +13,12 @@
     <!-- ================== BEGIN core-css ================== -->
     <link href="./assets/css/vendor.min.css" rel="stylesheet" />
     <link href="./assets/css/app.min.css" rel="stylesheet" />
-    <link href="./assets/css/daterangepicker.css" rel="stylesheet" />
+
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css'>
+    <link rel="stylesheet" href="./style.css">
     <!-- ================== END core-css ================== -->
 
-    <link href="./assets/css/common.main.css" rel="stylesheet" />
-    <link href="./assets/css/daygrid.main.css" rel="stylesheet" />
-    <link href="./assets/css/timegrid.min.css" rel="stylesheet" />
-    <link href="./assets/css/list.main.min.css" rel="stylesheet" />
-    <link href="./assets/css/bt.min.css" rel="stylesheet" />
 
     <script src="./assets/js/angular.js"></script>
     <script src="./assets/js/angular-route.js"></script>
@@ -130,16 +128,17 @@
                             <span class="menu-text">My Inquiries</span>
                         </a>
                     </div>
-                    <div class="menu-item">
-                        <a href="#/appointment" class="menu-link">
-                            <span class="menu-icon"><i class="fas fa-calendar-alt"></i></span>
-                            <span class="menu-text">Appointment</span>
-                        </a>
-                    </div>
+
                     <div class="menu-item">
                         <a href="#/estimate" class="menu-link">
                             <span class="menu-icon"><i class="fa fa-tags"></i></span>
                             <span class="menu-text">Estimate Request</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#/appointment" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <span class="menu-text">Appointment</span>
                         </a>
                     </div>
                     <div class="menu-item">
@@ -225,14 +224,9 @@
 
 </body>
 <!-- ================== BEGIN Calendar-Page ================== -->
-<script src="./assets/js/moment.js"></script>
-<script src="./assets/js/core.main.global.min.js"></script>
-<script src="./assets/js/daygrid.main.global.min.js"></script>
-<script src="./assets/js/timegrid.main.global.min.js"></script>
-<script src="./assets/js/interaction.main.global.min.js"></script>
-<script src="./assets/js/list.main.global.min.js"></script>
-<script src="./assets/js/bt.main.global.min.js"></script>
-<script src="./assets/js/calendar.demo.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js'></script>
+
+
 <!-- ================== END Calendar-Page ================== -->
 
 <script src="./app.js"></script>
