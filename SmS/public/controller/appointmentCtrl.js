@@ -22,12 +22,18 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 var calendarEl = document.getElementById('calendar');
 
+                var objk;
+
+                var dater;
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     eventClick: function(info) {
                         var eventObj = info.event;
 
                         if (eventObj) {
-                            console.log(eventObj.url);
+                            objk = eventObj.url;
+                            dater = eventObj.start.toLocaleDateString('zh-Hans-CN');
+                            console.log(dater);
 
                             $('#viewscad').modal('toggle');
 
@@ -76,18 +82,64 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 calendar.render();
 
+                $scope.approvedate = function() {
+
+
+
+                    let ndater = dater.replace(/\//g, '-');;
+
+                    var ref = firebase.database().ref("calendar");
+                    ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
+                        let objs = snapshot.val();
+
+                        console.log(ndater)
+
+                        $timeout(function() {
+                            $scope.$apply(function() {
+
+                                snapshot.forEach(childSnapshot => {
+                                    let item = childSnapshot.val();
+                                    item.key = childSnapshot.key;
+
+                                    let cdate = item.start
+                                    console.log(cdate)
+
+                                    if (cdate === ndater) {
+                                        console.log('Approvedate', item.start, ndater, item.key);
+                                    } else {
+
+                                        console.log('Not-Approvedate', item.start, ndater, item.key);
+                                        var ref = firebase.database().ref("/calendar/" + item.key);
+                                        ref.remove()
+                                            .then(function() {
+                                                console.log("Remove succeeded.")
+
+                                            })
+                                            .catch(function(error) {
+                                                console.log(error.message)
+                                            });
+                                    }
+                                });
+                                // console.log(returnArr);
+                            });
+                        });
+
+
+
+
+                    });
+                }
 
                 $scope.closed = function() {
                     $('#viewscad').modal('toggle');
                 }
-
-
 
             });
 
         })
 
     });
+
 
 
 

@@ -106,9 +106,9 @@ app.controller('qoutes', function($scope, $http, $timeout) {
             fullname: $scope.cofn,
             address: $scope.coadd,
             plateno: $scope.copn,
-            date0: $scope.cofd0,
-            date1: $scope.cofd1,
-            date2: $scope.cofd2,
+            date0: $('.cofd0').val(),
+            date1: $('.cofd1').val(),
+            date2: $('.cofd2').val(),
             approvedate: today,
             state: 0
         }
@@ -119,26 +119,25 @@ app.controller('qoutes', function($scope, $http, $timeout) {
         firebase.database().ref().update(updates);
 
         if (updates) {
-            console.log(updates)
 
             var calschad0 = {
                 url: uid,
                 title: $scope.cofn,
-                start: $scope.cofd0.toISOString().substr(0, 10),
+                start: $('.cofd0').val(),
                 color: COLOR_ORANGE,
             }
 
             var calschad1 = {
                 url: uid,
                 title: $scope.cofn,
-                start: $scope.cofd1.toISOString().substr(0, 10),
+                start: $('.cofd1').val(),
                 color: COLOR_ORANGE,
             }
 
             var calschad2 = {
                     url: uid,
                     title: $scope.cofn,
-                    start: $scope.cofd2.toISOString().substr(0, 10),
+                    start: $('.cofd2').val(),
                     color: COLOR_ORANGE,
                 }
                 // alert(0)
