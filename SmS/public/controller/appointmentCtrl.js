@@ -28,6 +28,23 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 let ccdata;
 
+                var spdates = [];
+
+                $('.cofd0').change(function() {
+                    spdates.push($('.cofd0').val());
+                    console.log(spdates)
+                });
+
+                $('.cofd1').change(function() {
+                    spdates.push($('.cofd1').val());
+                    console.log(spdates)
+                });
+
+                $('.cofd2').change(function() {
+                    spdates.push($('.cofd2').val());
+                    console.log(spdates[0])
+                });
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     eventClick: function(info) {
                         var eventObj = info.event;
@@ -110,9 +127,6 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                                     if (cdate == ndater) {
                                         console.log('Approvedate', item.start, ndater, item.key);
-
-
-
                                         var joborders = {};
                                         joborders['/joborders/' + ccdata.ekey] = ccdata;
                                         firebase.database().ref().update(joborders);
@@ -150,15 +164,58 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                 // console.log(returnArr);
                             });
                         });
-
-
-
-
                     });
                 }
 
-                $scope.closed = function() {
+                $scope.changeschad = function() {
+                    $('#changescad').modal('toggle');
                     $('#viewscad').modal('toggle');
+                }
+
+                $scope.spdate = function() {
+                    var ref = firebase.database().ref("/calendar/");
+                    ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
+
+
+                        $timeout(function() {
+                            $scope.$apply(function() {
+                                var valc = [];
+                                var i = 0;
+                                snapshot.forEach(childSnapshot => {
+                                    let item = childSnapshot.val();
+                                    item.key = childSnapshot.key;
+                                    valc.push(item)
+                                    console.log(item.key)
+                                    var db = firebase.database();
+                                    db.ref('/calendar/' + item.key)
+                                        .orderByChild("start")
+                                        // .equalTo(item.key)
+                                        .once('value')
+                                        .then(function(snapshot) {
+
+                                            console.log(snapshot.val(), i);
+
+                                            childSnapshot.ref.child('start').set(spdates[i])
+
+                                            var param = valc.length - 1;
+
+                                            console.log(param - 1, i);
+
+                                            if (param === i) {
+                                                setTimeout(function() {
+                                                    $('#changescad').modal('hide');
+                                                    location.replace('#/')
+                                                    location.replace('#/appointment')
+                                                }, 100);
+                                            }
+                                            i++;
+                                        });
+
+                                });
+
+                            });
+                        });
+                    });
                 }
 
             });
