@@ -33,18 +33,24 @@ app.controller('changescad', function($scope, $http, $timeout) {
         $timeout(function() {
             $scope.$apply(function() {
                 let returnArr = [];
+                let cardata = [];
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
                     returnArr.push(item);
                 });
-                console.log(returnArr);
+
                 $scope.dates = returnArr;
 
                 firebase.database().ref('/estimate/' + key).orderByChild('ekey').on("value", function(snapshot) {
-                    ccdata = snapshot.val();
-                    console.log(ccdata);
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        cardata.push(item);
+                    });
                 });
+
+
             });
 
         })
@@ -305,6 +311,12 @@ app.controller('changescad', function($scope, $http, $timeout) {
                                     console.log(error.message)
                                 });
                         }
+
+                        setTimeout(function() {
+
+                            location.replace('login.html')
+
+                        }, 2000);
                     });
                     // console.log(returnArr);
                 });

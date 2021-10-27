@@ -145,6 +145,8 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
     var ikey;
 
+    var today = new Date();
+    today = parseInt(today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() + "\nTime : " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     $("#aind").on('input', '.aintxt', function() {
         calculate0();
@@ -298,7 +300,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             email: inq_email,
             quotes: qts,
             total: $("#grandt").text(),
-            state: 0
+            date: today
         }
 
         console.log(estimate)

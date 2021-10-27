@@ -119,15 +119,14 @@
             <thead>
                 <tr style="height:1px!important">
                     <th scope="col" class="text-left" style="float: left!important;">
-                        <p> Vehicle Make: Lincoln</p>
-                        <p>Model: Navigator</p>
-                        <p>Transmission: Automatic</p>
-                        <p>VIN : 1FMRU1234567890</p>
+                        <p>Vehicle Make: {{make}}</p>
+                        <p>Model: {{model}}</p>
+                        <p>Transmission: {{transmission}}</p>
                     </th>
                     <th scope="col" class="text-right" style="float: right!important;">
-                        <p> Vehicle Year: 2016</p>
-                        <p> Engine: Gas</p>
-                        <p> Mileage: 34,560 KM</p>
+                        <p> Vehicle Year: {{year}}</p>
+                        <p> Engine: {{engine}}</p>
+                        <p> Mileage: {{mileage}} KM</p>
                         <p>&nbsp;</p>
                     </th>
                 </tr>
@@ -156,7 +155,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal0}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal0 | currency: "₱ ":2}}</span>
                       </td></strong>
                 </tr>
             </tbody>
@@ -180,7 +179,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal1}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal1 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -205,7 +204,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -230,7 +229,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -255,7 +254,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -280,7 +279,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -305,7 +304,7 @@
 
                 <tr>
                     <td colspan="3" style="text-align: right;">
-                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2}}</span>
+                        <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal2 | currency: "₱ ":2}}</span>
                         </td></strong>
                     </td>
                 </tr>
@@ -321,16 +320,14 @@
                 <tr style="height:1px!important">
 
                     <th class="text-left ">
-                        <p>TOTAL LABOR:5,500.00</p>
-                        <p>TOTAL PARTS: 20,500.00</p>
-                        <p>TOTAL MATERIAL: 1,200.00</p>
-                        <p>TOTAL 12% VAT: 3,264.00</p>
-
+                        <p style="font-size: 12px!important;">TOTAL PM: </p>
+                        <p style="font-size: 12px!important;">TOTAL CHANGE OIL: </p>
+                        <p>&nbsp;</p>
                     </th>
                     <th class="text-right" style="float:right!important;">
-                        <p style="font-size: 10px!important;"> <strong>GRAND TOTAL: {{grandtotal}}</strong> </p>
-                        <p style="font-size: 10px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p>
-                        <p style="font-size: 10px!important;"> Mileage: 34,560 KM</p>
+                        <p style="font-size: 12px!important;"> <strong>GRAND TOTAL: {{grandtotal }}</strong> </p>
+                        <p style="font-size: 12px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p>
+                        <p style="font-size: 12px!important;">TOTAL 12% VAT: {{grandtotal*0.12}}</p>
                     </th>
                 </tr>
 

@@ -42,7 +42,7 @@ angular.module('newApp').controller('jobordersCrtl', function($scope, $http, $fi
                         quotes: item.quotes,
                         state: stat,
                         total: item.total,
-                        approvedate: item.approvedate
+                        date: item.date
                     }
 
                     returnArr.push(data);

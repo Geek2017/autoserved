@@ -25,7 +25,7 @@
                         <tr>
                             <th>#</th>
                             <th scope="col">Transaction ID</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Inquery Date</th>
                             <th scope="col">Contact No.</th>
                             <th scope="col">Email</th>
                             <th scope="col">Total</th>
@@ -37,7 +37,7 @@
                         <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
                             <td class="text-center"><strong>{{$index+1}}</strong></td>
                             <td>{{joborder.key}}</td>
-                            <td>{{joborder.approvedate | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{joborder.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
                             <td>{{joborder.mobileno}}</td>
                             <td>{{joborder.email}}</td>
                             <td>{{joborder.total}}</td>

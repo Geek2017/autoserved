@@ -26,21 +26,36 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
     var joborder;
 
-    firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
 
+    firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
+        var cardata;
         $timeout(function() {
             $scope.$apply(function() {
                 let returnArr = [];
+
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
-
                     returnArr.push(item);
+                    console.log(item.key)
+
+                    firebase.database().ref('/estimate/' + key).orderByChild('ekey').on("value", function(snapshot) {
+                        snapshot.forEach(childSnapshot => {
+                            let item = childSnapshot.val();
+                            item.key = childSnapshot.key;
+
+                            var datos = {
+
+                            }
+                            cardata = item;
+                            console.log(cardata)
+                        });
+                    });
 
                 });
 
+
                 $scope.qoutes = returnArr[0];
-                console.log(returnArr[0]);
 
                 $scope.email = returnArr[0].email;
                 $scope.mobile = returnArr[0].mobileno
@@ -49,7 +64,18 @@ app.controller('qoutes', function($scope, $http, $timeout) {
                 var num2 = num.replace(/,/g, '');
                 $scope.downpayment = parseFloat(num2) * 0.10;
 
+                console.log(returnArr[0]);
+                console.log(cardata);
+
+                // $scope.cmake = cardata.make;
+                // $scope.cmodel = cardata.model;
+                // $scope.transmission = cardata.transmission;
+                // $scope.cyear = cardata.year;
+                // $scope.cengine = cardata.engine;
+                // $scope.ckm = cardata.mileage;
+
                 return joborder = returnArr[0];
+
 
             });
 
