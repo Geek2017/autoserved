@@ -329,7 +329,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         var form = new FormData();
         form.append("To", '+63' + inq_mobile);
         form.append("From", "+14157924897");
-        form.append("Body", "Mabuhay!, Ang quote para sa iyong kotse ay handa na e-click lamang ang link para sa detalye, Maraming Salamat po!:" + "autoserved-beta.web.app/qoutes.html#" + keyid);
+        form.append("Body", "Mabuhay!, Ang quote para sa iyong kotse ay handa na e-click lamang ang link para sa detalye, Maraming Salamat po!: " + "&nbsp;" + "autoserved-beta.web.app/qoutes.html#" + keyid);
 
         var settings = {
             "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
