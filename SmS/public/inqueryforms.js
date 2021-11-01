@@ -3,6 +3,12 @@ app.controller('iform', function($scope, $http) {
 
     var pnum = 0;
 
+    $scope.inputs = {
+        'mobileno': {
+            'MaxLength': 10
+        }
+    }
+
     $scope.nextp = function() {
         if (pnum == 0) {
             $(".step0").addClass("visually-hidden");
@@ -83,10 +89,9 @@ app.controller('iform', function($scope, $http) {
         var inquiry = {
             "ekey": iid,
             "email": $scope.email,
-            "mobileno": $scope.mobileno,
+            "mobileno": $scope.inputs.mobileno.Value,
             "cartype": $scope.CarType,
             "engine": $scope.CarEngineType,
-            "iqr_from": $scope.mobileno,
             "make": $scope.CarBrand,
             "mileage": $scope.Mileage,
             "model": $scope.CarModel,

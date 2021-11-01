@@ -13,35 +13,14 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
 
-                    var stat;
-
-                    if (item.state === 0) {
-                        stat = '';
-                        stat = 'Saved';
-                    } else if (item.state === 1) {
-                        stat = '';
-                        stat = 'Sent';
-                    } else if (item.state === 2) {
-                        stat = '';
-                        stat = 'Defered';
-                    } else if (item.state === 3) {
-                        stat = '';
-                        stat = 'Scheduled';
-                    } else if (item.state === 4) {
-                        stat = '';
-                        stat = 'Approved';
-                    } else if (item.state === 5) {
-                        stat = '';
-                        stat = 'Paid';
-                    }
 
                     var data = {
                         email: item.email,
                         key: item.key,
                         mobileno: item.mobileno,
                         quotes: item.quotes,
-                        state: stat,
-                        total: item.total
+                        total: item.total,
+                        date: item.date
                     }
 
                     returnArr.push(data);
@@ -58,38 +37,87 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
 
     });
 
+    $("#ttotal").on('input', '.amtpaid', function() {
 
+        var amt = $('.amtpaid').val();
+        var amttotal = $('.amttotal').text().replace(/₱ /, '')
+
+        let namt = parseFloat(amt)
+        let namttotal = parseFloat(amttotal)
+
+        console.log(namt, namttotal)
+        if (amt > namttotal) {
+            console.log(namt - namttotal);
+            let amtchnge = namt - namttotal;
+            var namtchnge = amtchnge.toFixed(2).toLocaleString()
+            $('.amtchange').text(namtchnge);
+
+        } else {
+            $('.amtchange').text(parseFloat(0).toFixed(2).toLocaleString());
+        }
+
+    });
 
     $scope.paynow = function(joborder) {
+        $('#pointofsale').modal('toggle');
 
-        console.log(joborder);
+        $(".cash").prop("checked", true);
+
+        firebase.database().ref('/appointment/' + joborder.key).orderByChild('mobileno').on("value", function(snapshot) {
+
+            $timeout(function() {
+                $scope.$apply(function() {
+
+                    console.log(snapshot.val())
+
+                    $scope.fullname = snapshot.val().fullname;
+                    $scope.email = snapshot.val().email;
+                    $scope.mobile = snapshot.val().mobileno;
+                    $scope.address = snapshot.val().address;
+                    var ntotal = snapshot.val().total.replace(/₱ /, '');
+                    $scope.total = ntotal;
+
+                });
+
+            })
+
+        });
+    }
+
+    $scope.acceptpay = function() {
+
+
+        console.log($scope.fullname);
 
         var today = new Date();
         today = parseInt(today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear() + "\nTime : " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-        var uid = joborder.key;
+        var uid = firebase.database().ref().child('/users/').push().key;
         var updates = {};
-        var jorder = {
-            email: joborder.email,
-            key: joborder.key,
-            mobileno: joborder.mobileno,
-            quotes: { aa: JSON.stringify(joborder.quotes.aa), bb: JSON.stringify(joborder.quotes.bb), cc: JSON.stringify(joborder.quotes.cc) },
-            state: 5,
-            total: joborder.total,
-            approvedate: today
+
+        // legend 
+        // 0=partial;
+        // 1=fullpaid;
+
+        var earnings = {
+            name: $scope.fullname,
+            email: $scope.email,
+            contact: $scope.mobile,
+            address: $scope.address,
+            amount: $scope.total,
+            type: 'n/a',
+            state: 1,
+            datepaid: today
         }
 
-        updates['/joborders/' + uid] = jorder;
+        updates['/earnings/' + uid] = earnings;
         firebase.database().ref().update(updates);
 
         if (updates) {
-
             alert('Payment succesful, thank you!')
-            $('#viewestimate').modal('toggle')
-            location.replace('#/')
-            location.replace('#/billing')
-
-
+            $('#pointofsale').modal('toggle')
+                // location.replace('#/')
+                // location.replace('#/billing')
         }
     }
 

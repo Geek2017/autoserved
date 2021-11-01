@@ -6,6 +6,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
 
 
+
     firebase.database().ref('/calendar/').orderByChild('mobileno').on("value", function(snapshot) {
 
         $timeout(function() {
@@ -126,12 +127,12 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                     item.key = childSnapshot.key;
 
                                     let cdate = item.start
-                                    console.log(cdate)
+                                    console.log(cdate, comobile)
 
                                     var form = new FormData();
-                                    form.append("To", '+639' + comobile);
+                                    form.append("To", '+63' + comobile);
                                     form.append("From", "+14157924897");
-                                    form.append("Body", "Hello! your auto-shop has approve " + dater + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
+                                    form.append("Body", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
 
                                     var settings = {
                                         "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
@@ -244,7 +245,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
 
                         var form = new FormData();
-                        form.append("To", '+639' + comobile);
+                        form.append("To", '+63' + comobile);
                         form.append("From", "+14157924897");
                         form.append("Body", "Hello! your auto shop is requesting a reschedule for your car maintenance pls. click the link for details" + "&nbsp;" + "autoserved-beta.web.app/reschadule.html#" + objk);
 

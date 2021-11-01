@@ -37,9 +37,9 @@
                         <div class="d-flex">
                             <div class="me-auto">
                                 <h5 class="text-white-transparent-8 mb-3">Weekly Earning</h5>
-                                <h3 class="text-white mt-n1 mb-1">₱ 21,199.80</h3>
+                                <h3 class="text-white mt-n1 mb-1">{{fullpayment+partial |currency: "₱ ":2}}</h3>
                                 <p class="mb-1 text-white-transparent-6 text-truncate">
-                                    <i class="fa fa-caret-up"></i> <b>32%</b> increase compare to last week
+                                    <i class="fa fa-caret-up"></i> <b>0%</b> increase compare to last week
                                 </p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="mt-1">
                                     <div>Full Payment</div>
-                                    <div class="fw-600 text-white">₱ 121,629.80</div>
+                                    <div class="fw-600 text-white">{{fullpayment |currency: "₱ ":2}}</div>
                                 </div>
                             </div>
                             <div class="col-6 col-lg-5">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="mt-1">
                                     <div>Parcial Payment</div>
-                                    <div class="fw-600 text-white">₱ 70,000.00</div>
+                                    <div class="fw-600 text-white">{{partial |currency: "₱ ":2}}</div>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-angular.module('newApp').controller('dashboardCtrl', function($scope) {
+angular.module('newApp').controller('dashboardCtrl', function($scope, $timeout) {
 
     let curuser;
 
@@ -13,12 +13,40 @@ angular.module('newApp').controller('dashboardCtrl', function($scope) {
         }
     });
 
-    /*
-    Template Name: STUDIO - Responsive Bootstrap 5 Admin Template
-    Version: 2.3.0
-    Author: Sean Ngu
-    Website: http://www.seantheme.com/studio/
-    */
+
+    let tearn = 0;
+    let tparcial = 0;
+
+    firebase.database().ref('/earnings/').orderByChild('contact').on("value", function(snapshot) {
+
+        $timeout(function() {
+            $scope.$apply(function() {
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+
+                    console.log(item);
+
+                    if (item.state === 1) {
+                        tearn += item.amount;
+                    } else {
+                        tparcial += item.amount;
+                    }
+
+                    $scope.fullpayment = tearn;
+                    $scope.partial = tparcial;
+
+
+                    console.log(tearn, tparcial)
+
+                });
+
+            });
+
+        })
+
+    });
+
 
     var handleChart = function() {
         var series = {
@@ -157,8 +185,7 @@ angular.module('newApp').controller('dashboardCtrl', function($scope) {
     };
 
 
-    /* Controller
-    ------------------------------------------------ */
+
     $(document).ready(function() {
         setTimeout(function() {
             handleChart();

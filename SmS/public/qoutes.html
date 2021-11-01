@@ -320,14 +320,15 @@
                 <tr style="height:1px!important">
 
                     <th class="text-left ">
-                        <p style="font-size: 12px!important;">TOTAL PM: </p>
-                        <p style="font-size: 12px!important;">TOTAL CHANGE OIL: </p>
+                        <p style="font-size: 12px!important;"></p>
+                        <p style="font-size: 12px!important;"></p>
                         <p>&nbsp;</p>
                     </th>
                     <th class="text-right" style="float:right!important;">
-                        <p style="font-size: 12px!important;"> <strong>GRAND TOTAL: {{grandtotal }}</strong> </p>
-                        <p style="font-size: 12px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p>
-                        <p style="font-size: 12px!important;">TOTAL 12% VAT: {{grandtotal*0.12}}</p>
+                        <p style="font-size: 15px!important;">TOTAL 12% VAT: {{ngrandtotal*0.12 | currency: "₱ ":2}}</p>
+                        <p style="font-size: 15px!important;"> <strong>GRAND TOTAL: {{ngrandtotal | currency: "₱ ":2 }}</strong> </p>
+                        <!-- <p style="font-size: 12px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p> -->
+
                     </th>
                 </tr>
 

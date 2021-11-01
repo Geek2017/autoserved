@@ -36,7 +36,7 @@
                             <th scope="col">Contact No.</th>
                             <th scope="col">Email</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Status</th>
+
                             <th scope="col">Controls</th>
                         </tr>
                     </thead>
@@ -44,14 +44,14 @@
                         <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
                             <td class="text-center"><strong>{{$index+1}}</strong></td>
                             <td>{{joborder.key}}</td>
-                            <td>{{joborder.approvedate | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{joborder.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
                             <td>{{joborder.mobileno}}</td>
                             <td>{{joborder.email}}</td>
                             <td>{{joborder.total}}</td>
-                            <td>{{joborder.state}}</td>
+
                             <td class="w-200px">
                                 <div class="btn-group btn-group-sm w-250px">
-                                    <button type="button" class="btn btn-success w-80px" ng-click="paynow(joborder)"><i class="fas fa-money-bill-alt"> Mark Paid</i></button>
+                                    <button type="button" class="btn btn-success w-80px" ng-click="paynow(joborder)"><i class="fas fa-money-bill-alt"> Process Payment</i></button>
                                     <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
                                 </div>
                             </td>
@@ -60,6 +60,98 @@
             </div>
 
 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pointofsale" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg w-350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">POS</h5>
+                <button type="button" class="btn-close" ng-click="closed();"></button>
+            </div>
+            <div class="card">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Name:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{fullname}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Email:</div>
+
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{email}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Contact:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{mobile}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Address:</div>
+                        </div>
+
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{address}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill ">
+                            <div class="text-center"><label><strong>Payment Option</strong> </label> </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <span>Cash: <input  class="form-check-input cash" type="radio" name="paymenttype" ng-model="cash"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Credit Card: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="creditcard"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Wallet: <input class="form-check-input" type="radio"  name="paymenttype" ng-model="wallet"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Term: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="term"/></span>
+                        </div>
+                    </div>
+                    <div id="ttotal" class="list-group-item d-flex align-items-center">
+                        <input class="form-control amtpaid" type="number" placeholder="0.00">
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Payables:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm amttotal">{{total|currency: "₱ ":2}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Change:</div>
+                        </div>
+                        <div>
+                            <strong>₱ <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm amtchange"> 0.00</span></strong>
+                        </div>
+                    </div>
+                    <footer class="modal-footer">
+                        <button type="submit" class="btn btn-success" ng-click="acceptpay()">Accept Payment</button>
+                    </footer>
+                </div>
+            </div>
         </div>
     </div>
 </div>

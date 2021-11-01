@@ -59,20 +59,27 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
                 $scope.email = returnArr[0].email;
                 $scope.mobile = returnArr[0].mobileno
+
                 $scope.grandtotal = returnArr[0].total
+
                 var num = $scope.grandtotal.replace(/₱ /g, '');
+
                 var num2 = num.replace(/,/g, '');
+
                 $scope.downpayment = parseFloat(num2) * 0.10;
+
+                $scope.ngrandtotal = num;
+
 
                 console.log(returnArr[0]);
                 console.log(cardata);
 
-                // $scope.cmake = cardata.make;
-                // $scope.cmodel = cardata.model;
-                // $scope.transmission = cardata.transmission;
-                // $scope.cyear = cardata.year;
-                // $scope.cengine = cardata.engine;
-                // $scope.ckm = cardata.mileage;
+                $scope.cmake = cardata.make;
+                $scope.cmodel = cardata.model;
+                $scope.transmission = cardata.transmission;
+                $scope.cyear = cardata.year;
+                $scope.cengine = cardata.engine;
+                $scope.ckm = cardata.mileage;
 
                 return joborder = returnArr[0];
 
