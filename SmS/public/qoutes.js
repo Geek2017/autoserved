@@ -66,10 +66,16 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
                 var num2 = num.replace(/,/g, '');
 
+                var num3 = num2 * 0.12;
+
                 $scope.downpayment = parseFloat(num2) * 0.10;
 
-                $scope.ngrandtotal = num;
+                $scope.ngrandtotal = num2;
 
+                $scope.taxntodal = parseInt(num2) + parseInt(num3)
+
+
+                console.log(parseInt(num2) + parseInt(num3));
 
                 console.log(returnArr[0]);
                 console.log(cardata);

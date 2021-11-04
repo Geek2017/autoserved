@@ -278,14 +278,14 @@ app.controller('changescad', function($scope, $http, $timeout) {
 
                         if (cdate == ndater) {
                             console.log('Approvedate', item.start, ndater, item.key);
-                            var joborders = {};
-                            joborders['/joborders/' + ccdata.ekey] = ccdata;
-                            firebase.database().ref().update(joborders);
+                            // var joborders = {};
+                            // joborders['/joborders/' + ccdata.ekey] = ccdata;
+                            // firebase.database().ref().update(joborders);
 
 
-                            if (joborders) {
-                                console.log(joborders)
-                            }
+                            // if (joborders) {
+                            //     console.log(joborders)
+                            // }
 
                             var db = firebase.database();
                             db.ref('/calendar/')

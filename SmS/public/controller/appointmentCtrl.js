@@ -48,6 +48,16 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                     console.log(spdates[0])
                 });
 
+                const d = new Date();
+
+                d.getMonth() + 1; // Month	[mm]	(1 - 12)
+                d.getDate(); // Day		[dd]	(1 - 31)
+                d.getFullYear();
+
+                // let curdate = d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + d.getDate();
+
+                // console.log(curdate);
+
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     eventClick: function(info) {
                         var eventObj = info.event;
@@ -103,7 +113,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                             alert('Clicked ' + eventObj.title);
                         }
                     },
-                    initialDate: '2021-10-15',
+                    initialDate: d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + '01',
                     events: returnArr
                 });
 
@@ -129,65 +139,65 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                     let cdate = item.start
                                     console.log(cdate, comobile)
 
-                                    var form = new FormData();
-                                    form.append("To", '+63' + comobile);
-                                    form.append("From", "+14157924897");
-                                    form.append("Body", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
+                                    // var form = new FormData();
+                                    // form.append("To", '+63' + comobile);
+                                    // form.append("From", "+14157924897");
+                                    // form.append("Body", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
 
-                                    var settings = {
-                                        "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
-                                        "method": "POST",
-                                        "timeout": 0,
-                                        "headers": {
-                                            "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
-                                        },
-                                        "processData": false,
-                                        "mimeType": "multipart/form-data",
-                                        "contentType": false,
-                                        "data": form
-                                    };
+                                    // var settings = {
+                                    //     "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
+                                    //     "method": "POST",
+                                    //     "timeout": 0,
+                                    //     "headers": {
+                                    //         "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
+                                    //     },
+                                    //     "processData": false,
+                                    //     "mimeType": "multipart/form-data",
+                                    //     "contentType": false,
+                                    //     "data": form
+                                    // };
 
-                                    $.ajax(settings).done(function(response) {
-                                        console.log(response);
-                                        if (response) {
-                                            $timeout(function() {
-                                                $scope.$apply(function() {
-                                                    var valc = [];
-                                                    var i = 0;
-                                                    snapshot.forEach(childSnapshot => {
-                                                        let item = childSnapshot.val();
-                                                        item.key = childSnapshot.key;
-                                                        valc.push(item)
-                                                        console.log(item.key)
-                                                        var db = firebase.database();
-                                                        db.ref('/calendar/' + item.key)
-                                                            .orderByChild("start")
-                                                            // .equalTo(item.key)
-                                                            .once('value')
-                                                            .then(function(snapshot) {
+                                    // $.ajax(settings).done(function(response) {
+                                    //     console.log(response);
+                                    //     if (response) {
+                                    //         $timeout(function() {
+                                    //             $scope.$apply(function() {
+                                    //                 var valc = [];
+                                    //                 var i = 0;
+                                    //                 snapshot.forEach(childSnapshot => {
+                                    //                     let item = childSnapshot.val();
+                                    //                     item.key = childSnapshot.key;
+                                    //                     valc.push(item)
+                                    //                     console.log(item.key)
+                                    //                     var db = firebase.database();
+                                    //                     db.ref('/calendar/' + item.key)
+                                    //                         .orderByChild("start")
+                                    //                         // .equalTo(item.key)
+                                    //                         .once('value')
+                                    //                         .then(function(snapshot) {
 
-                                                                console.log(snapshot.val(), i);
+                                    //                             console.log(snapshot.val(), i);
 
-                                                                childSnapshot.ref.child('start').set(spdates[i])
+                                    //                             childSnapshot.ref.child('start').set(spdates[i])
 
-                                                                var param = valc.length - 1;
+                                    //                             var param = valc.length - 1;
 
-                                                                console.log(param - 1, i);
+                                    //                             console.log(param - 1, i);
 
-                                                                if (param === i) {
-                                                                    setTimeout(function() {
-                                                                        $('#changescad').modal('hide');
-                                                                        location.replace('#/analytics')
-                                                                        location.replace('#/appointment')
-                                                                    }, 100);
-                                                                }
-                                                                i++;
-                                                            });
-                                                    });
-                                                });
-                                            });
-                                        }
-                                    });
+                                    //                             if (param === i) {
+                                    //                                 setTimeout(function() {
+                                    //                                     $('#changescad').modal('hide');
+                                    //                                     location.replace('#/analytics')
+                                    //                                     location.replace('#/appointment')
+                                    //                                 }, 100);
+                                    //                             }
+                                    //                             i++;
+                                    //                         });
+                                    //                 });
+                                    //             });
+                                    //         });
+                                    //     }
+                                    // });
 
                                     if (cdate == ndater) {
                                         console.log('Approvedate', item.start, ndater, item.key);
@@ -240,72 +250,76 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                     console.log(comobile)
 
-                    var ref = firebase.database().ref("/calendar/");
-                    ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
+                    // var ref = firebase.database().ref("/calendar/");
+                    // ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
 
 
-                        var form = new FormData();
-                        form.append("To", '+63' + comobile);
-                        form.append("From", "+14157924897");
-                        form.append("Body", "Hello! your auto shop is requesting a reschedule for your car maintenance pls. click the link for details" + "&nbsp;" + "autoserved-beta.web.app/reschadule.html#" + objk);
+                    //     var form = new FormData();
+                    //     form.append("To", '+63' + comobile);
+                    //     form.append("From", "+14157924897");
+                    //     form.append("Body", "Hello! your auto shop is requesting a reschedule for your car maintenance pls. click the link for details" + "&nbsp;" + "autoserved-beta.web.app/reschadule.html#" + objk);
 
-                        var settings = {
-                            "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
-                            "method": "POST",
-                            "timeout": 0,
-                            "headers": {
-                                "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
-                            },
-                            "processData": false,
-                            "mimeType": "multipart/form-data",
-                            "contentType": false,
-                            "data": form
-                        };
+                    //     var settings = {
+                    //         "url": "https://api.twilio.com/2010-04-01/Accounts/AC742b2637d81ad25881d744ba9e098eda/Messages.json",
+                    //         "method": "POST",
+                    //         "timeout": 0,
+                    //         "headers": {
+                    //             "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
+                    //         },
+                    //         "processData": false,
+                    //         "mimeType": "multipart/form-data",
+                    //         "contentType": false,
+                    //         "data": form
+                    //     };
 
-                        $.ajax(settings).done(function(response) {
-                            console.log(response);
-                            if (response) {
-                                $timeout(function() {
-                                    $scope.$apply(function() {
-                                        var valc = [];
-                                        var i = 0;
-                                        snapshot.forEach(childSnapshot => {
-                                            let item = childSnapshot.val();
-                                            item.key = childSnapshot.key;
-                                            valc.push(item)
-                                            console.log(item.key)
-                                            var db = firebase.database();
-                                            db.ref('/calendar/' + item.key)
-                                                .orderByChild("start")
-                                                // .equalTo(item.key)
-                                                .once('value')
-                                                .then(function(snapshot) {
+                    //     $.ajax(settings).done(function(response) {
+                    //         console.log(response);
+                    //         if (response) {
 
-                                                    console.log(snapshot.val(), i);
+                    //         }
+                    //     });
 
-                                                    childSnapshot.ref.child('start').set(spdates[i])
+                    // });
+                    genjo();
 
-                                                    var param = valc.length - 1;
+                    function genjo() {
+                        $timeout(function() {
+                            $scope.$apply(function() {
+                                var valc = [];
+                                var i = 0;
+                                snapshot.forEach(childSnapshot => {
+                                    let item = childSnapshot.val();
+                                    item.key = childSnapshot.key;
+                                    valc.push(item)
+                                    console.log(item.key)
+                                    var db = firebase.database();
+                                    db.ref('/calendar/' + item.key)
+                                        .orderByChild("start")
+                                        // .equalTo(item.key)
+                                        .once('value')
+                                        .then(function(snapshot) {
 
-                                                    console.log(param - 1, i);
+                                            console.log(snapshot.val(), i);
 
-                                                    if (param === i) {
-                                                        setTimeout(function() {
-                                                            $('#changescad').modal('hide');
-                                                            location.replace('#/analytics')
-                                                            location.replace('#/appointment')
-                                                        }, 100);
-                                                    }
-                                                    i++;
-                                                });
+                                            childSnapshot.ref.child('start').set(spdates[i])
+
+                                            var param = valc.length - 1;
+
+                                            console.log(param - 1, i);
+
+                                            if (param === i) {
+                                                setTimeout(function() {
+                                                    $('#changescad').modal('hide');
+                                                    location.replace('#/analytics')
+                                                    location.replace('#/appointment')
+                                                }, 100);
+                                            }
+                                            i++;
                                         });
-                                    });
                                 });
-                            }
+                            });
                         });
-
-
-                    });
+                    }
                 }
 
             });
