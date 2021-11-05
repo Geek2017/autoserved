@@ -12,6 +12,10 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
     $('.accord6').hide();
     $('.accord7').hide();
 
+
+    $('.errnotif').hide();
+    $('.sucnotif').hide();
+
     $scope.pageChangeHandler = function(num) {
         console.log('pagedata page changed to ' + num);
     };
@@ -569,41 +573,72 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
     }
 
     var inq_email,
-        inq_mobile;
+        inq_mobile,
+        itemkey;
 
     $scope.estimate = function(inq) {
         inq_email = inq.email;
+
         inq_mobile = inq.mobileno;
 
-        console.log(inq)
+        itemkey = inq.ekey;
 
-        if (inq.pmr !== 0) {
+        console.log(inq);
+
+        if (inq.pmr === 1) {
             $('.accord1').show();
+            console.log(inq.pmr);
+        } else {
+            $('.accord1').hide();
         }
 
-        if (inq.cor !== 0) {
+        if (inq.cor === 1) {
             $('.accord2').show();
+            console.log(inq.cor);
+        } else {
+            $('.accord2').hide();
         }
 
-        if (inq.war !== 0) {
+
+        if (inq.war === 1) {
             $('.accord3').show();
+            console.log(inq.war);
+        } else {
+            $('.accord3').hide();
         }
 
-        if (inq.tsr !== 0) {
+
+        if (inq.tsr === 1) {
             $('.accord4').show();
+            console.log(inq.tsr);
+        } else {
+            $('.accord4').hide();
         }
+
 
         if (inq.gsr !== 0) {
             $('.accord5').show();
+            console.log(inq.gsr);
+        } else {
+            $('.accord5').hide();
         }
+
 
         if (inq.pnmr !== 0) {
             $('.accord6').show();
+            console.log(inq.pnmr);
+        } else {
+            $('.accord6').hide();
         }
 
-        if (inq.gsr !== 0) {
+
+        if (inq.idr !== 0) {
             $('.accord7').show();
+            console.log(inq.idr);
+        } else {
+            $('.accord7').hide();
         }
+
 
 
 
@@ -740,21 +775,42 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             date: today
         }
 
+        try {
+            var updates = {};
+            updates['/estimate/' + uid] = estimate;
+            firebase.database().ref().update(updates);
 
-        var updates = {};
-        updates['/estimate/' + uid] = estimate;
-        firebase.database().ref().update(updates);
 
+            if (updates) {
+                console.log(updates)
 
-        if (updates) {
-            console.log(updates)
-            alert('Process Successful!')
-            setTimeout(function() {
-                $('#estimate').modal('hide');
-                location.replace('#/')
-                location.replace('#/inquiries')
-            }, 1000);
+                $('.sucnotif').show();
+
+                var db = firebase.database();
+                db.ref('/inquiries/')
+                    .orderByChild("ekey")
+                    .equalTo(itemkey)
+                    .once('value')
+                    .then(function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                            childSnapshot.ref.child('stage').set(1);
+                        });
+                    });
+
+                setTimeout(function() {
+                    $('#estimate').modal('hide');
+                    location.replace('#/')
+                    location.replace('#/inquiries')
+                }, 3000);
+            }
+        } catch (error) {
+            console.log(error);
+
+            $('.errmsg').text(error)
+            $('.errnotif').show();
+
         }
+
 
     }
 

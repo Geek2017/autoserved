@@ -194,7 +194,8 @@ app.controller('iform', function($scope, $http) {
                 "gsr": gsr,
                 "idr": idr,
                 "pnmr": pnmr,
-                "requestdate": today
+                "requestdate": today,
+                "stage": 0
             };
 
             var users = {
