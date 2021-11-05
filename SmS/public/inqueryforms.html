@@ -91,6 +91,11 @@
                     </div>
 
                     <div class="card-body pb-1 step0">
+
+                        <div class="alert alert-danger cir">
+                            <strong>Oh snap!</strong> Check Mobile No. or Email input
+                        </div>
+
                         <div class="row">
                             <h1>Contact Information</h1>
                             <div class="col-xl-6">
@@ -109,6 +114,11 @@
                     </div>
 
                     <div class="card-body pb-1 step1 visually-hidden">
+
+                        <div class="alert alert-danger cinfo">
+                            <strong>Oh snap!</strong> Make sure that no fields are empty.
+                        </div>
+
                         <div class="row">
                             <h1>Car Information</h1>
                             <div class="col-xl-6">
@@ -189,6 +199,14 @@
                     </div>
 
                     <div class="card-body pb-1 step2 visually-hidden">
+                        <div class="alert alert-danger inqerr">
+                            <strong>Oh snap!</strong> Make sure atleast one of A-G is selected.
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Well done!</strong> Your inquery have been successfully sent you will recieve SMS or email with in 24hrs.
+                        </div>
+
                         <div class="row">
                             <h1>Your Inquiry</h1>
                             <div class="col-xl-6">
@@ -216,8 +234,6 @@
 
                                 </div>
                                 <div class="form-group mb-3">
-
-
                                     <div class="form-check form-switch">
                                         <label class="form-label">D) Tire Services</label>
                                         <input type="checkbox" class="form-check-input" ng-model="tsr" required>

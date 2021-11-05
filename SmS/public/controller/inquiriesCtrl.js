@@ -33,7 +33,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
     });
 
-    // $('#estimate').modal('toggle')
+    $('#estimate').modal('toggle')
 
     let cnt0 = 0;
     $scope.addtr = function() {
@@ -109,8 +109,100 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         calculate2()
     }
 
+    let cnt3 = 0;
+    $scope.dtsaddtr = function() {
+        $("#dtsadd").append('<tr class="row_to_clone"><td class="col-md-2"><input class="form-control" type="text" placeholder="Particulars"></td></td><td class="col-md-6"><input class="form-control" type="text" placeholder="Description"></td></td><td class="col-md-2"><input class="form-control dtstxt" type="number"  placeholder="Cost" /></td></tr>');
+        cnt3++;
+        $('table thead th').each(function(i) {
 
-    var obj0, obj1, obj2;
+        });
+
+        console.log(cnt3)
+    }
+
+    $scope.dtsremtr = function() {
+        if (cnt3 !== 0) {
+            console.log(cnt2)
+            $('#dtsadd tr:last').remove();
+            $('table thead th').each(function(i) {});
+
+            cnt3--;
+        }
+
+        calculate2()
+    }
+
+    let cnt4 = 0;
+    $scope.grsaddtr = function() {
+        $("#grsadd").append('<tr class="row_to_clone"><td class="col-md-2"><input class="form-control" type="text" placeholder="Particulars"></td></td><td class="col-md-6"><input class="form-control" type="text" placeholder="Description"></td></td><td class="col-md-2"><input class="form-control grstxt" type="number"  placeholder="Cost" /></td></tr>');
+        cnt4++;
+        $('table thead th').each(function(i) {
+
+        });
+
+        console.log(cnt3)
+    }
+
+    $scope.grsremtr = function() {
+        if (cnt4 !== 0) {
+            console.log(cnt2)
+            $('#grsadd tr:last').remove();
+            $('table thead th').each(function(i) {});
+
+            cnt4--;
+        }
+
+        calculate4()
+    }
+
+    let cnt5 = 0;
+    $scope.pnmsaddtr = function() {
+        $("#pnmsadd").append('<tr class="row_to_clone"><td class="col-md-2"><input class="form-control" type="text" placeholder="Particulars"></td></td><td class="col-md-6"><input class="form-control" type="text" placeholder="Description"></td></td><td class="col-md-2"><input class="form-control pnmstxt" type="number"  placeholder="Cost" /></td></tr>');
+        cnt5++;
+        $('table thead th').each(function(i) {
+
+        });
+
+        console.log(cnt3)
+    }
+
+    $scope.pnmsremtr = function() {
+        if (cnt5 !== 0) {
+            console.log(cnt2)
+            $('#pnmsadd tr:last').remove();
+            $('table thead th').each(function(i) {});
+
+            cnt5--;
+        }
+
+        calculate5()
+    }
+
+    let cnt6 = 0;
+    $scope.indsaddtr = function() {
+        $("#pnmsadd").append('<tr class="row_to_clone"><td class="col-md-2"><input class="form-control" type="text" placeholder="Particulars"></td></td><td class="col-md-6"><input class="form-control" type="text" placeholder="Description"></td></td><td class="col-md-2"><input class="form-control indstxt" type="number"  placeholder="Cost" /></td></tr>');
+        cnt6++;
+        $('table thead th').each(function(i) {
+
+        });
+
+        console.log(cnt3)
+    }
+
+    $scope.indsremtr = function() {
+        if (cnt6 !== 0) {
+            console.log(cnt2)
+            $('#indsadd tr:last').remove();
+            $('table thead th').each(function(i) {});
+
+            cnt6--;
+        }
+
+        calculate6()
+    }
+
+
+    var obj0, obj1, obj2, obj3, obj4, obj5, obj6;
 
     $scope.tojson0 = function(obj0) {
         var table0 = $('#aind').tableToJSON({
@@ -139,9 +231,49 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         return table2;
     }
 
+    $scope.tojson3 = function(obj3) {
+        var table2 = $('#dts').tableToJSON({
+            extractor: function(cellIndex, $cell) {
+                return $cell.find('input').val() || $cell.text();
+            }
+        })
+        return table2;
+    }
+
+    $scope.tojson4 = function(obj4) {
+        var table2 = $('#grs').tableToJSON({
+            extractor: function(cellIndex, $cell) {
+                return $cell.find('input').val() || $cell.text();
+            }
+        })
+        return table2;
+    }
+
+    $scope.tojson5 = function(obj5) {
+        var table2 = $('#pnms').tableToJSON({
+            extractor: function(cellIndex, $cell) {
+                return $cell.find('input').val() || $cell.text();
+            }
+        })
+        return table2;
+    }
+
+    $scope.tojson6 = function(obj6) {
+        var table2 = $('#inds').tableToJSON({
+            extractor: function(cellIndex, $cell) {
+                return $cell.find('input').val() || $cell.text();
+            }
+        })
+        return table2;
+    }
+
     var obj0_arr = [],
         obj1_arr = [],
-        obj2_arr = [];
+        obj2_arr = [],
+        obj3_arr = [],
+        obj4_arr = [],
+        obj5_arr = [],
+        obj6_arr = []
 
     var ikey;
 
@@ -174,9 +306,47 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         console.log(obj2_arr[0]);
     });
 
+    $("#dtsadd").on('input', '.dtstxt', function() {
+        calculate3();
+        obj3_arr = [];
+        $scope.tojson2(obj3);
+        obj3_arr.push($scope.tojson3(obj3));
+        console.log(obj3_arr[0]);
+    });
+
+    $("#grsadd").on('input', '.grstxt', function() {
+        calculate4();
+        obj4_arr = [];
+        $scope.tojson2(obj4);
+        obj4_arr.push($scope.tojson4(obj4));
+        console.log(obj4_arr[0]);
+    });
+
+    $("#pnmsadd").on('input', '.pnmstxt', function() {
+        calculate5();
+        obj5_arr = [];
+        $scope.tojson2(obj5);
+        obj5_arr.push($scope.tojson5(obj5));
+        console.log(obj5_arr[0]);
+    });
+
+    $("#indsadd").on('input', '.indstxt', function() {
+        calculate6();
+        obj6_arr = [];
+        $scope.tojson2(obj6);
+        obj6_arr.push($scope.tojson5(obj6));
+        console.log(obj6_arr[0]);
+    });
+
+
+
     let stotal0 = 0,
         stotal1 = 0,
-        stotal2 = 0;
+        stotal2 = 0,
+        stotal3 = 0,
+        stotal4 = 0,
+        stotal5 = 0,
+        stotal6 = 0
 
     function calculate0() {
         var sum = 0;
@@ -237,11 +407,87 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         grandtotal();
     }
 
+    function calculate3() {
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".dtstxt").each(function() {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#dtssum").html('₱ ' + parseFloat(sum).toLocaleString());
+        console.log('₱ ' + sum.toFixed(2).toLocaleString());
+        stotal3 = sum.toFixed(2).toLocaleString();
+        grandtotal();
+    }
+
+    function calculate4() {
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".grstxt").each(function() {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#grssum").html('₱ ' + parseFloat(sum).toLocaleString());
+        console.log('₱ ' + sum.toFixed(2).toLocaleString());
+        stotal4 = sum.toFixed(2).toLocaleString();
+        grandtotal();
+    }
+
+    function calculate5() {
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".pnmstxt").each(function() {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#pnmssum").html('₱ ' + parseFloat(sum).toLocaleString());
+        console.log('₱ ' + sum.toFixed(2).toLocaleString());
+        stotal5 = sum.toFixed(2).toLocaleString();
+        grandtotal();
+    }
+
+    function calculate6() {
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".indstxt").each(function() {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#indssum").html('₱ ' + parseFloat(sum).toLocaleString());
+        console.log('₱ ' + sum.toFixed(2).toLocaleString());
+        stotal6 = sum.toFixed(2).toLocaleString();
+        grandtotal();
+    }
+
     function grandtotal() {
-        let gtotal = parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2);
+        let gtotal = parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6);
         let gvat = gtotal * 0.12;
         let tgvat = gvat + gtotal;
-        console.log(parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2));
+        console.log(parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6));
 
 
 
@@ -285,14 +531,26 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
         keyid = uid;
 
+        let aav = obj0_arr[0];
+
         var qts = {
-            aa: obj0_arr[0],
+            aa: aav,
             stotal0,
             bb: obj1_arr[0],
             stotal1,
             cc: obj2_arr[0],
-            stotal2
+            stotal2,
+            dd: obj3_arr[0],
+            stotal3,
+            ee: obj4_arr[0],
+            stotal4,
+            ff: obj5_arr[0],
+            stotal5,
+            gg: obj6_arr[0],
+            stotal6
         }
+
+        console.log(qts)
 
         var estimate = {
             ekey: uid,
@@ -303,22 +561,22 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             date: today
         }
 
-        console.log(estimate)
-
-        var updates = {};
-        updates['/estimate/' + uid] = estimate;
-        firebase.database().ref().update(updates);
 
 
-        if (updates) {
-            console.log(updates)
-            alert('Process Successful!')
-            setTimeout(function() {
-                $('#estimate').modal('hide');
-                location.replace('#/')
-                location.replace('#/inquiries')
-            }, 1000);
-        }
+        // var updates = {};
+        // updates['/estimate/' + uid] = estimate;
+        // firebase.database().ref().update(updates);
+
+
+        // if (updates) {
+        //     console.log(updates)
+        //     alert('Process Successful!')
+        //     setTimeout(function() {
+        //         $('#estimate').modal('hide');
+        //         location.replace('#/')
+        //         location.replace('#/inquiries')
+        //     }, 1000);
+        // }
 
     }
 
