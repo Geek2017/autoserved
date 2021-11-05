@@ -101,7 +101,7 @@
                 <form ng-submit="submit()">
                     <div class="card-body">
                         <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
+                            <div class="accordion-item accord1">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false">
                                        A) Preventive Maintenance
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord2">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false">
                                         B) Change Oil
@@ -236,7 +236,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord3">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false">
                                         C) Wheel Alignment
@@ -303,7 +303,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord4">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false">
                                         D) Tire Services
@@ -370,7 +370,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord5">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false">
                                         E) General Repairs
@@ -437,7 +437,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord6">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false">
                                         F) Parts & Materials
@@ -504,7 +504,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
+                            <div class="accordion-item accord7">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false">
                                         G) Inspection & Diagnosis
@@ -562,6 +562,73 @@
                                                     <td class="col-md-2">
                                                         <h4><label class="indssum"> <strong>
                                                         <span id="indssum" class="stotal">₱ 0.00</span></strong>
+                                                    </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false">
+                                       Others
+                                    </button>
+                                </h2>
+                                <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="otrsremtr()"><i class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="otrsaddtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="otrs" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="otrsadd">
+                                                <tr class="row_to_clone">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" placeholder="Particulars">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" placeholder="Description">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control otrstxt" type="number" placeholder="Cost" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="otrssum"> <strong>
+                                                        <span id="otrssum" class="stotal">₱ 0.00</span></strong>
                                                     </label></h4>
                                                     </td>
                                                 </tr>

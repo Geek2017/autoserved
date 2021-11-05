@@ -4,6 +4,14 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
     $scope.pageSize = 10;
     $scope.pagedata = [];
 
+    $('.accord1').hide();
+    $('.accord2').hide();
+    $('.accord3').hide();
+    $('.accord4').hide();
+    $('.accord5').hide();
+    $('.accord6').hide();
+    $('.accord7').hide();
+
     $scope.pageChangeHandler = function(num) {
         console.log('pagedata page changed to ' + num);
     };
@@ -33,7 +41,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
     });
 
-    $('#estimate').modal('toggle')
+    // $('#estimate').modal('toggle')
 
     let cnt0 = 0;
     $scope.addtr = function() {
@@ -201,8 +209,32 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         calculate6()
     }
 
+    let cnt7 = 0;
+    $scope.otrsaddtr = function() {
+        $("#otrsadd").append('<tr class="row_to_clone"><td class="col-md-2"><input class="form-control" type="text" placeholder="Particulars"></td></td><td class="col-md-6"><input class="form-control" type="text" placeholder="Description"></td></td><td class="col-md-2"><input class="form-control otrstxt" type="number"  placeholder="Cost" /></td></tr>');
+        cnt7++;
+        $('table thead th').each(function(i) {
 
-    var obj0, obj1, obj2, obj3, obj4, obj5, obj6;
+        });
+
+        console.log(cnt3)
+    }
+
+    $scope.otrsremtr = function() {
+        if (cnt7 !== 0) {
+            console.log(cnt2)
+            $('#otrsadd tr:last').remove();
+            $('table thead th').each(function(i) {});
+
+            cnt7--;
+        }
+
+        calculate7()
+    }
+
+
+
+    var obj0, obj1, obj2, obj3, obj4, obj5, obj6, obj7;
 
     $scope.tojson0 = function(obj0) {
         var table0 = $('#aind').tableToJSON({
@@ -267,13 +299,23 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         return table2;
     }
 
+    $scope.tojson7 = function(obj7) {
+        var table2 = $('#otrs').tableToJSON({
+            extractor: function(cellIndex, $cell) {
+                return $cell.find('input').val() || $cell.text();
+            }
+        })
+        return table2;
+    }
+
     var obj0_arr = [],
         obj1_arr = [],
         obj2_arr = [],
         obj3_arr = [],
         obj4_arr = [],
         obj5_arr = [],
-        obj6_arr = []
+        obj6_arr = [],
+        obj7_arr = [];
 
     var ikey;
 
@@ -334,8 +376,16 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         calculate6();
         obj6_arr = [];
         $scope.tojson2(obj6);
-        obj6_arr.push($scope.tojson5(obj6));
+        obj6_arr.push($scope.tojson6(obj6));
         console.log(obj6_arr[0]);
+    });
+
+    $("#otrsadd").on('input', '.otrstxt', function() {
+        calculate7();
+        obj7_arr = [];
+        $scope.tojson2(obj7);
+        obj7_arr.push($scope.tojson7(obj7));
+        console.log(obj7_arr[0]);
     });
 
 
@@ -346,7 +396,8 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         stotal3 = 0,
         stotal4 = 0,
         stotal5 = 0,
-        stotal6 = 0
+        stotal6 = 0,
+        stotal7 = 0;
 
     function calculate0() {
         var sum = 0;
@@ -483,11 +534,32 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         grandtotal();
     }
 
+    function calculate7() {
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".otrstxt").each(function() {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#otrssum").html('₱ ' + parseFloat(sum).toLocaleString());
+        console.log('₱ ' + sum.toFixed(2).toLocaleString());
+        stotal6 = sum.toFixed(2).toLocaleString();
+        grandtotal();
+    }
+
     function grandtotal() {
-        let gtotal = parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6);
+        let gtotal = parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6) + parseFloat(stotal7);
+
         let gvat = gtotal * 0.12;
         let tgvat = gvat + gtotal;
-        console.log(parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6));
+
+        console.log(parseFloat(stotal0) + parseFloat(stotal1) + parseFloat(stotal2) + parseFloat(stotal3) + parseFloat(stotal4) + parseFloat(stotal5) + parseFloat(stotal6) + parseFloat(stotal7));
 
 
 
@@ -504,6 +576,38 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         inq_mobile = inq.mobileno;
 
         console.log(inq)
+
+        if (inq.pmr !== 0) {
+            $('.accord1').show();
+        }
+
+        if (inq.cor !== 0) {
+            $('.accord2').show();
+        }
+
+        if (inq.war !== 0) {
+            $('.accord3').show();
+        }
+
+        if (inq.tsr !== 0) {
+            $('.accord4').show();
+        }
+
+        if (inq.gsr !== 0) {
+            $('.accord5').show();
+        }
+
+        if (inq.pnmr !== 0) {
+            $('.accord6').show();
+        }
+
+        if (inq.gsr !== 0) {
+            $('.accord7').show();
+        }
+
+
+
+
 
         $('#estimate').modal('toggle');
 
@@ -525,29 +629,104 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         // 4=approved
         // 5=done
 
+        var otrs;
+
+        console.log(obj7_arr[0]);
+
+        if (obj7_arr[0] === undefined) {
+            otrs = 0;
+        } else {
+            otrs = obj7_arr[0];
+        }
+
         var uid = ikey;
 
         console.log(uid);
 
         keyid = uid;
 
-        let aav = obj0_arr[0];
+        let aav = obj0_arr[0],
+            bbv = obj1_arr[0],
+            ccv = obj2_arr[0],
+            ddv = obj3_arr[0],
+            eev = obj4_arr[0],
+            ffv = obj5_arr[0],
+            ggv = obj6_arr[0]
+
+
+        if (aav == undefined) {
+            aav = 0;
+            console.log(aav);
+        } else {
+            aav = obj0_arr[0];
+            console.log(aav);
+        }
+
+        if (bbv == undefined) {
+            bbv = 0;
+            console.log(bbv);
+        } else {
+            bbv = obj0_arr[0];
+            console.log(bbv);
+        }
+
+        if (ccv == undefined) {
+            ccv = 0;
+            console.log(ccv);
+        } else {
+            ccv = obj0_arr[0];
+            console.log(ccv);
+        }
+
+        if (ddv == undefined) {
+            ddv = 0;
+            console.log(ddv);
+        } else {
+            ddv = obj0_arr[0];
+            console.log(ddv);
+        }
+
+        if (eev == undefined) {
+            eev = 0;
+            console.log(eev);
+        } else {
+            eev = obj0_arr[0];
+            console.log(eev);
+        }
+
+        if (ffv == undefined) {
+            ffv = 0;
+            console.log(ffv);
+        } else {
+            ffv = obj0_arr[0];
+            console.log(ffv);
+        }
+
+        if (ggv == undefined) {
+            ggv = 0;
+            console.log(ggv);
+        } else {
+            ggv = obj0_arr[0];
+            console.log(ggv);
+        }
 
         var qts = {
             aa: aav,
             stotal0,
-            bb: obj1_arr[0],
+            bb: bbv,
             stotal1,
-            cc: obj2_arr[0],
+            cc: ccv,
             stotal2,
-            dd: obj3_arr[0],
+            dd: ddv,
             stotal3,
-            ee: obj4_arr[0],
+            ee: eev,
             stotal4,
-            ff: obj5_arr[0],
+            ff: ffv,
             stotal5,
-            gg: obj6_arr[0],
-            stotal6
+            gg: ggv,
+            stotal6,
+            others: otrs,
+            stotal7
         }
 
         console.log(qts)
@@ -562,21 +741,20 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         }
 
 
+        var updates = {};
+        updates['/estimate/' + uid] = estimate;
+        firebase.database().ref().update(updates);
 
-        // var updates = {};
-        // updates['/estimate/' + uid] = estimate;
-        // firebase.database().ref().update(updates);
 
-
-        // if (updates) {
-        //     console.log(updates)
-        //     alert('Process Successful!')
-        //     setTimeout(function() {
-        //         $('#estimate').modal('hide');
-        //         location.replace('#/')
-        //         location.replace('#/inquiries')
-        //     }, 1000);
-        // }
+        if (updates) {
+            console.log(updates)
+            alert('Process Successful!')
+            setTimeout(function() {
+                $('#estimate').modal('hide');
+                location.replace('#/')
+                location.replace('#/inquiries')
+            }, 1000);
+        }
 
     }
 
