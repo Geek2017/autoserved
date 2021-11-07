@@ -57,6 +57,8 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
                 $scope.qoutes = returnArr[0];
 
+                console.log(returnArr[0])
+
                 $scope.email = returnArr[0].email;
                 $scope.mobile = returnArr[0].mobileno
 
