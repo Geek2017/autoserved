@@ -192,7 +192,7 @@ app.controller('iform', function($scope, $http) {
                 "cor": cor,
                 "tsr": tsr,
                 "gsr": gsr,
-                "idr": idr,
+                "indr": idr,
                 "pnmr": pnmr,
                 "requestdate": today,
                 "stage": 0

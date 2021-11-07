@@ -553,7 +553,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         //.toFixed() method will roundoff the final sum to 2 decimal places
         $("#otrssum").html('₱ ' + parseFloat(sum).toLocaleString());
         console.log('₱ ' + sum.toFixed(2).toLocaleString());
-        stotal6 = sum.toFixed(2).toLocaleString();
+        stotal7 = sum.toFixed(2).toLocaleString();
         grandtotal();
     }
 
@@ -574,14 +574,45 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
     var inq_email,
         inq_mobile,
-        itemkey;
+        itemkey,
+        cartype,
+        engine,
+        make,
+        mileage,
+        model,
+        purchasedate,
+        transmission,
+        year,
+        pmr,
+        cor,
+        war,
+        tsr,
+        gsr,
+        pnmr,
+        indr;
+
 
     $scope.estimate = function(inq) {
         inq_email = inq.email;
-
         inq_mobile = inq.mobileno;
-
         itemkey = inq.ekey;
+
+        cartype = inq.cartype;
+        engine = inq.engine;
+        make = inq.make;
+        mileage = inq.mileage;
+        model = inq.model;
+        purchasedate = inq.purchasedate;
+        transmission = inq.transmission;
+        year = inq.year;
+        pmr = inq.pmr;
+        cor = inq.cor;
+        war = inq.war;
+        tsr = inq.tsr;
+        gsr = inq.gsr;
+        pnmr = inq.pnmr;
+        indr = inq.indr;
+
 
         console.log(inq);
 
@@ -632,9 +663,9 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         }
 
 
-        if (inq.idr !== 0) {
+        if (inq.indr !== 0) {
             $('.accord7').show();
-            console.log(inq.idr);
+            console.log(inq.indr);
         } else {
             $('.accord7').hide();
         }
@@ -701,7 +732,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             bbv = 0;
             console.log(bbv);
         } else {
-            bbv = obj0_arr[0];
+            bbv = obj1_arr[0];
             console.log(bbv);
         }
 
@@ -709,7 +740,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             ccv = 0;
             console.log(ccv);
         } else {
-            ccv = obj0_arr[0];
+            ccv = obj2_arr[0];
             console.log(ccv);
         }
 
@@ -717,7 +748,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             ddv = 0;
             console.log(ddv);
         } else {
-            ddv = obj0_arr[0];
+            ddv = obj3_arr[0];
             console.log(ddv);
         }
 
@@ -725,7 +756,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             eev = 0;
             console.log(eev);
         } else {
-            eev = obj0_arr[0];
+            eev = obj4_arr[0];
             console.log(eev);
         }
 
@@ -733,7 +764,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             ffv = 0;
             console.log(ffv);
         } else {
-            ffv = obj0_arr[0];
+            ffv = obj5_arr[0];
             console.log(ffv);
         }
 
@@ -741,7 +772,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             ggv = 0;
             console.log(ggv);
         } else {
-            ggv = obj0_arr[0];
+            ggv = obj6_arr[0];
             console.log(ggv);
         }
 
@@ -764,7 +795,25 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             stotal7
         }
 
-        console.log(qts)
+        var details = {
+            cartype: cartype,
+            engine: engine,
+            make: make,
+            mileage: mileage,
+            model: model,
+            purchasedate: purchasedate,
+            transmission: transmission,
+            year: year,
+            pmr: pmr,
+            cor: cor,
+            war: war,
+            tsr: tsr,
+            gsr: gsr,
+            pnmr: pnmr,
+            indr: indr
+        }
+
+        console.log(details, qts)
 
         var estimate = {
             ekey: uid,
@@ -772,14 +821,14 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             email: inq_email,
             quotes: qts,
             total: $("#grandt").text(),
-            date: today
+            date: today,
+            details: details
         }
 
         try {
             var updates = {};
             updates['/estimate/' + uid] = estimate;
             firebase.database().ref().update(updates);
-
 
             if (updates) {
                 console.log(updates)
@@ -805,10 +854,8 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             }
         } catch (error) {
             console.log(error);
-
             $('.errmsg').text(error)
             $('.errnotif').show();
-
         }
 
 

@@ -32,18 +32,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr dir-paginate="estimate in estimates | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+                        <tr dir-paginate="inq in estimates | filter:q | itemsPerPage: pageSize" current-page="currentPage">
                             <td class="text-center"><strong>{{$index+1}}</strong></td>
-                            <td>{{estimate.key}}</td>
-                            <td>{{estimate.mobileno}}</td>
-                            <td>{{estimate.email}}</td>
-                            <td>{{estimate.total}}</td>
+                            <td>{{inq.key}}</td>
+                            <td>{{inq.mobileno}}</td>
+                            <td>{{inq.email}}</td>
+                            <td>{{inq.total}}</td>
 
                             <td class="w-200px">
                                 <div class="btn-group btn-group-sm w-250px">
-                                    <button type="button" class="btn btn-success w-80px" ng-click="viewestimate(estimate);"><i class="fas fa-calculator "> Update Estimate</i></button>
+                                    <button type="button" class="btn btn-success w-80px" ng-click="viewestimate(inq);"><i class="fas fa-calculator "> Update
+                                            Estimate</i></button>
 
-                                    <button type="button" class="btn btn-danger w-80px "><i class="fas fa-trash-alt "> Delete</i></button>
+                                    <button type="button" class="btn btn-danger w-80px "><i class="fas fa-trash-alt ">
+                                            Delete Estimate</i></button>
                                 </div>
                             </td>
 
@@ -73,13 +75,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
+
                 <form ng-submit="submit()">
                     <div class="card-body">
+
+                        <div class="alert alert-danger errnotif">
+                            <strong>Oh snap!</strong>
+                            <p class="errmsg"></p>
+                        </div>
+
+                        <div class="alert alert-success sucnotif">
+                            <strong>Well done!</strong> Process successful.
+                        </div>
+
                         <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
+
+                            <div class="accordion-item accord1">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false">
-                                       A) Preventive Maintenance
+                                        A) Preventive Maintenance
                                     </button>
                                 </h2>
                                 <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -89,8 +103,10 @@
                                                 <tr>
                                                     <td class="col-md-12">
                                                         <div class="btn-group btn-group-xs" style="float: right;">
-                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="remtr()"><i class="fa fa-minus-circle"></i> DEL </button>
-                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="addtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="remtr()"><i class="fa fa-minus-circle"></i>
+                                                                DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="addtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -105,7 +121,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="aindadd">
-                                                <tr class="row_to_clone" ng-repeat="qts in quotes.quotes.aa">
+                                                <tr class="row_to_clone" ng-repeat="qts in uaa">
                                                     <td class="col-md-2">
                                                         <input class="form-control" type="text" ng-model="qts['Particulars']">
                                                     </td>
@@ -120,7 +136,6 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-
                                         </table>
                                         <table class="table table-striped table-bordered table-hover" width="100%">
                                             <tbody>
@@ -130,12 +145,11 @@
                                                         </h4>
                                                     </td>
                                                     </h4>
-                                                    <!-- <td class="col-md-6"></td> -->
-
                                                     <td class="col-md-2">
                                                         <h4><label class="ainsum"> <strong>
-                                                        <span id="ainsum" class="stotal">₱ 0.00</span></strong>
-                                                    </label></h4>
+                                                                    <span id="ainsum" class="stotal">₱
+                                                                        {{quotes.quotes.stotal0}}</span></strong>
+                                                            </label></h4>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -143,7 +157,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
+
+                            <div class="accordion-item accord2">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false">
                                         B) Change Oil
@@ -156,8 +171,10 @@
                                                 <tr>
                                                     <td class="col-md-12">
                                                         <div class="btn-group btn-group-xs" style="float: right;">
-                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="bpmremtr()"><i class="fa fa-minus-circle"></i> DEL </button>
-                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="bpmaddtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="bpmremtr()"><i class="fa fa-minus-circle"></i>
+                                                                DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="bpmaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -172,7 +189,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="bpmdadd">
-                                                <tr class="row_to_clone" ng-repeat="qts in quotes.quotes.bb">
+                                                <tr class="row_to_clone" ng-repeat="qts in ubb">
                                                     <td class="col-md-2">
                                                         <input class="form-control" type="text" ng-model="qts['Particulars']">
                                                     </td>
@@ -200,8 +217,9 @@
 
                                                     <td class="col-md-2">
                                                         <h4><label class="pmsum"> <strong>
-                                                        <span id="pmsum" class="stotal">₱ 0.00</span></strong>
-                                                    </label></h4>
+                                                                    <span id="pmsum" class="stotal">₱
+                                                                        {{quotes.quotes.stotal1}}</span></strong>
+                                                            </label></h4>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -209,21 +227,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
+
+                            <div class="accordion-item accord3">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false">
                                         C) Wheel Alignment
                                     </button>
                                 </h2>
-                                <div id="collapse3" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <table class="table table-striped table-bordered table-hover" width="100%">
                                             <tbody>
                                                 <tr>
                                                     <td class="col-md-12">
                                                         <div class="btn-group btn-group-xs" style="float: right;">
-                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="ccoremtr()"><i class="fa fa-minus-circle"></i> DEL </button>
-                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="ccoaddtr()"> ADD <i class="fa fa-plus-circle"></i></button>
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="ccoremtr()"><i class="fa fa-minus-circle"></i>
+                                                                DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="ccoaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -238,7 +259,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="ccoadd">
-                                                <tr class="row_to_clone" ng-repeat="qts in quotes.quotes.cc">
+                                                <tr class="row_to_clone" ng-repeat="qts in ucc">
                                                     <td class="col-md-2">
                                                         <input class="form-control" type="text" ng-model="qts['Particulars']">
                                                     </td>
@@ -249,7 +270,7 @@
                                                     </td>
                                                     </td>
                                                     <td class="col-md-2">
-                                                        <input class="form-control ccotxt" type="text" ng-model="qts['Cost']" />
+                                                        <input class="form-control aintxt" type="text" ng-model="qts['Cost']" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -266,8 +287,8 @@
 
                                                     <td class="col-md-2">
                                                         <h4><label class="ccosum"> <strong>
-                                                        <span id="ccosum" class="stotal">₱ 0.00</span></strong>
-                                                    </label></h4>
+                                                                    <span id="ccosum" class="stotal">₱ {{quotes.quotes.stotal2}}</span></strong>
+                                                            </label></h4>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -275,6 +296,354 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="accordion-item accord4">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false">
+                                        D) Tire Services
+                                    </button>
+                                </h2>
+                                <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="dtsremtr()"><i class="fa fa-minus-circle"></i>
+                                                                DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="dtsaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="dts" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dtsadd">
+                                                <tr class="row_to_clone" ng-repeat="qts in udd">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" ng-model="qts['Particulars']">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" ng-model="qts['Description']">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control aintxt" type="text" ng-model="qts['Cost']" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="dtssum"> <strong>
+                                                                    <span id="dtssum" class="stotal">>₱ {{quotes.quotes.stotal3}}</span></strong>
+                                                            </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item accord5">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false">
+                                        E) General Repairs
+                                    </button>
+                                </h2>
+                                <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="grsremtr()"><i class="fa fa-minus-circle"></i>
+                                                                DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="grsaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="grs" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="grsadd">
+                                                <tr class="row_to_clone" ng-repeat="qts in uee">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" ng-model="qts['Particulars']">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" ng-model="qts['Description']">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control aintxt" type="text" ng-model="qts['Cost']" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="grssum"> <strong>
+                                                                    <span id="grssum" class="stotal">>₱ {{quotes.quotes.stotal4}}</span></strong>
+                                                            </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item accord6">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false">
+                                        F) Parts & Materials
+                                    </button>
+                                </h2>
+                                <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="pnmsremtr()"><i
+                                                                    class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="pnmsaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="pnms" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="pnmsadd">
+                                                <tr class="row_to_clone" ng-repeat="qts in uff">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" ng-model="qts['Particulars']">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" ng-model="qts['Description']">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control aintxt" type="text" ng-model="qts['Cost']" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="pnmssum"> <strong>
+                                                                    <span id="pnmssum" class="stotal">>₱ {{quotes.quotes.stotal5}}</span></strong>
+                                                            </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item accord7">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false">
+                                        G) Inspection & Diagnosis
+                                    </button>
+                                </h2>
+                                <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="indsremtr()"><i
+                                                                    class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="indsaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="inds" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="indsadd">
+                                                <tr class="row_to_clone" ng-repeat="qts in ugg">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" ng-model="qts['Particulars']">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" ng-model="qts['Description']">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control indstxt" type="text" ng-model="qts['Cost']" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="indssum"> <strong>
+                                                                    <span id="indssum" class="stotal">₱
+                                                                        {{quotes.quotes.stotal6}}</span></strong>
+                                                            </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false">
+                                        Others
+                                    </button>
+                                </h2>
+                                <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-12">
+                                                        <div class="btn-group btn-group-xs" style="float: right;">
+                                                            <button type="button" class="btn  btn-danger btn-xs" ng-click="otrsremtr()"><i
+                                                                    class="fa fa-minus-circle"></i> DEL </button>
+                                                            <button type="button" class="btn  btn-success btn-xs" ng-click="otrsaddtr()"> ADD <i
+                                                                    class="fa fa-plus-circle"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table id="otrs" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center th">Particulars</th>
+                                                    <th class="text-center th">Description</th>
+                                                    <th class="text-center th">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="otrsadd">
+                                                <tr class="row_to_clone" ng-repeat="qts in uothers">
+                                                    <td class="col-md-2">
+                                                        <input class="form-control" type="text" ng-model="qts['Particulars']">
+                                                    </td>
+                                                    </td>
+
+                                                    <td class="col-md-6">
+                                                        <input class="form-control" type="text" ng-model="qts['Description']">
+                                                    </td>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <input class="form-control otrstxt" type="text" ng-model="qts['Cost']" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped table-bordered table-hover" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-8 " colspan="2">
+                                                        <h4 style="float:right"><strong>Sub Total</strong>
+                                                        </h4>
+                                                    </td>
+                                                    </h4>
+                                                    <!-- <td class="col-md-6"></td> -->
+
+                                                    <td class="col-md-2">
+                                                        <h4><label class="otrssum"> <strong>
+                                                                    <span id="otrssum" class="stotal"> ₱
+                                                                        {{quotes.quotes.stotal7}}</span></strong>
+                                                            </label></h4>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
                             <table class="table table-striped table-bordered table-hover" width="100%">
                                 <tbody>
                                     <tr>
@@ -284,8 +653,8 @@
                                         </td>
                                         <td class="col-md-2">
                                             <label class="grandt"> <strong>
-                                            <span id="grandt">₱ 0.00</span></strong>
-                                        </label>
+                                                    <span id="grandt">{{nttl | currency: "₱ ":2}}</span></strong>
+                                            </label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -295,8 +664,8 @@
                                         </td>
                                         <td class="col-md-2">
                                             <label class="gvat"> <strong>
-                                            <span id="gvat">₱ 0.00</span></strong>
-                                        </label>
+                                                    <span id="gvat">{{nttl*0.12 | currency: "₱ ":2}}</span></strong>
+                                            </label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -306,18 +675,18 @@
                                         </td>
                                         <td class="col-md-2">
                                             <h6> <label class="grandtnvat"> <strong>
-                                            <span id="tgvat">₱ 0.00</span></strong>
-                                        </label></h6>
+                                                        <span
+                                                            id="tgvat">{{(nttl*0.12)+nttl| currency: "₱ ":2 }}</span></strong>
+                                                </label></h6>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <footer class="modal-footer">
-                        <button type="submit" class="btn btn-success" ng-click="unsestimate();">UPDATE & RE-SEND</button>
-                        <button type="submit" class="btn btn-primary" ng-click="upestimate();">UPDATE ONLY</button>
-                        <button type="submit" class="btn btn-warning" ng-click="convert2jo();">CONVERT TO J.O</button>
+                    <footer class="modal-footer updatebtn">
+                        <button type="submit" class="btn btn-success" ng-click="sendestimate();">UPDATE & SEND</button>
+                        <button type="submit" class="btn btn-primary" ng-click="savedestimate();">UPDATE ONLY</button>
                     </footer>
                 </form>
             </div>
