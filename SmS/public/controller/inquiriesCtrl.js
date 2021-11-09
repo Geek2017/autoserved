@@ -613,8 +613,10 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         pnmr = inq.pnmr;
         indr = inq.indr;
 
+        console.log(inq)
 
-        console.log(inq);
+
+
 
         if (inq.pmr === 1) {
             $('.accord1').show();
@@ -652,6 +654,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             console.log(inq.gsr);
         } else {
             $('.accord5').hide();
+
         }
 
 
@@ -660,12 +663,15 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             console.log(inq.pnmr);
         } else {
             $('.accord6').hide();
+
         }
 
 
         if (inq.indr !== 0) {
             $('.accord7').show();
             console.log(inq.indr);
+            $scope.contentremarks = inq.indr;
+
         } else {
             $('.accord7').hide();
         }
@@ -822,7 +828,8 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
             quotes: qts,
             total: $("#grandt").text(),
             date: today,
-            details: details
+            details: details,
+            state: 1
         }
 
         try {

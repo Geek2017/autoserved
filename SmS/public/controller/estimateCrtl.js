@@ -33,31 +33,12 @@ angular.module('newApp').controller('estimateCrtl', function($scope, $http, $fil
         $timeout(function() {
             $scope.$apply(function() {
                 let returnArr = [];
+
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
 
-                    var stat;
 
-                    if (item.state === 0) {
-                        stat = '';
-                        stat = 'Saved';
-                    } else if (item.state === 1) {
-                        stat = '';
-                        stat = 'Sent';
-                    } else if (item.state === 2) {
-                        stat = '';
-                        stat = 'Defered';
-                    } else if (item.state === 3) {
-                        stat = '';
-                        stat = 'Scheduled';
-                    } else if (item.state === 4) {
-                        stat = '';
-                        stat = 'Approved';
-                    } else if (item.state === 5) {
-                        stat = '';
-                        stat = 'Done';
-                    }
 
                     var data = {
                         email: item.email,
@@ -65,8 +46,9 @@ angular.module('newApp').controller('estimateCrtl', function($scope, $http, $fil
                         mobileno: item.mobileno,
                         quotes: item.quotes,
                         details: item.details,
-                        state: stat,
-                        total: item.total
+                        state: item.state,
+                        total: item.total,
+                        date: item.date
                     }
 
                     returnArr.push(data);
@@ -74,7 +56,7 @@ angular.module('newApp').controller('estimateCrtl', function($scope, $http, $fil
                 });
 
                 $scope.estimates = returnArr;
-                console.log(returnArr);
+                console.log('data', returnArr);
 
             });
 

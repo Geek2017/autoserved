@@ -28,7 +28,7 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
 
     firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
-        var cardata;
+
         $timeout(function() {
             $scope.$apply(function() {
                 let returnArr = [];
@@ -38,26 +38,13 @@ app.controller('qoutes', function($scope, $http, $timeout) {
                     item.key = childSnapshot.key;
                     returnArr.push(item);
                     console.log(item.key)
-
-                    firebase.database().ref('/estimate/' + key).orderByChild('ekey').on("value", function(snapshot) {
-                        snapshot.forEach(childSnapshot => {
-                            let item = childSnapshot.val();
-                            item.key = childSnapshot.key;
-
-                            var datos = {
-
-                            }
-                            cardata = item;
-                            console.log(cardata)
-                        });
-                    });
-
                 });
 
 
                 $scope.qoutes = returnArr[0];
 
                 console.log(returnArr[0])
+                joborder = returnArr[0];
 
                 $scope.email = returnArr[0].email;
                 $scope.mobile = returnArr[0].mobileno
@@ -80,16 +67,16 @@ app.controller('qoutes', function($scope, $http, $timeout) {
                 console.log(parseInt(num2) + parseInt(num3));
 
                 console.log(returnArr[0]);
-                console.log(cardata);
 
-                $scope.cmake = cardata.make;
-                $scope.cmodel = cardata.model;
-                $scope.transmission = cardata.transmission;
-                $scope.cyear = cardata.year;
-                $scope.cengine = cardata.engine;
-                $scope.ckm = cardata.mileage;
 
-                return joborder = returnArr[0];
+                $scope.cmake = returnArr[0].details.make;
+                $scope.cmodel = returnArr[0].details.model;
+                $scope.transmission = returnArr[0].details.transmission;
+                $scope.cyear = returnArr[0].details.year;
+                $scope.cengine = returnArr[0].details.engine;
+                $scope.ckm = returnArr[0].details.mileage;
+
+
 
 
             });

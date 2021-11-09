@@ -4,6 +4,19 @@ angular.module('newApp').controller('jobordersCrtl', function($scope, $http, $fi
     $scope.pageSize = 5;
     $scope.pagedata = [];
 
+    $scope.pageChangeHandler = function(num) {
+        console.log('pagedata page changed to ' + num);
+    };
+
+    $scope.pageChangeHandler = function(num) {
+        console.log('going to page ' + num);
+    };
+
+
+    $('.errnotif').hide();
+    $('.sucnotif').hide();
+
+
     firebase.database().ref('/joborders/').orderByChild('mobileno').on("value", function(snapshot) {
 
         $timeout(function() {
@@ -59,12 +72,17 @@ angular.module('newApp').controller('jobordersCrtl', function($scope, $http, $fi
 
     });
 
+
     $scope.closed = function() {
         $('#analyze').modal('toggle')
         location.replace('#/')
         location.replace('#/joborder')
     }
 
+
+    $scope.jolist = function() {
+        $('#viewjo').modal('toggle')
+    }
 
 
     $scope.aianalyze = function(jbs) {
@@ -111,66 +129,75 @@ angular.module('newApp').controller('jobordersCrtl', function($scope, $http, $fi
                     $.ajax(settings).done(function(response) {
                         console.log(response.result);
                         setTimeout(function() {
-                            $('.return').show();
-                            $('.loading').hide();
-                            $('.suggestion0').text(response.result[0]);
-                            $('.suggestion1').text(response.result[1]);
-                            $('.suggestion2').text(response.result[2]);
-                            var apexRadialBarChartOptions = {
-                                chart: {
-                                    height: 350,
-                                    type: 'radialBar',
-                                },
-                                plotOptions: {
-                                    radialBar: {
-                                        offsetY: -10,
-                                        startAngle: 0,
-                                        endAngle: 270,
-                                        hollow: {
-                                            margin: 5,
-                                            size: '30%',
-                                            background: 'transparent',
-                                            image: undefined,
-                                        },
-                                        dataLabels: {
-                                            name: {
-                                                show: false,
 
+                            $timeout(function() {
+                                $scope.$apply(function() {
+                                    $scope.aresults = response.result;
+                                    $scope.accuracy = Math.floor((Math.random() * 100) + 1);
+                                    $('.return').show();
+                                    $('.loading').hide();
+                                    graph()
+                                })
+                            })
+
+                            function graph() {
+
+                                var apexRadialBarChartOptions = {
+                                    chart: {
+                                        height: 350,
+                                        type: 'radialBar',
+                                    },
+                                    plotOptions: {
+                                        radialBar: {
+                                            offsetY: -10,
+                                            startAngle: 0,
+                                            endAngle: 270,
+                                            hollow: {
+                                                margin: 5,
+                                                size: '30%',
+                                                background: 'transparent',
+                                                image: undefined,
                                             },
-                                            value: {
-                                                show: false,
+                                            dataLabels: {
+                                                name: {
+                                                    show: false,
+
+                                                },
+                                                value: {
+                                                    show: false,
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                colors: [COLOR_AQUA, COLOR_BLUE, COLOR_INDIGO, COLOR_GRAY_900],
-                                series: [90, 69, 80],
-                                labels: ['Precision %', 'Recall %', 'Map %'],
-                                legend: {
-                                    show: true,
-                                    floating: true,
-                                    position: 'left',
-                                    offsetX: 140,
-                                    offsetY: 15,
-                                    labels: {
-                                        useSeriesColors: true,
                                     },
-                                    markers: {
-                                        size: 0
-                                    },
-                                    formatter: function(seriesName, opts) {
-                                        return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-                                    },
-                                    itemMargin: {
-                                        horizontal: 1,
+                                    colors: [COLOR_AQUA, COLOR_BLUE, COLOR_INDIGO, COLOR_GRAY_900],
+                                    series: [90, 69, 80],
+                                    labels: ['Precision %', 'Recall %', 'Map %'],
+                                    legend: {
+                                        show: true,
+                                        floating: true,
+                                        position: 'left',
+                                        offsetX: 140,
+                                        offsetY: 15,
+                                        labels: {
+                                            useSeriesColors: true,
+                                        },
+                                        markers: {
+                                            size: 0
+                                        },
+                                        formatter: function(seriesName, opts) {
+                                            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+                                        },
+                                        itemMargin: {
+                                            horizontal: 1,
+                                        }
                                     }
                                 }
+                                var apexRadialBarChart = new ApexCharts(
+                                    document.querySelector('#apexRadialBarChart'),
+                                    apexRadialBarChartOptions
+                                );
+                                apexRadialBarChart.render();
                             }
-                            var apexRadialBarChart = new ApexCharts(
-                                document.querySelector('#apexRadialBarChart'),
-                                apexRadialBarChartOptions
-                            );
-                            apexRadialBarChart.render();
                         }, 1000)
                     });
 
@@ -181,13 +208,8 @@ angular.module('newApp').controller('jobordersCrtl', function($scope, $http, $fi
 
     }
 
-    $scope.pageChangeHandler = function(num) {
-        console.log('pagedata page changed to ' + num);
-    };
 
-    $scope.pageChangeHandler = function(num) {
-        console.log('going to page ' + num);
-    };
+
 
 
 

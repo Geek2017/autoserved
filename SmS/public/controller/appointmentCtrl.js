@@ -208,18 +208,32 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                                         if (joborders) {
                                             console.log(joborders)
+
+                                            var db = firebase.database();
+                                            db.ref('/calendar/')
+                                                .orderByChild("start")
+                                                .equalTo(ndater)
+                                                .once('value')
+                                                .then(function(snapshot) {
+                                                    snapshot.forEach(function(childSnapshot) {
+                                                        childSnapshot.ref.child('color').set('#1abd36');
+                                                    });
+                                                });
+
+                                            var db = firebase.database();
+                                            db.ref('/estimate/')
+                                                .orderByChild("ekey")
+                                                .equalTo(ccdata.ekey)
+                                                .once('value')
+                                                .then(function(snapshot) {
+                                                    snapshot.forEach(function(childSnapshot) {
+                                                        childSnapshot.ref.child('state').set(3);
+                                                    });
+                                                });
+
                                         }
 
-                                        var db = firebase.database();
-                                        db.ref('/calendar/')
-                                            .orderByChild("start")
-                                            .equalTo(ndater)
-                                            .once('value')
-                                            .then(function(snapshot) {
-                                                snapshot.forEach(function(childSnapshot) {
-                                                    childSnapshot.ref.child('color').set('#1abd36');
-                                                });
-                                            });
+
 
                                     } else {
 

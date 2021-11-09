@@ -64,8 +64,8 @@
                             <td>{{inq.make}}</td>
                             <td>{{inq.model}}</td>
                             <td>
-                                <span ng-if="inq.stage==1" class="badge bg-success">Move to estimate</span>
-                                <span ng-if="inq.stage==0" class="badge bg-warning">For estimate</span>
+                                <span ng-if="inq.stage==1" class="badge bg-success">Estimate Done</span>
+                                <span ng-if="inq.stage==0" class="badge bg-warning">For Estimate &nbsp;&nbsp;</span>
                             </td>
                             <td class="w-200px">
                                 <div ng-if="inq.stage==1" class="btn-group btn-group-sm">
@@ -107,7 +107,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Estimate</h5>
+                <h5 class="modal-title">Inquries</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -592,6 +592,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <span>Customer remarks: {{contentremarks}}</span>
                                     </div>
                                 </div>
                             </div>
