@@ -34,18 +34,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
+                        <tr dir-paginate="inq in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
                             <td class="text-center"><strong>{{$index+1}}</strong></td>
-                            <td>{{joborder.key}}</td>
-                            <td>{{joborder.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
-                            <td>{{joborder.mobileno}}</td>
-                            <td>{{joborder.email}}</td>
-                            <td>{{joborder.total}}</td>
-                            <td>{{joborder.state}}</td>
+                            <td>{{inq.key}}</td>
+                            <td>{{inq.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{inq.mobileno}}</td>
+                            <td>{{inq.email}}</td>
+                            <td>{{inq.total}}</td>
+                            <td>
+                                <span ng-if="inq.state==1" class="badge bg-info">For Approval</span>
+                                <span ng-if="inq.state==2" class="badge bg-danger">Defered Repairs</span>
+                                <span ng-if="inq.state==3" class="badge bg-success">Approved </span>
+                                <span ng-if="inq.state==4" class="badge bg-primary">Sent & Updated</span>
+                                <span ng-if="inq.state==5" class="badge bg-primary">Been Updated</span>
+                                <span ng-if="inq.state==6" class="badge bg-primary">Repair Complete</span>
+                            </td>
                             <td class="w-200px">
                                 <div class="btn-group btn-group-sm w-250px">
-                                    <button type="button" class="btn btn-primary w-80px" ng-click="aianalyze(joborder)"><i class="fab fa-android"> A.i Analysis</i></button>
-                                    <button type="button" class="btn btn-teal w-80px text-white" ng-click="jolist(joborder)"><i class="fas fa-wrench"> J.O List</i></button>
+                                    <button type="button" class="btn btn-primary w-80px" ng-click="aianalyze(inq)"><i class="fab fa-android"> A.i Analysis</i></button>
+                                    <button type="button" class="btn btn-teal w-80px text-white" ng-click="viewestimate(inq);"><i class="fas fa-wrench"> J.O List</i></button>
                                     <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
                                 </div>
                             </td>
@@ -111,12 +118,11 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="viewjo" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="viewestimate" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Estimate</h5>
+                <h5 class="modal-title">JOBS TO BE DONE</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -384,7 +390,7 @@
                                                     </td>
                                                     </td>
                                                     <td class="col-md-2">
-                                                        <input class="form-control aintxt" type="text" ng-model="qts['Cost']" />
+                                                        <input class="form-control dtstxt" type="text" ng-model="qts['Cost']" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -401,7 +407,7 @@
 
                                                     <td class="col-md-2">
                                                         <h4><label class="dtssum"> <strong>
-                                                                    <span id="dtssum" class="stotal">>₱ {{quotes.quotes.stotal3}}</span></strong>
+                                                                    <span id="dtssum" class="stotal">₱ {{quotes.quotes.stotal3}}</span></strong>
                                                             </label></h4>
                                                     </td>
                                                 </tr>
@@ -730,8 +736,9 @@
                         </div>
                     </div>
                     <footer class="modal-footer updatebtn">
-                        <button type="submit" class="btn btn-success" ng-click="sendestimate();">UPDATE & SEND</button>
-                        <button type="submit" class="btn btn-primary" ng-click="savedestimate();">UPDATE ONLY</button>
+                        <button type="submit" class="btn btn-success" ng-click="sendestimate();">UPDATE & SEND J.O</button>
+                        <button type="submit" class="btn btn-info text-white" ng-click="savedestimate();">UPDATE J.O</button>
+                        <button type="submit" class="btn btn-primary" ng-click="">COMPLETE J.O</button>
                     </footer>
                 </form>
             </div>
