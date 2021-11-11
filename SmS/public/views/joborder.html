@@ -1,3 +1,54 @@
+<style>
+    p {
+        margin-bottom: 1px!important;
+        font-size: 9px!important;
+    }
+    
+    .main {
+        margin-left: 1%!important;
+        margin-right: 1%!important;
+    }
+    
+    table,
+    tr,
+    th,
+    td {
+        border-top: none!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        background-color: transparent!important;
+    }
+    
+    @media screen {
+        #printSection {
+            display: none;
+        }
+    }
+    
+    @media screen {
+        #printSection {
+            display: none;
+        }
+    }
+    
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #printSection,
+        #printSection * {
+            visibility: visible;
+        }
+        #printSection {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
 <div class="card">
 
     <div class="tab-content p-4">
@@ -47,13 +98,13 @@
                                 <span ng-if="inq.state==3" class="badge bg-success">Approved </span>
                                 <span ng-if="inq.state==4" class="badge bg-primary">Sent & Updated</span>
                                 <span ng-if="inq.state==5" class="badge bg-primary">Been Updated</span>
-                                <span ng-if="inq.state==6" class="badge bg-primary">Repair Complete</span>
+                                <span ng-if="inq.state==6" class="badge bg-primary">For Billing</span>
                             </td>
                             <td class="w-200px">
                                 <div class="btn-group btn-group-sm w-250px">
-                                    <button type="button" class="btn btn-primary w-80px" ng-click="aianalyze(inq)"><i class="fab fa-android"> A.i Analysis</i></button>
-                                    <button type="button" class="btn btn-teal w-80px text-white" ng-click="viewestimate(inq);"><i class="fas fa-wrench"> J.O List</i></button>
-                                    <button type="button" class="btn btn-danger w-80px"><i class="fas fa-trash-alt"> Delete</i></button>
+                                    <button type="button" class="btn btn-primary " ng-click="aianalyze(inq)"><i class="fab fa-android"> A.i Analysis</i></button>
+                                    <button type="button" class="btn btn-teal  text-white" ng-click="viewestimate(inq);"><i class="fas fa-wrench"> Jobs Repair</i></button>
+                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"> Delete</i></button>
                                 </div>
                             </td>
                     </tbody>
@@ -738,9 +789,264 @@
                     <footer class="modal-footer updatebtn">
                         <button type="submit" class="btn btn-success" ng-click="sendestimate();">UPDATE & SEND J.O</button>
                         <button type="submit" class="btn btn-info text-white" ng-click="savedestimate();">UPDATE J.O</button>
-                        <button type="submit" class="btn btn-primary" ng-click="">COMPLETE J.O</button>
+                        <button type="submit" class="btn btn-purple" ng-click="repairorder()">CREATE R.O</button>
+                        <button type="submit" class="btn btn-primary" ng-click="completejo()">COMPLETE J.O</button>
                     </footer>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="repairorder" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="printThis">
+            <div class="modal-header">
+                <h5 class="modal-title">REPAIR ORDER</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="main" role="main">
+                <table class="table">
+                    <thead>
+                        <tr style="height:1px!important ">
+                            <th style="float: left!important; ">
+
+                                <p>PROMISED DATE</p>
+                                <p>
+                                    <h4>11-11-2021, <br> MONDAY 5:00 PM</h4>
+                                </p>
+
+                                <img src="./assets/img/qr.png " width="100 " style="margin-left: -8px!important; ">
+                                <p>
+                                    <h4>&nbsp;</h4>
+                                </p>
+                                <p>
+                                    <h4>&nbsp;</h4>
+                                </p>
+                            </th>
+
+                            <th style="float: right!important;text-align: right!important;font-size: 11px; ">
+                                <img src="./assets/img/vpx.png " width="100 " style="margin-right: -8px!important; ">
+                                <p class="text-right ">
+                                    JOHN’S CAR CARE CENTER
+                                </p>
+                                <p>
+                                    No. 1 Street Name St., Town, Country 1234
+                                </p>
+                                <p>
+                                    Phone No. +63-12-345-6789
+                                </p>
+                                <p>
+                                    SEPTEMBER 17, 2021
+                                </p>
+                                <p>
+                                    QUOTATION NO. 0001-ABC123
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <hr class="new5 ">
+                <div style="padding-left: 2%!important; ">
+                    <strong>
+                <!-- <p> Customer Name: Mr. Donald Trump </p>
+                <p> Address: 987 New Jersey St. Tampa Florida </p> -->
+                <p> Phone : {{mobile}} </p>
+                <p> Email: {{email}} </p>
+                        </strong>
+                </div>
+                <hr class="new5 ">
+                <table class="table table-borderless ">
+                    <thead>
+                        <tr style="height:1px!important ">
+                            <th scope="col " class="text-left " style="float: left!important; ">
+                                <p>Vehicle Make: {{qoutes.details.make}}</p>
+                                <p>Model: {{qoutes.details.model}}</p>
+                                <p>Transmission: {{qoutes.details.transmission}}</p>
+                            </th>
+                            <th scope="col " class="text-right " style="float: right!important; ">
+                                <p> Vehicle Year: {{qoutes.details.year}}</p>
+                                <p> Engine: {{qoutes.details.engine}}</p>
+                                <p> Mileage: {{qoutes.details.mileage}} KM</p>
+                                <p>&nbsp;</p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <hr class="new5 ">
+                <h3 class="text-center ">SERVICE REQUESTED</h3>
+                <div class="aa ">
+                    <h6>A) Preventive Maintenance</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.aa ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="bb ">
+                    <h6>B) Change Oil</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.bb ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="cc ">
+                    <h6>C) Wheel Alignment</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.cc ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="dd ">
+                    <h6>D) Tire Services</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.dd ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="ee ">
+                    <h6>E) Wheel Alignment</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.ee ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="ff ">
+                    <h6>F) Parts & Materials</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.ff ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="gg ">
+                    <h6>G) Inspection & Diagnosis</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.gg ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="hh ">
+                    <h6>Others</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.others ">
+                                <td style="text-align: left; ">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center; ">{{qts['Description']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr class="new5 ">
+                <div>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="text-center " colspan="2 ">
+                                    <span> <img  src="./assets/img/qr.png " alt=" "></span>
+                                    <p>SCAN FOR REPAIR UPDATE</p>
+                                </th>
+                            </tr>
+                            <tr style="height:1px!important">
+                                <th>
+                                    <button type="button " class="btn btn-info btn-lg w-100 btnhide" ng-click="export() ">EXPORT</button>
+                                </th>
+                                <th>
+                                    <button type="button " class="btn btn-success btn-lg w-100 btnhide" ng-click="print() ">PRINT</button>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
