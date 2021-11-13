@@ -96,7 +96,7 @@
                             <td>{{joborder.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
                             <td>{{joborder.mobileno}}</td>
                             <td>{{joborder.email}}</td>
-                            <td>{{joborder.total}}</td>
+                            <td><span class="badge bg-success-transparent-2 text-success px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-success-transparent-8 fs-9px fa-fw me-5px"></i> {{joborder.total}}</span></td>
                             <td class="w-200px">
                                 <div class="btn-group btn-group-sm w-250px">
                                     <button type="button" class="btn btn-info w-50px" ng-click="repairorder(joborder)"><i class="fas fa-dollar-sign"> Service Invoice</i></button>
