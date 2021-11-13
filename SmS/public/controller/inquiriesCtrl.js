@@ -683,7 +683,9 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
         $('#estimate').modal('toggle');
 
-        return ikey = inq.key;
+        console.log(inq.ekey);
+
+        ikey = inq.ekey;
     }
 
     $scope.newinquery = function() {
@@ -872,7 +874,7 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
         var data = new FormData();
         data.append("number", '+63' + inq_mobile);
-        data.append("message", "Hi !, the quote for your car is ready just click the link for details, Thank You !:" + "  " + " autoserved-beta.web.app/qoutes.html#" + keyid);
+        data.append("message", "Hi !, the quote for your car is ready just click the link for details, Thank You ! : " + "  " + " autoserved-beta.web.app/qoutes.html#" + ikey);
         data.append("sendername", "AutoServed");
 
         var xhr = new XMLHttpRequest();
