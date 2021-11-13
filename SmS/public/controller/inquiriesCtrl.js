@@ -870,29 +870,25 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
 
     $scope.sendestimate = function() {
 
-        $scope.savedestimate();
+        var data = new FormData();
+        data.append("number", '+63' + inq_mobile);
+        data.append("message", "Hi !, the quote for your car is ready just click the link for details, Thank You !:" + "  " + " autoserved-beta.web.app/qoutes.html#" + keyid);
+        data.append("sendername", "AutoServed");
 
-        var form = new FormData();
-        form.append("To", '+63' + inq_mobile);
-        form.append("From", "+14157924897");
-        form.append("Body", "Mabuhay!, Ang quote para sa iyong kotse ay handa na e-click lamang ang link para sa detalye, Maraming Salamat po!: " + "&nbsp;" + "autoserved-beta.web.app/qoutes.html#" + keyid);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
 
-        var settings = {
-            "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
-            },
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
-
-        $.ajax(settings).done(function(response) {
-            console.log(response);
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+                $scope.savedestimate();
+            }
         });
+
+        xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=762e101f7ee48d5a34ef8316bb074716");
+        xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
+
+        xhr.send(data);
 
     }
 

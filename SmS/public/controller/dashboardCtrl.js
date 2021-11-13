@@ -48,6 +48,91 @@ angular.module('newApp').controller('dashboardCtrl', function($scope, $timeout) 
     });
 
 
+    firebase.database().ref('/inquiries/').orderByChild('date').on("value", function(snapshot) {
+        $timeout(function() {
+            let cdate = []
+            $scope.$apply(function() {
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+
+                    cdate.push(item);
+
+                    console.log(cdate.length);
+
+                    $scope.inqcount = cdate.length;
+                });
+
+            });
+
+        })
+
+    });
+
+    firebase.database().ref('/joborders/').orderByChild('date').on("value", function(snapshot) {
+        $timeout(function() {
+            let cdate = []
+            $scope.$apply(function() {
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+
+                    cdate.push(item);
+
+                    console.log(cdate.length);
+
+                    $scope.jocount = cdate.length;
+                });
+
+            });
+
+        })
+
+    });
+
+    firebase.database().ref('/estimate/').orderByChild('date').on("value", function(snapshot) {
+        $timeout(function() {
+            let cdate = []
+            $scope.$apply(function() {
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+
+                    cdate.push(item);
+
+                    console.log(cdate.length);
+
+                    $scope.estcount = cdate.length;
+                });
+
+            });
+
+        })
+
+    });
+
+    firebase.database().ref('/appointment/').orderByChild('date').on("value", function(snapshot) {
+        $timeout(function() {
+            let cdate = []
+            $scope.$apply(function() {
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+
+                    cdate.push(item);
+
+                    console.log(cdate.length);
+
+                    $scope.aptcount = cdate.length;
+                });
+
+            });
+
+        })
+
+    });
+
+
     var handleChart = function() {
         var series = {
             'monthDataSeries1': {

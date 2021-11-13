@@ -137,67 +137,31 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                     item.key = childSnapshot.key;
 
                                     let cdate = item.start
-                                    console.log(cdate, comobile)
 
-                                    // var form = new FormData();
-                                    // form.append("To", '+63' + comobile);
-                                    // form.append("From", "+14157924897");
-                                    // form.append("Body", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
+                                    function senddate() {
+                                        console.log(cdate, comobile)
 
-                                    // var settings = {
-                                    //     "url": "https://api.twilio.com/2010-04-01/Accounts/AC616dd219c8bea3811d0c502f573af681/Messages.json",
-                                    //     "method": "POST",
-                                    //     "timeout": 0,
-                                    //     "headers": {
-                                    //         "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
-                                    //     },
-                                    //     "processData": false,
-                                    //     "mimeType": "multipart/form-data",
-                                    //     "contentType": false,
-                                    //     "data": form
-                                    // };
+                                        var data = new FormData();
+                                        data.append("number", '+63' + comobile);
+                                        data.append("message", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
+                                        data.append("sendername", "AutoServed");
 
-                                    // $.ajax(settings).done(function(response) {
-                                    //     console.log(response);
-                                    //     if (response) {
-                                    //         $timeout(function() {
-                                    //             $scope.$apply(function() {
-                                    //                 var valc = [];
-                                    //                 var i = 0;
-                                    //                 snapshot.forEach(childSnapshot => {
-                                    //                     let item = childSnapshot.val();
-                                    //                     item.key = childSnapshot.key;
-                                    //                     valc.push(item)
-                                    //                     console.log(item.key)
-                                    //                     var db = firebase.database();
-                                    //                     db.ref('/calendar/' + item.key)
-                                    //                         .orderByChild("start")
-                                    //                         // .equalTo(item.key)
-                                    //                         .once('value')
-                                    //                         .then(function(snapshot) {
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.withCredentials = true;
 
-                                    //                             console.log(snapshot.val(), i);
+                                        xhr.addEventListener("readystatechange", function() {
+                                            if (this.readyState === 4) {
+                                                console.log(this.responseText);
 
-                                    //                             childSnapshot.ref.child('start').set(spdates[i])
+                                                window.location.reload();
+                                            }
+                                        });
 
-                                    //                             var param = valc.length - 1;
+                                        xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=762e101f7ee48d5a34ef8316bb074716");
+                                        xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
 
-                                    //                             console.log(param - 1, i);
-
-                                    //                             if (param === i) {
-                                    //                                 setTimeout(function() {
-                                    //                                     $('#changescad').modal('hide');
-                                    //                                     location.replace('#/analytics')
-                                    //                                     location.replace('#/appointment')
-                                    //                                 }, 100);
-                                    //                             }
-                                    //                             i++;
-                                    //                         });
-                                    //                 });
-                                    //             });
-                                    //         });
-                                    //     }
-                                    // });
+                                        xhr.send(data);
+                                    }
 
                                     if (cdate == ndater) {
                                         console.log('Approvedate', item.start, ndater, item.key);
@@ -217,6 +181,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                                 .then(function(snapshot) {
                                                     snapshot.forEach(function(childSnapshot) {
                                                         childSnapshot.ref.child('color').set('#1abd36');
+                                                        senddate();
                                                     });
                                                 });
 
@@ -228,6 +193,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                                                 .then(function(snapshot) {
                                                     snapshot.forEach(function(childSnapshot) {
                                                         childSnapshot.ref.child('state').set(3);
+
                                                     });
                                                 });
 

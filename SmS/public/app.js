@@ -9,8 +9,7 @@ angular
             }).when('/analytics', {
                 templateUrl: 'views/analytics.html',
                 controller: 'analyticsCrtl'
-            })
-            .when('/inquiries', {
+            }).when('/inquiries', {
                 templateUrl: 'views/inquiries.html',
                 controller: 'inquiriesCtrl'
             }).when('/estimate', {
@@ -25,6 +24,9 @@ angular
             }).when('/appointment', {
                 templateUrl: 'views/appointment.html',
                 controller: 'appointmentCtrl'
+            }).when('/earnings', {
+                templateUrl: 'views/earnings.html',
+                controller: 'earningsCtrl'
             })
     }).config(function(paginationTemplateProvider) {
         paginationTemplateProvider.setPath('./views/customTemplate.html');

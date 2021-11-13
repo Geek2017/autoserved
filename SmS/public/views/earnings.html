@@ -81,30 +81,41 @@
                         <tr>
                             <th>#</th>
                             <th scope="col">Transaction ID</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Date Paid</th>
                             <th scope="col">Contact No.</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Mode</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Amount Paid</th>
+                            <th scope="col">Balance</th>
 
-                            <th scope="col">Controls</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr dir-paginate="joborder in joborders | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
+                        <tr dir-paginate="earnings in earnings | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
                             <td class="text-center"><strong>{{$index+1}}</strong></td>
-                            <td>{{joborder.key}}</td>
-                            <td>{{joborder.date | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
-                            <td>{{joborder.mobileno}}</td>
-                            <td>{{joborder.email}}</td>
-                            <td>{{joborder.total}}</td>
-                            <td class="w-200px">
-                                <div class="btn-group btn-group-sm w-250px">
-                                    <button type="button" class="btn btn-info w-50px" ng-click="repairorder(joborder)"><i class="fas fa-dollar-sign"> Service Invoice</i></button>
-                                    <button type="button" class="btn btn-success w-50px" ng-click="paynow(joborder)"><i class="fas fa-money-bill-alt"> Process Payment</i></button>
-                                    <button type="button" class="btn btn-danger w-50px"><i class="fas fa-trash-alt"> Purge Payment</i></button>
-                                </div>
+                            <td>{{earnings.key}}</td>
+                            <td>{{earnings.datepaid | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{earnings.mobileno}}</td>
+                            <td>{{earnings.email}}</td>
+                            <td>{{earnings.mode}}</td>
+                            <td>
+                                <span class="badge bg-primary-transparent-2 text-primary px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-primary-transparent-8 fs-9px fa-fw me-5px"></i>{{earnings.total | currency: "₱ ":2}}</span>
                             </td>
+
+                            <td>
+                                <span class="badge bg-info-transparent-2 text-info px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-info-transparent-8 fs-9px fa-fw me-5px"></i>{{earnings.amtpaid | currency: "₱ ":2}}</span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-danger-transparent-2 text-danger px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-danger-transparent-8 fs-9px fa-fw me-5px"></i> {{earnings.balance | currency: "₱ ":2}}</span>
+                            </td>
+                        </tr>
+
                     </tbody>
+
+
+
                 </table>
             </div>
 
@@ -479,7 +490,7 @@
                                 <p style="font-size: 15px!important;"> {{ngrandtotal | currency: "₱ ":2 }} </p>
                                 <p style="font-size: 15px!important;"> {{ngrandtotal*0.12 | currency: "₱ ":2}}</p>
                                 <p style="font-size: 15px!important;"> <strong> {{taxntodal | currency: "₱ ":2 }}</strong> </p>
-
+                                <!-- <p style="font-size: 12px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p> -->
 
                             </th>
                         </tr>

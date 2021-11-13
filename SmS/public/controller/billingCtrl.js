@@ -40,12 +40,13 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
     $("#ttotal").on('input', '.amtpaid', function() {
 
         var amt = $('.amtpaid').val();
-        var amttotal = $('.amttotal').text().replace(/₱ /, '')
+        var amttotal = $('.amttotal').text().replace(/₱ /, '').replace(/,/, '');
 
-        let namt = parseFloat(amt)
-        let namttotal = parseFloat(amttotal)
+        var namt = parseInt(amt);
+        var namttotal = parseInt(amttotal);
 
-        console.log(namt, namttotal)
+        console.log(namt, namttotal);
+
         if (amt > namttotal) {
             console.log(namt - namttotal);
             let amtchnge = namt - namttotal;
@@ -63,20 +64,24 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
 
         $(".cash").prop("checked", true);
 
-        firebase.database().ref('/appointment/' + joborder.key).orderByChild('mobileno').on("value", function(snapshot) {
+        firebase.database().ref('/joborders/' + joborder.key).orderByChild('mobileno').on("value", function(snapshot) {
 
             $timeout(function() {
                 $scope.$apply(function() {
 
                     console.log(snapshot.val())
 
-                    $scope.fullname = snapshot.val().fullname;
+                    // $scope.fullname = snapshot.val().fullname;
                     $scope.email = snapshot.val().email;
                     $scope.mobile = snapshot.val().mobileno;
-                    $scope.address = snapshot.val().address;
+                    // $scope.address = snapshot.val().address;
                     var ntotal = snapshot.val().total.replace(/₱ /, '');
-                    $scope.total = ntotal;
 
+                    let nntotal = ntotal.replace(/,/, '');
+
+                    $scope.total = nntotal;
+
+                    console.log($scope.total);
                 });
 
             })
@@ -100,14 +105,17 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
         // 1=fullpaid;
 
         var earnings = {
-            name: $scope.fullname,
+            // name: $scope.fullname,
             email: $scope.email,
             contact: $scope.mobile,
-            address: $scope.address,
+            // address: $scope.address,
             amount: $scope.total,
+            amtpaid: $('.amtpaid').val(),
+            balance: 0,
             type: 'n/a',
             state: 1,
-            datepaid: today
+            datepaid: today,
+            mode: 'cash'
         }
 
         updates['/earnings/' + uid] = earnings;
@@ -246,8 +254,6 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
             $(".btnhide").hide();
 
             printElement(document.getElementById("printThis"));
-
-
 
             function printElement(elem) {
                 var domClone = elem.cloneNode(true);
