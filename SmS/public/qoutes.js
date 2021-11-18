@@ -27,63 +27,74 @@ app.controller('qoutes', function($scope, $http, $timeout) {
     var joborder;
 
 
-    firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
+    var myVar = setInterval(myTimer, 100);
 
-        $timeout(function() {
-            $scope.$apply(function() {
-                let returnArr = [];
+    function myTimer() {
+        console.log('Calling firebase.....')
+        firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
 
-                snapshot.forEach(childSnapshot => {
-                    let item = childSnapshot.val();
-                    item.key = childSnapshot.key;
-                    returnArr.push(item);
-                    console.log(item.key)
+            $timeout(function() {
+                $scope.$apply(function() {
+                    let returnArr = [];
+
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
+                        returnArr.push(item);
+                        console.log(item.key)
+                    });
+
+
+                    $scope.qoutes = returnArr[0];
+
+                    console.log(returnArr[0])
+                    joborder = returnArr[0];
+
+                    $scope.email = returnArr[0].email;
+                    $scope.mobile = returnArr[0].mobileno
+
+                    $scope.grandtotal = returnArr[0].total
+
+                    var num = $scope.grandtotal.replace(/₱ /g, '');
+
+                    var num2 = num.replace(/,/g, '');
+
+                    var num3 = num2 * 0.12;
+
+                    $scope.downpayment = parseFloat(num2) * 0.10;
+
+                    $scope.ngrandtotal = num2;
+
+                    $scope.taxntodal = parseInt(num2) + parseInt(num3)
+
+
+                    console.log(parseInt(num2) + parseInt(num3));
+
+                    console.log(returnArr[0]);
+
+
+                    $scope.cmake = returnArr[0].details.make;
+                    $scope.cmodel = returnArr[0].details.model;
+                    $scope.transmission = returnArr[0].details.transmission;
+                    $scope.cyear = returnArr[0].details.year;
+                    $scope.cengine = returnArr[0].details.engine;
+                    $scope.ckm = returnArr[0].details.mileage;
+
+
+
+
                 });
 
+            })
 
-                $scope.qoutes = returnArr[0];
+        });
+    }
 
-                console.log(returnArr[0])
-                joborder = returnArr[0];
+    setTimeout(function() {
+        console.log('stop')
+        clearInterval(myVar);
 
-                $scope.email = returnArr[0].email;
-                $scope.mobile = returnArr[0].mobileno
-
-                $scope.grandtotal = returnArr[0].total
-
-                var num = $scope.grandtotal.replace(/₱ /g, '');
-
-                var num2 = num.replace(/,/g, '');
-
-                var num3 = num2 * 0.12;
-
-                $scope.downpayment = parseFloat(num2) * 0.10;
-
-                $scope.ngrandtotal = num2;
-
-                $scope.taxntodal = parseInt(num2) + parseInt(num3)
-
-
-                console.log(parseInt(num2) + parseInt(num3));
-
-                console.log(returnArr[0]);
-
-
-                $scope.cmake = returnArr[0].details.make;
-                $scope.cmodel = returnArr[0].details.model;
-                $scope.transmission = returnArr[0].details.transmission;
-                $scope.cyear = returnArr[0].details.year;
-                $scope.cengine = returnArr[0].details.engine;
-                $scope.ckm = returnArr[0].details.mileage;
-
-
-
-
-            });
-
-        })
-
-    });
+    }, 1000)
 
     $scope.booking = function() {
         $('#modalSm').modal('toggle');
@@ -191,10 +202,10 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
 
             console.log(updates)
-                // setTimeout(function() {
-                //     alert('Your appointment had been set, you will receive a notifcation ones your schedule is confirmed')
-                //     window.location.replace("./");
-                // }, 1000)
+            setTimeout(function() {
+                alert('Your appointment had been sent, you will receive a notification ones your schedule is confirmed')
+                window.location.replace("./");
+            }, 1000)
 
         }
     });

@@ -203,48 +203,58 @@ app.controller('iform', function($scope, $http) {
                 "mobileno": $scope.inputs.mobileno.Value
             }
 
-            var savequotes = {};
-            savequotes['/inquiries/' + iid] = inquiry;
-            firebase.database().ref().update(savequotes);
+            try {
+                var savequotes = {};
+                savequotes['/inquiries/' + iid] = inquiry;
+                firebase.database().ref().update(savequotes);
 
-            if (savequotes) {
-                var saveusers = {};
-                savequotes['/users/' + uid] = users;
-                firebase.database().ref().update(saveusers);
-                console.log(savequotes, saveusers)
+                if (savequotes) {
+                    var saveusers = {};
+                    savequotes['/users/' + uid] = users;
+                    firebase.database().ref().update(saveusers);
+
+                    console.log(savequotes, saveusers)
 
 
-                var fields = $scope.email.split('@');
-                var str0 = fields[0];
-                var str1 = fields[1];
+                    var fields = $scope.email.split('@');
+                    var str0 = fields[0];
+                    var str1 = fields[1];
 
-                if (savequotes && saveusers) {
+                    setTimeout(function() {
 
-                    console.log(str0, $scope.inputs.mobileno.Value)
+                        if (savequotes && saveusers) {
 
-                    var data = new FormData();
-                    data.append("number", '+63' + $scope.inputs.mobileno.Value);
-                    data.append("message", "Hello " + str0 + " your inquiry for your vehicle has been received by us, kindly wait 12-24 hours for confirmation and other details .. Thank you!");
-                    data.append("sendername", "AutoServed");
+                            console.log(str0, $scope.inputs.mobileno.Value)
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.withCredentials = true;
+                            var data = new FormData();
+                            data.append("number", '+63' + $scope.inputs.mobileno.Value);
+                            data.append("message", "Hello " + str0 + " your inquiry for your vehicle has been received by us, kindly wait 12-24 hours for confirmation and other details .. Thank you!");
+                            data.append("sendername", "AutoServed");
 
-                    xhr.addEventListener("readystatechange", function() {
-                        if (this.readyState === 4) {
-                            console.log(this.responseText);
-                            $('.alert-success').show();
-                            window.location.reload();
+                            var xhr = new XMLHttpRequest();
+                            xhr.withCredentials = true;
+
+                            xhr.addEventListener("readystatechange", function() {
+                                if (this.readyState === 4) {
+                                    console.log(this.responseText);
+                                    $('.alert-success').show();
+                                    window.location.reload();
+                                }
+                            });
+
+                            xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=762e101f7ee48d5a34ef8316bb074716");
+                            xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
+
+                            xhr.send(data);
+
                         }
-                    });
 
-                    xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=762e101f7ee48d5a34ef8316bb074716");
-                    xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
-
-                    xhr.send(data);
-
+                    }, 1000)
                 }
+            } catch (error) {
+                console.log(error)
             }
+
 
         }
 
