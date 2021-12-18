@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="newApp" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AutoServed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+
+
+    <!-- ================== BEGIN core-css ================== -->
+    <link href="./assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="./assets/css/app.min.css" rel="stylesheet" />
+
+
+    <link rel='stylesheet' href='./assets/css/fullcalendar.css'>
+    <link rel="stylesheet" href="./style.css">
+    <!-- ================== END core-css ================== -->
+
+
+    <script src="./assets/js/angular.js"></script>
+    <script src="./assets/js/angular-route.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+
+    <!-- <script>
+        $(document).keydown(function(event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I  
+                return false;
+            } else if (event.altKey) { // Prevent Ctrl+Shift+I  
+                return false;
+            }
+        });
+
+        $(document).on("contextmenu", function(e) {
+
+            e.preventDefault();
+        });
+    </script> -->
+
+</head>
+
+<body ng-controller="indexCtrl">
+    <!-- BEGIN #app -->
+    <div id="app" class="app">
+        <!-- BEGIN #header -->
+        <div id="header" class="app-header">
+            <!-- BEGIN mobile-toggler -->
+            <div class="mobile-toggler">
+                <button type="button" class="menu-toggler" data-toggle="sidebar-mobile">
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</button>
+            </div>
+            <!-- END mobile-toggler -->
+
+            <!-- BEGIN brand -->
+            <div class="brand">
+                <div class="desktop-toggler">
+                    <button type="button" class="menu-toggler" data-toggle="sidebar-minify">
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</button>
+                </div>
+
+                <a href="#" class="brand-logo">
+                    <img src="assets/img/logo.png" alt="" height="20" />
+                </a>
+            </div>
+            <!-- END brand -->
+
+            <!-- BEGIN menu -->
+            <div class="menu">
+                <form class="menu-search" method="POST" name="header_search_form">
+                    <div class="menu-search-icon"><i class="fa fa-search"></i></div>
+                    <div class="menu-search-input">
+                        <input type="text" class="form-control" placeholder="Search menu..." />
+                    </div>
+                </form>
+                <div class="menu-item dropdown">
+                    <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
+                        <div class="menu-icon"><i class="fa fa-bell nav-icon"></i></div>
+                        <div class="menu-label">0</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-notification">
+                        <h6 class="dropdown-header text-gray-900 mb-1">Notifications</h6>
+                        <div class="dropdown-notification-item bg-white">
+                            No record found
+                        </div>
+                        <div class="p-2 text-center mb-n1">
+                            <a href="#" class="text-gray-800 text-decoration-none">See all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item dropdown">
+                    <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
+                        <div class="menu-img online">
+                            <div class="d-flex align-items-center justify-content-center w-100 h-100 bg-gray-800 text-gray-300 rounded-circle overflow-hidden">
+                                <i class="far fa-user fa-2x mb-n3"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end me-lg-3">
+                        <a class="dropdown-item d-flex align-items-center" href="#"><span class="mobileno"></span> <i class="fa fa-user-circle fa-fw ms-auto text-gray-400 fs-16px"></i></a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">Inbox <i class="fa fa-envelope fa-fw ms-auto text-gray-400 fs-16px"></i></a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">Calendar <i class="fa fa-calendar-alt fa-fw ms-auto text-gray-400 fs-16px"></i></a>
+                        <a class="dropdown-item d-flex align-items-center" href="#">Setting <i class="fa fa-wrench fa-fw ms-auto text-gray-400 fs-16px"></i></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item d-flex align-items-center" href="#" ng-click="exitnow()">Log Out <i class="fa fa-toggle-off fa-fw ms-auto text-gray-400 fs-16px"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- END menu -->
+        </div>
+        <!-- END #header -->
+
+        <!-- BEGIN #sidebar -->
+        <div id="sidebar" class="app-sidebar">
+            <!-- BEGIN scrollbar -->
+            <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+                <!-- BEGIN menu -->
+                <div class="menu">
+                    <div class="menu-header">Insights</div>
+                    <div class="menu-item ">
+                        <a href="#/" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-tachometer-alt"></i></span>
+                            <span class="menu-text">Dasboard</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#/analytics" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-chart-pie"></i></span>
+                            <span class="menu-text">Analytics</span>
+                        </a>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="menu-header">Operations</div>
+                    <div class="menu-item">
+                        <a href="#/inquiries" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-question-circle"></i></span>
+                            <span class="menu-text">My Inquiries</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a href="#/estimate" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-tags"></i></span>
+                            <span class="menu-text">Estimate Request</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#/appointment" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <span class="menu-text">Appointment & Schedule</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#/joborder" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-list-ul"></i></span>
+                            <span class="menu-text">Job Orders</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a href="#/billing" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-money-bill-alt"></i></span>
+                            <span class="menu-text">Billings</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a href="#/earnings" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-dollar-sign"></i></span>
+                            <span class="menu-text">My Earnings</span>
+                        </a>
+                    </div>
+                    <div class="menu-header">Marketing</div>
+                    <div class="menu-item ">
+                        <a href="index.html" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-envelope"></i></span>
+                            <span class="menu-text">Text Blaster</span>
+                        </a>
+                    </div>
+                    <div class="menu-header">Settings</div>
+                    <div class="menu-item ">
+                        <a href="index.html" class="menu-link">
+                            <span class="menu-icon"><i class="fas fa-cog"></i></span>
+                            <span class="menu-text">Configuration</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END scrollbar -->
+
+            <!-- BEGIN mobile-sidebar-backdrop -->
+            <button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
+            <!-- END mobile-sidebar-backdrop -->
+        </div>
+
+        <!-- END #sidebar -->
+
+        <!-- BEGIN #content -->
+        <div id="content" class="app-content" ng-view>
+
+        </div>
+        <!-- END #content -->
+        <!-- BEGIN btn-scroll-top -->
+        <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+        <!-- END btn-scroll-top -->
+    </div>
+    <!-- END #app -->
+
+    <!-- ================== BEGIN core-js ================== -->
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyBp5aAPOOntVPeVipRCPNRBRZdBFncfW98",
+            authDomain: "autoserved-beta.firebaseapp.com",
+            databaseURL: "https://autoserved-beta-default-rtdb.firebaseio.com/",
+            projectId: "autoserved-beta",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="./assets/js/vendor.min.js"></script>
+    <script src="./assets/js/app.min.js"></script>
+
+    <script src="./assets/js/apexcharts.min.js"></script>
+    <script src="./assets/js/dirPagination.js"></script>
+
+    <!-- ================== END core-js ================== -->
+
+    <!-- ================== BEGIN Analytics-Page ================== -->
+    <script src="./assets/js/masonry.pkgd.min.js"></script>
+    <script src="./assets/js/Chart.min.js"></script>
+    <script src="./assets/js/moment.min.js"></script>
+    <script src="./assets/js/daterangepicker.js"></script>
+    <script src="./assets/js/jquery.tabletojson.min.js"></script>
+    <!-- ================== END Analytics-Page ================== -->
+
+
+
+</body>
+<!-- ================== BEGIN Calendar-Page ================== -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js'></script>
+<script src="./c2i.js"></script>
+
+<!-- ================== END Calendar-Page ================== -->
+
+<script src="./app.js"></script>
+<script src="./indexCtrl.js"></script>
+<script src="./controller/dashboardCtrl.js"></script>
+<script src="./controller/analyticsCrtl.js"></script>
+<script src="./controller/inquiriesCtrl.js"></script>
+<script src="./controller/estimateCrtl.js"></script>
+<script src="./controller/jobordersCrtl.js"></script>
+<script src="./controller/billingCtrl.js"></script>
+<script src="./controller/appointmentCtrl.js"></script>
+<script src="./controller/earningsCtrl.js"></script>
+
+
+</html>

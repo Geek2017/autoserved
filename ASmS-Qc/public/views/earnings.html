@@ -1,0 +1,520 @@
+<style>
+    p {
+        margin-bottom: 1px!important;
+        font-size: 9px!important;
+    }
+    
+    .main {
+        margin-left: 1%!important;
+        margin-right: 1%!important;
+    }
+    
+    table,
+    tr,
+    th,
+    td {
+        border-top: none!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        background-color: transparent!important;
+    }
+    
+    @media screen {
+        #printSection {
+            display: none;
+        }
+    }
+    
+    @media screen {
+        #printSection {
+            display: none;
+        }
+    }
+    
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #printSection,
+        #printSection * {
+            visibility: visible;
+        }
+        #printSection {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
+<div class="d-flex align-items-center mb-3">
+    <div class="ms-auto">
+        <!-- <a href="#" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw me-1"></i>Add New Inquiry</a> -->
+    </div>
+</div>
+
+
+</div>
+
+<div class="card">
+
+    <div class="tab-content p-4">
+        <div class="tab-pane fade show active" id="allTab">
+            <!-- BEGIN input-group -->
+            <div class="input-group mb-4">
+                <div class="flex-fill position-relative">
+
+                    <input type="text" class="form-control ps-35px" placeholder="Filter orders" />
+                    <div class="input-group-text position-absolute top-0 bottom-0 bg-none border-0 pe-0" style="z-index: 1020;">
+                        <i class="fa fa-search opacity-5"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- END input-group -->
+
+            <!-- BEGIN table -->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Date Paid</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mode</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Amount Paid</th>
+                            <th scope="col">Balance</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="earnings in earnings | filter:q | itemsPerPage: pageSize | orderBy: '+approvedate'" current-page="currentPage">
+                            <td class="text-center"><strong>{{$index+1}}</strong></td>
+                            <td>{{earnings.key}}</td>
+                            <td>{{earnings.datepaid | date:'MM/dd/yyyy @ hh: mm:ss'}}</td>
+                            <td>{{earnings.mobileno}}</td>
+                            <td>{{earnings.email}}</td>
+                            <td>{{earnings.mode}}</td>
+                            <td>
+                                <span class="badge bg-primary-transparent-2 text-primary px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-primary-transparent-8 fs-9px fa-fw me-5px"></i>{{earnings.total | currency: "₱ ":2}}</span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info-transparent-2 text-info px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-info-transparent-8 fs-9px fa-fw me-5px"></i>{{earnings.amtpaid | currency: "₱ ":2}}</span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-danger-transparent-2 text-danger px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center"><i class="fa fa-circle text-danger-transparent-8 fs-9px fa-fw me-5px"></i> {{earnings.balance | currency: "₱ ":2}}</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pointofsale" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg w-350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">POS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="card">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Name:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{fullname}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Email:</div>
+
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{email}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Contact:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{mobile}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Address:</div>
+                        </div>
+
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm">{{address}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill ">
+                            <div class="text-center"><label><strong>Payment Option</strong> </label> </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <span>Cash: <input  class="form-check-input cash" type="radio" name="paymenttype" ng-model="cash"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Credit Card: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="creditcard"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Wallet: <input class="form-check-input" type="radio"  name="paymenttype" ng-model="wallet"/></span>
+                        </div>
+                        <div class="flex-fill">
+                            <span>Term: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="term"/></span>
+                        </div>
+                    </div>
+                    <div id="ttotal" class="list-group-item d-flex align-items-center">
+                        <input class="form-control amtpaid" type="number" placeholder="0.00">
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Payables:</div>
+                        </div>
+                        <div>
+                            <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm amttotal">{{total|currency: "₱ ":2}}</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
+                            <div>Change:</div>
+                        </div>
+                        <div>
+                            <strong>₱ <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm amtchange"> 0.00</span></strong>
+                        </div>
+                    </div>
+                    <footer class="modal-footer">
+                        <button type="submit" class="btn btn-success" ng-click="acceptpay()">Accept Payment</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="repairorder" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="printThis">
+            <div class="modal-header">
+                <h5 class="modal-title">REPAIR ORDER</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="main" role="main">
+                <table class="table">
+                    <thead>
+                        <tr style="height:1px!important ">
+                            <th style="float: left!important; ">
+
+                                <p>PROMISED DATE</p>
+                                <p>
+                                    <h4>11-11-2021, <br> MONDAY 5:00 PM</h4>
+                                </p>
+
+                                <img src="./assets/img/qr.png " width="100 " style="margin-left: -8px!important; ">
+                                <p>
+                                    <h4>&nbsp;</h4>
+                                </p>
+                                <p>
+                                    <h4>&nbsp;</h4>
+                                </p>
+                            </th>
+
+                            <th style="float: right!important;text-align: right!important;font-size: 11px; ">
+                                <img src="./assets/img/vpx.png " width="100 " style="margin-right: -8px!important; ">
+                                <p class="text-right ">
+                                    JOHN’S CAR CARE CENTER
+                                </p>
+                                <p>
+                                    No. 1 Street Name St., Town, Country 1234
+                                </p>
+                                <p>
+                                    Phone No. +63-12-345-6789
+                                </p>
+                                <p>
+                                    SEPTEMBER 17, 2021
+                                </p>
+                                <p>
+                                    QUOTATION NO. 0001-ABC123
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <hr class="new5">
+                <div style="padding-left: 2%!important; ">
+                    <strong>
+                <!-- <p> Customer Name: Mr. Donald Trump </p>
+                <p> Address: 987 New Jersey St. Tampa Florida </p> -->
+                <p> Phone : {{mobile}} </p>
+                <p> Email: {{email}} </p>
+                        </strong>
+                </div>
+                <hr class="new5 ">
+                <table class="table table-borderless ">
+                    <thead>
+                        <tr style="height:1px!important ">
+                            <th scope="col " class="text-left " style="float: left!important; ">
+                                <p>Vehicle Make: {{qoutes.details.make}}</p>
+                                <p>Model: {{qoutes.details.model}}</p>
+                                <p>Transmission: {{qoutes.details.transmission}}</p>
+                            </th>
+                            <th scope="col " class="text-right " style="float: right!important; ">
+                                <p> Vehicle Year: {{qoutes.details.year}}</p>
+                                <p> Engine: {{qoutes.details.engine}}</p>
+                                <p> Mileage: {{qoutes.details.mileage}} KM</p>
+                                <p>&nbsp;</p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <hr class="new5 ">
+                <h3 class="text-center ">SERVICE REQUESTED</h3>
+                <div class="aa ">
+                    <h6>A) Preventive Maintenance</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.aa ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="bb ">
+                    <h6>B) Change Oil</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.bb ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                    <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal1 | currency: "₱ ":2}}</span>
+                                    </td></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <br>
+
+                <div class="cc ">
+                    <h6>C) Wheel Alignment</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.cc ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="dd ">
+                    <h6>D) Tire Services</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.dd ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                    <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal3 | currency: "₱ ":2}}</span>
+                                    </td></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="ee ">
+                    <h6>E) Wheel Alignment</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.ee ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="ff ">
+                    <h6>F) Parts & Materials</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.ff ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="gg ">
+                    <h6>G) Inspection & Diagnosis</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.gg ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+
+                <div class="hh">
+                    <h6>Others</h6>
+                    <table class="table table-striped table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th class="text-left ">Jobs</th>
+                                <th class="text-center ">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="qts in qoutes.quotes.others ">
+                                <td style="text-align: left;">• {{qts['Particulars']}}</td>
+                                <td style="text-align: center;">{{qts['Description']}}</td>
+                                <td style="text-align: right;">{{qts['Cost']| currency:"₱ ":2}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                    <strong> <hr class="new5"><br> Sub total: <span>{{qoutes.quotes.stotal7 | currency: "₱ ":2}}</span>
+                                    </td></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="new5">
+
+                <table class="table">
+
+                    <thead>
+
+                        <tr style="height:1px!important">
+
+                            <th class="text-left ">
+                                <p style="font-size: 15px!important;">TOTAL</p>
+                                <p style="font-size: 15px!important;">VAT 12%</p>
+                                <p style="font-size: 15px!important;">GRAND TOTAL</p>
+                            </th>
+                            <th class="text-right" style="float:right!important;">
+
+                                <p style="font-size: 15px!important;"> {{ngrandtotal | currency: "₱ ":2 }} </p>
+                                <p style="font-size: 15px!important;"> {{ngrandtotal*0.12 | currency: "₱ ":2}}</p>
+                                <p style="font-size: 15px!important;"> <strong> {{taxntodal | currency: "₱ ":2 }}</strong> </p>
+                                <!-- <p style="font-size: 12px!important;"> <strong> REQUIRED DP: {{downpayment | currency: "₱ ":2}}</strong></p> -->
+
+                            </th>
+                        </tr>
+
+                    </thead>
+
+                </table>
+
+                <hr class="new5 ">
+                <div>
+                    <table class="table ">
+                        <thead>
+                            <tr style="height:1px!important">
+                                <th>
+                                    <button type="button " class="btn btn-info btn-lg w-100 btnhide" ng-click="export() ">EXPORT</button>
+                                </th>
+                                <th>
+                                    <button type="button " class="btn btn-success btn-lg w-100 btnhide" ng-click="print() ">PRINT</button>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

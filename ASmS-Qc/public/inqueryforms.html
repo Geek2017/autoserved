@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<style>
+    .btng0 {
+        margin-left: 82.5%;
+    }
+    
+    .btng1 {
+        margin-left: 80.5%;
+    }
+</style>
+
+<head>
+    <meta charset="utf-8" />
+    <title>AutoServed | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- ================== BEGIN core-css ================== -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="assets/css/app.min.css" rel="stylesheet" />
+    <!-- ================== END core-css ================== -->
+
+    <script src="./assets/js/angular.js"></script>
+    <script src="./assets/js/angular-route.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyAP_7xDWAeDSahzwXBToUTV9EwzgjDY3W8",
+            authDomain: "vpqc-autoserved.firebaseapp.com",
+            databaseURL: "https://vpqc-autoserved-default-rtdb.firebaseio.com/",
+            projectId: "vpqc-autoserved"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+    <link href="assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="assets/css/app.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body ng-app="newApp" ng-controller="iform">
+    <div id="app" class="app">
+        <div id="header" class="app-header">
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="nav-wizards-container">
+                    <nav class="nav nav-wizards-1">
+                        <!-- completed -->
+                        <div class="nav-item col">
+                            <a class="nav-link nav0 active" href="#">
+                                <div class="nav-no">1</div>
+                                <div class="nav-text">Step 1</div>
+                            </a>
+                        </div>
+
+                        <!-- active -->
+                        <div class="nav-item  col">
+                            <a class="nav-link nav1 " href="#">
+                                <div class="nav-no">2</div>
+                                <div class="nav-text">Step 2</div>
+                            </a>
+                        </div>
+
+                        <!-- disabled -->
+                        <div class="nav-item  col">
+                            <a class="nav-link nav2" href="#">
+                                <div class="nav-no">3</div>
+                                <div class="nav-text">Step 3</div>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="btn-group" style="float: right;">
+                            <button type="button" class="btn btn-info prevp" ng-click="prevp();">PREV</button>
+                            <button type="button" class="btn btn-success nextp" ng-click="nextp();">NEXT</button>
+                        </div>
+                    </div>
+
+                    <div class="card-body pb-1 step0">
+
+                        <div class="alert alert-danger cir">
+                            <strong>Oh snap!</strong> Check Mobile No. or Email input
+                        </div>
+
+                        <div class="row">
+                            <h1>Contact Information</h1>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Mobile No</label>
+                                    <input type="tel" class="form-control" placeholder="9216686000" ng-model="inputs.mobileno.Value" maxlength="{{inputs.mobileno.MaxLength}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="name@example.com" ng-model="email" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body pb-1 step1 visually-hidden">
+
+                        <div class="alert alert-danger cinfo">
+                            <strong>Oh snap!</strong> Make sure that no fields are empty.
+                        </div>
+
+                        <div class="row">
+                            <h1>Car Information</h1>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Car Brand</label>
+                                    <select class="form-select" ng-model="CarBrand" required>
+                                        <option value="" selected="selected" disabled>Select</option>
+                                        <option value="daewoo">Daewoo</option>
+                                        <option value="ford">Ford</option>
+                                        <option value="holden">Holden</option>
+                                        <option value="honda">Honda</option>
+                                        <option value="hyundai">Hyundai</option>
+                                        <option value="isuzu">Isuzu</option>
+                                        <option value="kia">Kia</option>
+                                        <option value="lexus">Lexus</option>
+                                        <option value="mazda">Mazda</option>
+                                        <option value="mitsubishi">Mitsubishi</option>
+                                        <option value="nissan">Nissan</option>
+                                        <option value="peugeot">Peugeot</option>
+                                        <option value="subaru">Subaru</option>
+                                        <option value="suzuki">Suzuki</option>
+                                        <option value="toyota">Toyota</option>
+                                        <option value="volkswagen">Volkswagen</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Car Transmission</label>
+                                    <select class="form-select" ng-model="CarTransmission" required>
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="Manual">Manual</option>
+                                        <option value="Automatic">Automatic</option>
+                                       
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Car Model</label>
+                                    <input ng-model="CarModel" class="form-control" placeholder="e.g Vios, Altis, Eon, Ranger" ng-model="CarModel" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Date Purchased</label>
+                                    <input type="date" class="form-control" ng-model="CarPurchaseDate" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Car Engine</label>
+                                    <select class="form-select" ng-model="CarEngineType" required>
+                                        <option value="" selected>Select</option>
+                                        <option value="Gasoline">Gasoline</option>
+                                        <option value="Diesel">Diesel</option>   
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Car Body Type</label>
+                                    <select class="form-select" ng-model="CarType" required>
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="sedan">Sedan</option>
+                                        <option value="suv">SUV</option>
+                                        <option value="van">Van</option>
+                                        <option value="coupe">Coupe</option>
+                                        <option value="wagon">Wagon</option>
+                                        <option value="convertible">Convertible</option>
+                                        <option value="others">Others</option>
+                                        <option value="notsure">Not sure</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Km Reading</label>
+                                    <input type="number" class="form-control" placeholder="e.g 10,000" ng-model="Mileage" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Year Model</label>
+                                    <input type="number" class="form-control" placeholder="e.g 2012, 2010, 2011" ng-model="CarYearModel" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body pb-1 step2 visually-hidden">
+                        <div class="alert alert-danger inqerr">
+                            <strong>Oh snap!</strong> Make sure atleast one of A-G is selected.
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Well done!</strong> Your inquery have been successfully sent you will recieve SMS or email with in 24hrs.
+                        </div>
+
+                        <div class="row">
+                            <h1>Your Inquiry</h1>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+                                    <div class="form-check form-switch">
+                                        <label class="form-label">A) Preventive Maintenance</label>
+                                        <input type="checkbox" class="form-check-input" ng-model="pmr" required>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" id="customSwitch1" ng-model="war" required>
+                                        <label class="form-label">C) Wheel Alignment</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group mb-3">
+
+                                    <div class="form-check form-switch">
+                                        <label class="form-label">B) Change Oil
+                                        <input type="checkbox" class="form-check-input"  ng-model="cor" required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-check form-switch">
+                                        <label class="form-label">D) Tire Services</label>
+                                        <input type="checkbox" class="form-check-input" ng-model="tsr" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">E) General Repairs</label>
+                                    <textarea class="form-control" rows="3" spellcheck="false" ng-model="gsr"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">F) Parts & Materials</label>
+                                    <textarea class="form-control" rows="3" spellcheck="false" ng-model="pnmr"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">G) Inspection & Diagnosis</label>
+                                    <textarea class="form-control" rows="3" spellcheck="false" ng-model="idr"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- ================== BEGIN core-js ================== -->
+<script src="./inqueryforms.js"></script>
+<!-- ================== END core-js ================== -->
+
+</html>
