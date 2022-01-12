@@ -21,7 +21,7 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 console.log(returnArr);
 
-                var calendarEl = document.getElementById('calendar');
+
 
                 var objk;
 
@@ -54,11 +54,85 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                 d.getDate(); // Day		[dd]	(1 - 31)
                 d.getFullYear();
 
-                // let curdate = d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + d.getDate();
 
-                // console.log(curdate);
 
-                var calendar = new FullCalendar.Calendar(calendarEl, {
+                // var calendar = new FullCalendar.Calendar(calendarEl, {
+                //     eventClick: function(info) {
+                //         var eventObj = info.event;
+                //         console.log(eventObj.url)
+                //         if (eventObj) {
+                //             objk = eventObj.url;
+                //             dater = eventObj.start.toLocaleDateString('zh-Hans-CN');
+                //             console.log(dater);
+
+                //             $('#viewscad').modal('toggle');
+
+                //             firebase.database().ref('/inquiries/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
+
+                //                 firebase.database().ref('/estimate/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
+                //                     ccdata = snapshot.val();
+                //                 });
+
+                //                 $timeout(function() {
+                //                     $scope.$apply(function() {
+                //                         console.log(snapshot.val());
+                //                         $scope.coname = eventObj.title;
+
+                //                         comobile = snapshot.val().mobileno;
+
+                //                         $scope.apdate = eventObj.start;
+
+                //                         $scope.coemail = snapshot.val().email;
+
+                //                         $scope.cbrand = snapshot.val().make;
+
+                //                         $scope.cengine = snapshot.val().engine;
+
+                //                         $scope.ctransmission = snapshot.val().transmission;
+
+                //                         $scope.cbodytype = snapshot.val().cartype;
+
+                //                         $scope.cmodel = snapshot.val().model;
+
+                //                         $scope.creading = snapshot.val().mileage;
+
+                //                         $scope.cpdate = snapshot.val().purchasedate;
+
+                //                         $scope.cymodel = snapshot.val().year;
+
+                //                     });
+
+                //                 })
+
+                //             });
+
+                //             info.jsEvent.preventDefault();
+                //         } else {
+                //             alert('Clicked ' + eventObj.title);
+                //         }
+                //     },
+                //     initialDate: d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + '01',
+                //     events: returnArr
+                // });
+
+
+                var month = d.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var year = d.getFullYear();
+
+                var calendarElm = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarElm, {
+                    headerToolbar: {
+                        left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                        center: 'title',
+                        right: 'prev,next today'
+                    },
+                    buttonText: {
+                        today: 'Today',
+                        month: 'Month',
+                        week: 'Week',
+                        day: 'Day'
+                    },
                     eventClick: function(info) {
                         var eventObj = info.event;
                         console.log(eventObj.url)
@@ -113,11 +187,21 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                             alert('Clicked ' + eventObj.title);
                         }
                     },
-                    initialDate: d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + '01',
+                    initialView: 'dayGridMonth',
+                    editable: true,
+                    droppable: true,
+                    themeSystem: 'bootstrap',
+                    eventLimit: true, // for all non-TimeGrid views
+                    views: {
+                        timeGrid: {
+                            eventLimit: 6 // adjust to 6 only for timeGridWeek/timeGridDay
+                        }
+                    },
                     events: returnArr
                 });
 
                 calendar.render();
+
 
                 $scope.approvedate = function() {
 
