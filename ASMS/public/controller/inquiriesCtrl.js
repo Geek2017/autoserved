@@ -882,25 +882,29 @@ angular.module('newApp').controller('inquiriesCtrl', function($scope, $http, $fi
         $('#save_sent_notif').modal('toggle');
 
         $scope.confirmed = function() {
-            var data = new FormData();
-            data.append("number", '+63' + inq_mobile);
-            data.append("message", "Hi !, the quote for your car is ready just click the link for details, Thank You ! : " + "  " + " autoserved-beta.web.app/qoutes.html#" + ikey);
-            data.append("sendername", "AutoServed");
+            try {
+                var data = new FormData();
+                data.append("number", '+63' + inq_mobile);
+                data.append("message", "Hi !, the quote for your car is ready just click the link for details, Thank You ! : " + "  " + " autoserved-beta.web.app/qoutes.html#" + ikey);
+                data.append("sendername", "AutoServed");
 
-            var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
 
-            xhr.addEventListener("readystatechange", function() {
-                if (this.readyState === 4) {
-                    console.log(this.responseText);
-                    $scope.confirmedso();
-                }
-            });
+                xhr.addEventListener("readystatechange", function() {
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                        $scope.confirmedso();
+                    }
+                });
 
-            xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=86f2627fb974d84b9f91898ea8cea6c1");
-            xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
+                xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=86f2627fb974d84b9f91898ea8cea6c1");
+                xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
 
-            xhr.send(data);
+                xhr.send(data);
+            } catch (error) {
+                alert(error)
+            }
         }
     }
 
