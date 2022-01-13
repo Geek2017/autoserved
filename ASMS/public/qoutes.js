@@ -1,14 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('qoutes', function($scope, $http, $timeout) {
 
-    var config = {
-        apiKey: "AIzaSyBp5aAPOOntVPeVipRCPNRBRZdBFncfW98",
-        authDomain: "autoserved-beta.firebaseapp.com",
-        databaseURL: "https://autoserved-beta-default-rtdb.firebaseio.com/",
-        projectId: "autoserved-beta"
-    };
-
-    firebase.initializeApp(config);
 
 
     var pathname = window.location.href;
@@ -47,7 +39,41 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
                     $scope.qoutes = returnArr[0];
 
-                    console.log(returnArr[0])
+                    console.log($scope.qoutes.quotes.aa)
+
+                    if ($scope.qoutes.quotes.aa === 0) {
+                        $('.sra').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.bb === 0) {
+                        $('.srb').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.cc === 0) {
+                        $('.src').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.dd === 0) {
+                        $('.srd').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.ee === 0) {
+                        $('.sre').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.ff === 0) {
+                        $('.srf').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.gg === 0) {
+                        $('.srg').hide();
+                    }
+
+                    if ($scope.qoutes.quotes.others === 0) {
+                        $('.sro').hide();
+                    }
+
+
                     joborder = returnArr[0];
 
                     $scope.email = returnArr[0].email;
