@@ -49,13 +49,12 @@
             border-bottom: none!important;
             background-color: transparent!important;
         }
-        
-        .divo {
+        /* .divo {
             outline-style: solid;
             outline-color: black;
             outline-width: thin;
             margin-bottom: 10%;
-        }
+        } */
         
         body {
             max-width: 500px;
@@ -66,9 +65,9 @@
 </head>
 
 
-<body class="animated fadeInDown" ng-app="myApp">
+<body ng-app="myApp">
 
-    <div style="padding-bottom: 1%;">
+    <div class="card" style="padding-top: 1px!important;">
         <div class="main divo" role="main" ng-controller="qoutes">
             <table class="table">
                 <thead>
@@ -392,7 +391,7 @@
                             </th>
                         </tr>
 
-                        <tr style="height:1px!important">
+                        <tr>
 
                             <th>
                                 <button type="button" class="btn btn-danger btn-lg w-100" ng-click="defered()">NO</button>
@@ -401,8 +400,6 @@
                                 <button type="button" class="btn btn-success btn-lg w-100" ng-click="booking()">YES</button>
                             </th>
                         </tr>
-
-
                     </thead>
                 </table>
             </div>
@@ -474,7 +471,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="./qoutes.js"></script>
     <script src="./assets/js/vendor.min.js"></script>
