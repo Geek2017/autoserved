@@ -123,7 +123,7 @@ app.controller('qoutes', function($scope, $http, $timeout) {
     }, 1000)
 
     $scope.booking = function() {
-        $('#modalSm').modal('toggle');
+        $('#modalLg').modal('toggle');
     }
 
 
