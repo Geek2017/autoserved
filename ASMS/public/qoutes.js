@@ -3,6 +3,7 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
 
 
+
     var pathname = window.location.href;
 
     var fields = pathname.split('#');
@@ -18,22 +19,17 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
     var joborder;
 
+    $http.get('https://autoserved-beta-default-rtdb.firebaseio.com/estimate.json?orderBy="$key"&startAt="' + key + '"&endAt="' + key + '"&print=pretty')
+        .then(function(response) {
+            console.log(response.data)
 
-    var myVar = setInterval(myTimer, 100);
-
-    function myTimer() {
-        console.log('Calling firebase.....')
-        firebase.database().ref('/estimate/').orderByChild('ekey').equalTo(key).on("value", function(snapshot) {
-
+            var respdate = response.data
             $timeout(function() {
                 $scope.$apply(function() {
                     let returnArr = [];
-
-                    snapshot.forEach(childSnapshot => {
-                        let item = childSnapshot.val();
-                        item.key = childSnapshot.key;
-                        returnArr.push(item);
-                        console.log(item.key)
+                    angular.forEach(respdate, function(value, key) {
+                        console.log(value, key)
+                        returnArr.push(value);
                     });
 
 
@@ -107,20 +103,12 @@ app.controller('qoutes', function($scope, $http, $timeout) {
                     $scope.ckm = returnArr[0].details.mileage;
 
 
-
-
                 });
 
             })
-
         });
-    }
 
-    setTimeout(function() {
-        console.log('stop')
-        clearInterval(myVar);
 
-    }, 1000)
 
     $scope.booking = function() {
         $('#modalLg').modal('toggle');

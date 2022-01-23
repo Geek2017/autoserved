@@ -56,65 +56,6 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
 
 
-                // var calendar = new FullCalendar.Calendar(calendarEl, {
-                //     eventClick: function(info) {
-                //         var eventObj = info.event;
-                //         console.log(eventObj.url)
-                //         if (eventObj) {
-                //             objk = eventObj.url;
-                //             dater = eventObj.start.toLocaleDateString('zh-Hans-CN');
-                //             console.log(dater);
-
-                //             $('#viewscad').modal('toggle');
-
-                //             firebase.database().ref('/inquiries/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
-
-                //                 firebase.database().ref('/estimate/' + eventObj.url).orderByChild('ekey').on("value", function(snapshot) {
-                //                     ccdata = snapshot.val();
-                //                 });
-
-                //                 $timeout(function() {
-                //                     $scope.$apply(function() {
-                //                         console.log(snapshot.val());
-                //                         $scope.coname = eventObj.title;
-
-                //                         comobile = snapshot.val().mobileno;
-
-                //                         $scope.apdate = eventObj.start;
-
-                //                         $scope.coemail = snapshot.val().email;
-
-                //                         $scope.cbrand = snapshot.val().make;
-
-                //                         $scope.cengine = snapshot.val().engine;
-
-                //                         $scope.ctransmission = snapshot.val().transmission;
-
-                //                         $scope.cbodytype = snapshot.val().cartype;
-
-                //                         $scope.cmodel = snapshot.val().model;
-
-                //                         $scope.creading = snapshot.val().mileage;
-
-                //                         $scope.cpdate = snapshot.val().purchasedate;
-
-                //                         $scope.cymodel = snapshot.val().year;
-
-                //                     });
-
-                //                 })
-
-                //             });
-
-                //             info.jsEvent.preventDefault();
-                //         } else {
-                //             alert('Clicked ' + eventObj.title);
-                //         }
-                //     },
-                //     initialDate: d.getFullYear() + '-' + parseInt(d.getMonth() + 1) + '-' + '01',
-                //     events: returnArr
-                // });
-
 
                 var month = d.getMonth() + 1;
                 month = (month < 10) ? '0' + month : month;
