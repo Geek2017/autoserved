@@ -25,6 +25,8 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                 var objk;
 
+                var objkid;
+
                 var dater;
 
                 let ccdata;
@@ -78,7 +80,13 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                         var eventObj = info.event;
                         console.log(eventObj.url)
                         if (eventObj) {
+
                             objk = eventObj.url;
+
+                            objkid = eventObj.extendedProps.key
+
+                            console.log("This is it", eventObj.extendedProps.key);
+
                             dater = eventObj.start.toLocaleDateString('zh-Hans-CN');
                             console.log(dater);
 
@@ -152,95 +160,115 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
                     ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
                         let objs = snapshot.val();
 
-                        console.log(ndater)
-
                         $timeout(function() {
                             $scope.$apply(function() {
+
+                                var cdate
+                                var rdatainfo = [];
 
                                 snapshot.forEach(childSnapshot => {
                                     let item = childSnapshot.val();
                                     item.key = childSnapshot.key;
+                                    cdate = item.start;
+                                    rdatainfo.push(item);
+                                });
 
-                                    let cdate = item.start
 
-                                    function senddate() {
-                                        console.log(cdate, comobile)
 
-                                        var data = new FormData();
-                                        data.append("number", '+63' + comobile);
-                                        data.append("message", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
-                                        data.append("sendername", "AutoServed");
+                                function senddate() {
+                                    console.log(cdate, comobile)
 
-                                        var xhr = new XMLHttpRequest();
-                                        xhr.withCredentials = true;
+                                    var data = new FormData();
+                                    data.append("number", '+63' + comobile);
+                                    data.append("message", "Hello! your auto-shop has approve " + cdate + " as your proposed schedule, do bring your car in the shop as per date approve thank you!");
+                                    data.append("sendername", "AutoServed");
 
-                                        xhr.addEventListener("readystatechange", function() {
-                                            if (this.readyState === 4) {
-                                                console.log(this.responseText);
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.withCredentials = true;
 
-                                                window.location.reload();
+                                    xhr.addEventListener("readystatechange", function() {
+                                        if (this.readyState === 4) {
+                                            console.log(this.responseText);
+
+                                            window.location.reload();
+                                        }
+                                    });
+
+                                    xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=86f2627fb974d84b9f91898ea8cea6c1");
+                                    xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
+
+                                    xhr.send(data);
+                                }
+
+
+                                if (cdate = ndater) {
+                                    console.log(cdate, ndater)
+                                }
+
+                                if (cdate === ndater) {
+
+                                    console.log(cdate, ndater);
+
+                                    var joborders = {};
+                                    joborders['/joborders/' + ccdata.ekey] = ccdata;
+                                    firebase.database().ref().update(joborders);
+
+                                    if (joborders) {
+
+                                        firebase.database().ref('/calendar/' + objkid).once("value").then(function(snapshot) {
+                                            console.log('calendar', snapshot.val());
+                                            snapshot.ref.child('color').set('#1abd36');
+                                        });
+
+
+                                        firebase.database().ref('/estimate/' + objkid).once("value").then(function(snapshot) {
+                                            console.log('estimate', snapshot.val());
+                                            snapshot.ref.child('state').set(3);
+                                        });
+
+                                        var delkey = [];
+                                        angular.forEach(rdatainfo, function(value, key) {
+                                            console.log(value, key);
+                                            if (value.key !== objkid) {
+                                                console.log('date', objkid, value.key);
+                                                delkey.push(value.key)
                                             }
                                         });
 
-                                        xhr.open("POST", "https://api.semaphore.co/api/v4/messages?apikey=86f2627fb974d84b9f91898ea8cea6c1");
-                                        xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6ImsyZUwzWnRWQ0NxbHlGXC9EVENjb3JnPT0iLCJ2YWx1ZSI6ImVmTHBOVWE2eGk0eG82Z0tTWEV5QzVmVkxzSE0rWU56UW00TWdvZ2VnYUJLa3BpTWVcL3RoZWpSallRdTV5c0VISWNrVXVjVWxKSCt1OU91YTNoM1pDQT09IiwibWFjIjoiNTlmZTA5ZmMyN2RiN2JkMjg2NWFlZjFkODM0NmYxMGU4MGJlYTg5ZmI1N2MwYWJlNGQ2ZTlkODNkNTk1OGE1NiJ9; laravel_session=eyJpdiI6InUxZE9HUG9VUmNFWG95bEI5UGFWc0E9PSIsInZhbHVlIjoiaWRwcGJ3R0RYZzZnRmNzeVwvYzlmOENSVllPbHFLeTRkUXNlNDgwaGw2U2hZT2FXMEdzOVZBSmdcL21PM0taeGxtRTFzQWMwM29KVmV0ZStqYXJsajdTQT09IiwibWFjIjoiMWEwYzdmYzliNzdkMTBmM2U1NjY5ZDI4ZGZhZDcyNjQ2YTg0ZTVjY2Y2OWJmM2RiMzZmOGVlOWE3MTNhZWNjNiJ9");
+                                        setTimeout(function() {
 
-                                        xhr.send(data);
-                                    }
+                                            console.log(delkey);
 
-                                    if (cdate == ndater) {
-                                        console.log('Approvedate', item.start, ndater, item.key);
-                                        var joborders = {};
-                                        joborders['/joborders/' + ccdata.ekey] = ccdata;
-                                        firebase.database().ref().update(joborders);
+                                            var ref = firebase.database().ref("/calendar/" + delkey[0]);
+                                            ref.remove()
+                                                .then(function() {
+                                                    console.log(delkey[0], "Deleted")
 
-
-                                        if (joborders) {
-                                            console.log(joborders)
-
-                                            var db = firebase.database();
-                                            db.ref('/calendar/')
-                                                .orderByChild("start")
-                                                .equalTo(ndater)
-                                                .once('value')
-                                                .then(function(snapshot) {
-                                                    snapshot.forEach(function(childSnapshot) {
-                                                        childSnapshot.ref.child('color').set('#1abd36');
-                                                        senddate();
-                                                    });
+                                                })
+                                                .catch(function(error) {
+                                                    console.log(error.message)
                                                 });
 
-                                            var db = firebase.database();
-                                            db.ref('/estimate/')
-                                                .orderByChild("ekey")
-                                                .equalTo(ccdata.ekey)
-                                                .once('value')
-                                                .then(function(snapshot) {
-                                                    snapshot.forEach(function(childSnapshot) {
-                                                        childSnapshot.ref.child('state').set(3);
+                                            var ref = firebase.database().ref("/calendar/" + delkey[1]);
+                                            ref.remove()
+                                                .then(function() {
+                                                    console.log(delkey[1], "Deleted")
 
-                                                    });
+                                                })
+                                                .catch(function(error) {
+                                                    console.log(error.message)
                                                 });
-
-                                        }
-
+                                        }, 2000)
 
 
-                                    } else {
 
-                                        console.log('Not-Approvedate', item.start, ndater, item.key);
-                                        var ref = firebase.database().ref("/calendar/" + item.key);
-                                        ref.remove()
-                                            .then(function() {
-                                                console.log("Remove succeeded.")
 
-                                            })
-                                            .catch(function(error) {
-                                                console.log(error.message)
-                                            });
                                     }
-                                });
-                                // console.log(returnArr);
+
+
+
+                                }
+
                             });
                         });
                     });
@@ -255,36 +283,6 @@ angular.module('newApp').controller('appointmentCtrl', function($scope, $http, $
 
                     console.log(comobile)
 
-                    // var ref = firebase.database().ref("/calendar/");
-                    // ref.orderByChild("url").equalTo(objk).on("value", function(snapshot) {
-
-
-                    //     var form = new FormData();
-                    //     form.append("To", '+63' + comobile);
-                    //     form.append("From", "+14157924897");
-                    //     form.append("Body", "Hello! your auto shop is requesting a reschedule for your car maintenance pls. click the link for details" + "&nbsp;" + "autoserved-beta.web.app/reschadule.html#" + objk);
-
-                    //     var settings = {
-                    //         "url": "https://api.twilio.com/2010-04-01/Accounts/AC742b2637d81ad25881d744ba9e098eda/Messages.json",
-                    //         "method": "POST",
-                    //         "timeout": 0,
-                    //         "headers": {
-                    //             "Authorization": "Basic QUM2MTZkZDIxOWM4YmVhMzgxMWQwYzUwMmY1NzNhZjY4MTpiNThlNTYwNGRjNzE5MDlhODYwNDgzZjljZmZiZDU0Mg=="
-                    //         },
-                    //         "processData": false,
-                    //         "mimeType": "multipart/form-data",
-                    //         "contentType": false,
-                    //         "data": form
-                    //     };
-
-                    //     $.ajax(settings).done(function(response) {
-                    //         console.log(response);
-                    //         if (response) {
-
-                    //         }
-                    //     });
-
-                    // });
                     genjo();
 
                     function genjo() {

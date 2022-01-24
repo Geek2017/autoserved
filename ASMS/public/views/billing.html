@@ -165,20 +165,28 @@
                     </div>
                     <div class="list-group-item d-flex align-items-center">
                         <div class="flex-fill">
-                            <span>Cash: <input  class="form-check-input cash" type="radio" name="paymenttype" ng-model="cash"/></span>
+                            <span>Cash: <input  class="form-check-input cash" type="radio" name="paymenttype"  ng-model="cash" value="cash"/></span>
                         </div>
                         <div class="flex-fill">
-                            <span>Credit Card: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="creditcard"/></span>
+                            <span>Credit Card: <input  class="form-check-input" type="radio" name="paymenttype"  ng-model="creditcard" value="creditcard"/></span>
                         </div>
                         <div class="flex-fill">
-                            <span>Wallet: <input class="form-check-input" type="radio"  name="paymenttype" ng-model="wallet"/></span>
+                            <span>Wallet: <input class="form-check-input" type="radio"  name="paymenttype" ng-model="wallet" value="wallet"/></span>
                         </div>
                         <div class="flex-fill">
-                            <span>Term: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="term"/></span>
+                            <span>Term: <input  class="form-check-input" type="radio" name="paymenttype" ng-model="term" value="term"/></span>
                         </div>
                     </div>
                     <div id="ttotal" class="list-group-item d-flex align-items-center">
                         <input class="form-control amtpaid" type="number" placeholder="0.00">
+                    </div>
+
+                    <div id="paypal" class="list-group-item d-flex align-items-center">
+                        <div id="smart-button-container">
+                            <div style="text-align: center;">
+                                <div id="paypal-button-container" style="width: 318px!important;"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="list-group-item d-flex align-items-center">
                         <div class="flex-fill">
@@ -189,12 +197,14 @@
                         </div>
                     </div>
                     <div class="list-group-item d-flex align-items-center">
-                        <div class="flex-fill">
+
+                        <div class="flex-fill tender">
                             <div>Change:</div>
                         </div>
-                        <div>
+                        <div class="tender">
                             <strong>₱ <span class="badge bg-transparent border border-info text-primary fs-12px fw-500 rounded-sm amtchange"> 0.00</span></strong>
                         </div>
+
                     </div>
                     <footer class="modal-footer">
                         <button type="submit" class="btn btn-success" ng-click="acceptpay()">Accept Payment</button>

@@ -4,6 +4,8 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
     $scope.pageSize = 10;
     $scope.pagedata = [];
 
+
+
     firebase.database().ref('/joborders/').orderByChild('mobileno').on("value", function(snapshot) {
 
         $timeout(function() {
@@ -37,6 +39,19 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
 
     });
 
+    $('#smart-button-container').hide();
+
+    var $radios = $('input[name=paymenttype]').change(function() {
+        var value = $radios.filter(':checked').val();
+        console.log(value)
+        if (value === "creditcard") {
+            $('#smart-button-container').show();
+            $('.amtpaid').hide();
+            $('.modal-footer').hide();
+            $('.tender').hide();
+        }
+    });
+
     $("#ttotal").on('input', '.amtpaid', function() {
 
         var amt = $('.amtpaid').val();
@@ -60,6 +75,54 @@ angular.module('newApp').controller('billingCtrl', function($scope, $http, $filt
     });
 
     $scope.paynow = function(joborder) {
+        let payamt0 = joborder.total.replace(/₱ /, '');
+        let payamt1 = payamt0.replace(/,/, '');
+        let payamt2 = parseFloat(payamt1)
+
+        console.log(payamt2)
+
+        function initPayPalButton() {
+
+
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'blue',
+                    layout: 'horizontal',
+                    label: 'pay',
+
+                },
+
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{ "amount": { "currency_code": "PHP", "value": payamt2 } }]
+                    });
+                },
+
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(orderData) {
+
+                        // Full available details
+                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                        // Show a success message within this page, e.g.
+                        const element = document.getElementById('paypal-button-container');
+                        element.innerHTML = '';
+                        element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                        // Or go to another URL:  actions.redirect('thank_you.html');
+
+                    });
+                },
+
+                onError: function(err) {
+                    console.log(err);
+                }
+            }).render('#paypal-button-container');
+        }
+
+        initPayPalButton();
+
         $('#pointofsale').modal('toggle');
 
         $(".cash").prop("checked", true);

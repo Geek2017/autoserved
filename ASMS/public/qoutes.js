@@ -21,7 +21,7 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
     $http.get('https://autoserved-beta-default-rtdb.firebaseio.com/estimate.json?orderBy="$key"&startAt="' + key + '"&endAt="' + key + '"&print=pretty')
         .then(function(response) {
-            console.log(response.data)
+            console.log('date this:', response.data)
 
             var respdate = response.data
             $timeout(function() {
@@ -71,6 +71,8 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
 
                     joborder = returnArr[0];
+
+                    console.log('jokey', joborder)
 
                     $scope.email = returnArr[0].email;
                     $scope.mobile = returnArr[0].mobileno
@@ -147,11 +149,11 @@ app.controller('qoutes', function($scope, $http, $timeout) {
 
 
 
-        var uid = joborder.key;
+        var uid = joborder.ekey;
         var updates = {};
         var jorder = {
             email: joborder.email,
-            key: joborder.key,
+            key: joborder.ekey,
             mobileno: joborder.mobileno,
             quotes: { aa: JSON.stringify(val0), bb: JSON.stringify(val1), cc: JSON.stringify(val2) },
             state: 4,
